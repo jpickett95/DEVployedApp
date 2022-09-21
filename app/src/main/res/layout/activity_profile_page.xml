@@ -32,8 +32,8 @@
         app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="673dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contentDescription="Profile page."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="Profile page content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/profileImage"
