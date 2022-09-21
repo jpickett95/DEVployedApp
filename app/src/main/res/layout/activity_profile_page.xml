@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/backButton_profile"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -47,12 +47,36 @@
             android:orientation="vertical" >
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/profileImage"
                 android:layout_width="wrap_content"
                 android:layout_height="125dp"
                 android:layout_gravity="center"
                 android:scaleType="center"
                 tools:srcCompat="@tools:sample/avatars" />
+
+            <EditText
+                android:id="@+id/editTextEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="janedoe@gmail.com"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="(123) 456 - 7890"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:textAlignment="center" />
 
         </LinearLayout>
     </ScrollView>
