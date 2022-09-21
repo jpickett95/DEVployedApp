@@ -2,13 +2,18 @@ package com.example.devployedapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MainActivity extends AppCompatActivity {
+
+    Dialog filtersDialog; // For filters popup window on main activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,5 +33,21 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        filtersDialog = new Dialog(this); // For filters popup window on main activity
+    }
+
+    // For filters popup window on main activity
+    public void ShowFiltersPopup(View v){
+        FloatingActionButton completedButton;
+        filtersDialog.setContentView(R.layout.popup_filters);
+        completedButton = (FloatingActionButton) filtersDialog.findViewById(R.id.floatingActionButton_complete);
+        completedButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                filtersDialog.dismiss();
+            }
+        });
+        filtersDialog.show();
     }
 }
