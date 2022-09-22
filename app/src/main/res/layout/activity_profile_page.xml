@@ -23,7 +23,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:background="#00FFFFFF"
-        android:contentDescription="Back arrow button."
+        android:contentDescription="@string/back_arrow_button"
         android:minWidth="48dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_profilePage"
@@ -34,7 +34,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="Profile page."
+        android:contentDescription="@string/profile_page"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="Profile page content"
+            android:contentDescription="@string/profile_page_content"
             android:orientation="vertical">
 
             <ImageView
@@ -51,29 +51,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="125dp"
                 android:layout_gravity="center"
+                android:contentDescription="@string/profilepic"
                 android:scaleType="center"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <EditText
                 android:id="@+id/editTextEmailAddress"
+                android:autofillHints="@string/janedoe@gmail.com"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:ems="10"
-                android:hint="janedoe@gmail.com"
+                android:hint="@string/janedoe_gmail_com"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:textAlignment="center" />
 
             <EditText
                 android:id="@+id/editTextPhone"
+                android:autofillHints="@string/(123) 456 - 7890"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:ems="10"
-                android:hint="(123) 456 - 7890"
+                android:hint="@string/__123_456_7890"
                 android:inputType="phone"
                 android:minHeight="48dp"
                 android:textAlignment="center" />
