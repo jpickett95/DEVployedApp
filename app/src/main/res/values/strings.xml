@@ -6,5 +6,5 @@
     <string name="profile_page_content">Profile page content</string>
     <string name="janedoe_gmail_com">janedoe@gmail.com</string>
     <string name="profilepic">ProfilePic</string>
-    <string name="__123_456_7890">(123)456&#8811;7890</string>
+    <string name="_123_456_7890">(123) 456&#8211;7890</string>
 </resources>
