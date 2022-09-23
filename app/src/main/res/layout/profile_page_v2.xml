@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageProfilePic" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/phoneTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="133dp"
@@ -68,4 +68,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+
+    <TextView
+        android:id="@+id/SkillsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="52dp"
+        android:padding="10dp"
+        android:text="@string/skills_label"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/phoneTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main2"
+        tools:text="@string/skills_label" />
+
+    <TextView
+        android:id="@+id/ExperienceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="299dp"
+        android:padding="10dp"
+        android:text="@string/experience_label"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SkillsLabel"
+        tools:text="@string/experience_label" />
 </androidx.constraintlayout.widget.ConstraintLayout>

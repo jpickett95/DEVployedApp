@@ -7,4 +7,7 @@
     <string name="janedoe_gmail_com">janedoe@gmail.com</string>
     <string name="profilepic">ProfilePic</string>
     <string name="_123_456_7890">(123) 456&#8211;7890</string>
+    <string name="skills_label">Skills</string>
+    <string name="experience_label">Experience</string>
+    <string name="add_skill_button">Add Skills</string>
 </resources>
