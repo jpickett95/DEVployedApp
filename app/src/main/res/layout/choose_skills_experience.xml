@@ -9,30 +9,31 @@
     android:padding="10dp">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton_complete"
+        android:id="@+id/floatingActionButton_doneAdding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:contentDescription="Complete selecting filters, and close popup window."
+        android:contentDescription="Complete selection, and close popup window."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_check_24" />
 
     <TextView
-        android:id="@+id/textView_chooseFilters"
+        android:id="@+id/textView_aboutYouHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="166dp"
         android:layout_marginEnd="188dp"
-        android:text="Choose Filters"
+        android:text="Tell us about yourself!"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayout_programmingLanguages"
@@ -41,13 +42,14 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_chooseFilters">
+        app:layout_constraintTop_toBottomOf="@+id/textView_aboutYouHeader">
+
 
         <TextView
-            android:id="@+id/textView_programmingLanguages"
+            android:id="@+id/textView_yourSkills"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Programming Languages"
+            android:text="What are your skills?"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
@@ -62,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_programmingLanguages"
+            app:layout_constraintTop_toBottomOf="@+id/textView_yourSkills"
             app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.chip.Chip
@@ -199,7 +201,7 @@
             android:id="@+id/textView_education"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Education"
+            android:text="What level of education have you completed?"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
@@ -293,7 +295,7 @@
             android:id="@+id/textView_experience"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Experience Level"
+            android:text="What is your level of experience?"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
@@ -306,8 +308,10 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_experience">
+            app:layout_constraintTop_toBottomOf="@+id/textView_experience"
+            app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_noexp"
@@ -315,6 +319,15 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="No past experience."
                 android:text="No Experience"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_freelance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/chip_freelance"
                 android:textAlignment="center"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -376,7 +389,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Your preferred industries."
-            android:text="Preferred Industries"
+            android:text="Are there specific areas you would like to work in?"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
@@ -390,6 +403,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_industries">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_all_industries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:contentDescription="All Industries"
+                android:text="Select All"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_softwaredev"

@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ProfilePage extends AppCompatActivity {
-    //public TextView enterSkillTextview = (TextView) findViewById(R.id.skillTextView);
-    //LinearLayout linearLayout = findViewById(R.id.profilePage);
 
     Dialog skillsDialog; //to create popup to add Skills & Experiences
 
