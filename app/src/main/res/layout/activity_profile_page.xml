@@ -33,6 +33,7 @@
         tools:ignore="RedundantDescriptionCheck" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/profile_page"
@@ -42,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_profilePage">
 
         <LinearLayout
+            android:id="@+id/profilePage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/profile_page_content"
@@ -109,10 +111,6 @@
                 android:text="@string/experience_label"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/profileImage"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SkillsLabel"
                 tools:text="@string/experience_label" />
 
         </LinearLayout>
@@ -130,5 +128,20 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/skillTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:background="@color/brand_Pistachio"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/scrollView2"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_profilePage"
+        tools:text="@string/my_new_skill"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

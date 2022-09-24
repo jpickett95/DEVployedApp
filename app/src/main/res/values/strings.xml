@@ -10,4 +10,5 @@
     <string name="skills_label">Skills</string>
     <string name="experience_label">Experience</string>
     <string name="add_skill_button">+</string>
+    <string name="my_new_skill">     </string>
 </resources>
