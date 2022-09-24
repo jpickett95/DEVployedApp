@@ -3,7 +3,6 @@ package com.example.devployedapp;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,18 +26,11 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
 
-
-        Button addSkillButton = (Button) findViewById(R.id.addSkillButton2);
-        addSkillButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                finish();
-          }
-        });
         skillsDialog = new Dialog(this);
     }
     public void AddSkills(View v){
         FloatingActionButton doneAddingButton;
-        skillsDialog.setContentView(R.layout.skills_experiences);
+        skillsDialog.setContentView(R.layout.choose_skills_experience);
         doneAddingButton = (FloatingActionButton) skillsDialog.findViewById(R.id.floatingActionButton_doneAdding);
         doneAddingButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -49,10 +41,4 @@ public class ProfilePage extends AppCompatActivity {
         skillsDialog.show();
     }
 
- /*   public void addNew(){
-        View view = getLayoutInflater().inflate(R.layout.skills_experiences,null);
-        //TextView newestSkill = new TextView(enterSkillTextview.getContext());
-        linearLayout.addView(view);
-
-    }*/
 }

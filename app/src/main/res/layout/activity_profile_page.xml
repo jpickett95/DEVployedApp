@@ -117,7 +117,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/addSkillButton2"
+        android:id="@+id/addSkillButton"
         android:layout_width="65dp"
         android:layout_height="48dp"
         android:layout_gravity="bottom|end"
@@ -126,22 +126,9 @@
         android:text="@string/add_skill_button"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:clickable="true"
+        android:onClick="AddSkills"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/skillTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:padding="10dp"
-        android:textSize="16sp"
-        android:background="@color/brand_Pistachio"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/scrollView2"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_profilePage"
-        tools:text="@string/my_new_skill"
-        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
