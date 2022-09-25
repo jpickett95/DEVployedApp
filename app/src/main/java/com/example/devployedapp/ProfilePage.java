@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ProfilePage extends AppCompatActivity {
@@ -36,9 +37,19 @@ public class ProfilePage extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 skillsDialog.dismiss();
+                ////code here to 'refresh' the profile page to display selected items - another method?
+                /*ChipGroup skillsChipGroup = (ChipGroup) findViewById(R.id.profile_skills_chipGroup);
+                setVisible(true);
+                ChipGroup expChipGroup = (ChipGroup) findViewById(R.id.profile_exp_chipGroup);
+                setVisible(true);*/
             }
         });
         skillsDialog.show();
+    }
+    public void refreshProfile(){
+        ChipGroup skillsChipGroup;
+        ChipGroup expChipGroup;
+        skillsChipGroup = findViewById(R.id.profile_skills_chipGroup);
     }
 
 }
