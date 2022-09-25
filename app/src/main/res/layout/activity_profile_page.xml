@@ -110,8 +110,143 @@
                 android:id="@+id/profile_skills_chipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="111dp"
-                tools:visibility="gone">
+                android:padding="10dp">
 
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/ChipGroup_ProgrammingLanguages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_yourSkills"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_Java"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Java (programming language)"
+                        android:text="Java"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_cpp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="C++ (programming language)"
+                        android:text="C++"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_csharp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="C# (programming language)"
+                        android:text="C#"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_Nodejs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Node.js (programming language)"
+                        android:text="Node.js"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_Kotlin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Kotlin (programming language)"
+                        android:text="Kotlin"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_Ruby"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Ruby (programming language)"
+                        android:text="Ruby"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_Python"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Python (programming language)"
+                        android:text="Python"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_jQuery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="jQuery (programming language)"
+                        android:text="jQuery"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_SQL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="SQL (programming language)"
+                        android:text="SQL"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_Swift"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Swift (programming language)"
+                        android:text="Swift"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_HTML"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="HTML"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </com.google.android.material.chip.ChipGroup>
             </com.google.android.material.chip.ChipGroup>
 
             <TextView
@@ -131,8 +266,269 @@
                 android:id="@+id/profile_exp_chipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="111dp"
-                tools:visibility="gone">
+                android:padding="10dp">
 
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/ChipGroup_experience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_experience">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_noexp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="No past experience."
+                        android:text="No Experience"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_earlycareer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Early career (0-1 years experience)."
+                        android:text="Early Career"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_midcareer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Mid Career (2-5 years experience)."
+                        android:text="Mid Career"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_senior"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Senior level in your career (5+ years experience)."
+                        android:text="Senior Level"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_executive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Held an executive position."
+                        android:text="Executive"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/ChipGroup_education"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/ChipGroup_experience"
+                    app:layout_constraintEnd_toEndOf="@id/ChipGroup_experience"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/ChipGroup_experience"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_education"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_highschool"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Completed high school."
+                        android:text="High School"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_associates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Completed an associate's degree."
+                        android:text="Associate's"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_bachelors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Completed a bachelor's degree."
+                        android:text="Bachelor's"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_masters"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Master's"
+                        android:textAlignment="center"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_phd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Completed a doctorate degree."
+                        android:text="PhD"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_bootcamp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:contentDescription="Completed a coding bootcamp."
+                        android:text="Coding Bootcamp"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </com.google.android.material.chip.ChipGroup>
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:id="@+id/experienceLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:text="  Preferred Industries"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="  Preferred Industries" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/ChipGroup_industries"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_industries">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_all_industries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:contentDescription="All Industries"
+                    android:text="Select All"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_softwaredev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:contentDescription="Software Development (Engineering)"
+                    android:text="Software Development"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_IT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:contentDescription="IT (information technology)"
+                    android:text="IT"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_frontend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:contentDescription="Front End development"
+                    android:text="Front End"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_backend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:contentDescription="Back End development"
+                    android:text="Back End"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_fullstack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:contentDescription="Full stack development (front and back ends)."
+                    android:text="Full Stack"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_uxui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:contentDescription="UX/UI (User Experience and User Interface)."
+                    android:text="UX / UI"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_gaming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:contentDescription="Gaming software development."
+                    android:text="Game Development"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </com.google.android.material.chip.ChipGroup>
 
         </LinearLayout>
