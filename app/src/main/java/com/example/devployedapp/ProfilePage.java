@@ -3,6 +3,7 @@ package com.example.devployedapp;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ProfilePage extends AppCompatActivity {
+    // Variables
+    private EditText profileEmail = findViewById(R.id.editTextEmailAddress);
+    private EditText profilePhone = findViewById(R.id.editTextPhone);
 
     Dialog skillsDialog; //to create popup to add Skills & Experiences
 

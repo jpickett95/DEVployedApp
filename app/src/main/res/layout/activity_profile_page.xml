@@ -94,7 +94,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLayout_profile_programmingLanguages"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:padding="10dp">
 
                 <TextView
@@ -138,18 +138,10 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/profile_skills_chipGroup"
-                android:layout_width="match_parent"
-                android:layout_height="111dp"
-                tools:visibility="gone">
-
-            </com.google.android.material.chip.ChipGroup>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLayout_education"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:padding="10dp">
 
                 <TextView
@@ -158,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:contentDescription="Your previous educational experience level"
                     android:padding="10dp"
-                    android:text="@string/experience_label"
+                    android:text="Educational Experience"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -228,14 +220,6 @@
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/profile_exp_chipGroup"
-                android:layout_width="match_parent"
-                android:layout_height="111dp"
-                tools:visibility="gone">
-
-            </com.google.android.material.chip.ChipGroup>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLayout_profile_experience"
