@@ -55,14 +55,28 @@
 
             <ImageView
                 android:id="@+id/profileImage"
-                android:layout_width="wrap_content"
-                android:layout_height="125dp"
+                android:layout_width="161dp"
+                android:layout_height="188dp"
                 android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:background="@color/accent_LightSeaGreen"
                 android:contentDescription="@string/profilepic"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_launcher_foreground"
                 tools:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="Jane Doe"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editTextEmailAddress"
