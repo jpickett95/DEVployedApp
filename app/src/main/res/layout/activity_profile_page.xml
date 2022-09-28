@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfilePage"
-    tools:visibility="visible">
+    tools:context=".ProfilePage">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_profilePage"
@@ -23,12 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:adjustViewBounds="false"
         android:background="#00FFFFFF"
         android:contentDescription="@string/back_arrow_button"
         android:minWidth="48dp"
         android:scaleType="fitCenter"
-        android:tintMode="multiply"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_profilePage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +37,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/profile_page"
-        android:isScrollContainer="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,11 +54,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="125dp"
                 android:layout_gravity="center"
-                android:background="@color/accent_LightSeaGreen"
                 android:contentDescription="@string/profilepic"
                 android:scaleType="center"
-                app:srcCompat="@drawable/ic_launcher_foreground"
-                tools:srcCompat="@drawable/ic_launcher_foreground" />
+                tools:srcCompat="@tools:sample/avatars" />
 
             <EditText
                 android:id="@+id/editTextEmailAddress"
@@ -138,14 +132,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/profile_skills_chipGroup"
-                android:layout_width="match_parent"
-                android:layout_height="111dp"
-                tools:visibility="gone">
-
-            </com.google.android.material.chip.ChipGroup>
-
             <TextView
                 android:id="@+id/experienceLabel"
                 android:layout_width="match_parent"
@@ -159,14 +145,6 @@
                 android:textStyle="bold"
                 tools:text="@string/experience_label" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/profile_exp_chipGroup"
-                android:layout_width="match_parent"
-                android:layout_height="111dp"
-                tools:visibility="gone">
-
-            </com.google.android.material.chip.ChipGroup>
-
         </LinearLayout>
     </ScrollView>
 
@@ -177,11 +155,11 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:onClick="AddSkills"
         android:text="@string/add_skill_button"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:clickable="true"
+        android:onClick="AddSkills"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
