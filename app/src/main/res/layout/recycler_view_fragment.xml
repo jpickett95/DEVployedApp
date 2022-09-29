@@ -15,10 +15,8 @@
         android:paddingRight="10dp">
 
         <!--//this will be company logo-->
-
-        <!--//this will be company name-->
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/companyLogo"
             android:layout_width="84dp"
             android:layout_height="95dp"
             android:layout_marginStart="4dp"
@@ -29,8 +27,9 @@
             app:layout_constraintVertical_bias="0.0"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+        <!--//this will be company name-->
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/companyName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -39,13 +38,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/companyLogo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <!--//this will be job title-->
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/jobTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -54,13 +53,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/companyLogo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.25" />
 
         <!--//this will be populated by skills in the user profile that match words in the job description-->
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/matchingSkills"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -69,8 +68,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/companyLogo"
+            app:layout_constraintTop_toTopOf="@+id/companyName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

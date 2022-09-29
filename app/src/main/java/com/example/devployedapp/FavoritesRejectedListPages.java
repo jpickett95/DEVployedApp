@@ -28,6 +28,8 @@ public class FavoritesRejectedListPages extends AppCompatActivity  {
     protected RecyclerView.LayoutManager mLayoutManager;
     protected String[] mDataset;
 
+    protected JobPostInformation theJobPostInfo;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,11 +65,6 @@ public class FavoritesRejectedListPages extends AppCompatActivity  {
         // END_INCLUDE(initializeRecyclerView)
         return rootView;
     }
-    /**
-     * Set RecyclerView's LayoutManager to the one given.
-     *
-     * @param layoutManagerType Type of layout manager to switch to.
-     */
     public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
         int scrollPosition = 0;
 
@@ -83,8 +80,9 @@ public class FavoritesRejectedListPages extends AppCompatActivity  {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.scrollToPosition(scrollPosition);
     }
+
     public void CustomAdapter(String[] dataSet) {
-        mDataset = dataSet;
+        //mDataset = dataSet;
     }
     // Create new views (invoked by the layout manager)
     //@Override
