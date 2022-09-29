@@ -5,18 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 /* reference webpages:
 Android Docs Create dynamic lists with RecyclerView: https://developer.android.com/develop/ui/views/layout/recyclerview
 Android Docs Example of adding RecyclerView: https://github.com/android/views-widgets-samples/commit/aea13d5dbb4b5f1844bcb7f1b330b93f90750052#diff-c26aac7ad610d30f5ab5e74a8f575f27604ae4a3ce747c87d23dbc0a94df22f6
 */
 
-public class FavoritesRejectedListPages extends AppCompatActivity  {
+public class FavoritesRejectedListPages extends AppCompatActivity {
 
     private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
@@ -35,7 +35,6 @@ public class FavoritesRejectedListPages extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_pages_favorites_rejected);
 
-
         // Toolbar 'Back Button' functionality to go 'back' a page.
         ImageButton backButton_profile = findViewById(R.id.backButton_SaveToMain);
         backButton_profile.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +47,7 @@ public class FavoritesRejectedListPages extends AppCompatActivity  {
         View rootView = inflater.inflate(R.layout.recycler_view_fragment, container, false);
 
         // BEGIN_INCLUDE(initializeRecyclerView)
-        //mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.Saved_Jobs_RecyclerView);
 
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
@@ -58,12 +57,32 @@ public class FavoritesRejectedListPages extends AppCompatActivity  {
         mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
         mRecyclerView.findViewById(R.id.Saved_Jobs_RecyclerView);
         //mRecyclerView.setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
+        //mRecyclerView.getDisplay();
 
-        //mAdapter = new CustomAdapter(mDataset);
+        //mAdapter = new CustomAdapter(theJobPostInfo);
         // Set CustomAdapter as the adapter for RecyclerView.
-        //mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(theJobPostInfo);
         // END_INCLUDE(initializeRecyclerView)
         return rootView;
+    }
+
+    /**
+     * Provide a reference to the type of views that you are using
+     * (custom ViewHolder).
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final TextView theJobPostInfo;
+
+        public ViewHolder(View view) {
+            super(view);
+            // Define click listener for the ViewHolder's View
+
+            theJobPostInfo = (TextView) view.findViewById(R.id.savedJobsTextView);
+        }
+
+        public TextView getJobPosting() {
+            return theJobPostInfo;
+        }
     }
     public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
         int scrollPosition = 0;
@@ -81,8 +100,8 @@ public class FavoritesRejectedListPages extends AppCompatActivity  {
         mRecyclerView.scrollToPosition(scrollPosition);
     }
 
-    public void CustomAdapter(String[] dataSet) {
-        //mDataset = dataSet;
+    public void CustomAdapter(JobPostInformation info) {
+        theJobPostInfo = info;
     }
     // Create new views (invoked by the layout manager)
     //@Override
@@ -100,22 +119,15 @@ public class FavoritesRejectedListPages extends AppCompatActivity  {
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        //viewHolder.getTextView().setText(mDataset[position]);
+        //viewHolder.equals(theJobPostInfo.createJobPostFrag());
+        //viewHolder.equals(theJobPostInfo);
+        viewHolder.getJobPosting();
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     //@Override
     public int getItemCount() {
-        return mDataset.length;
+        return 20;
     }
-
-
-
-
-
-
-
-
-
 
 }

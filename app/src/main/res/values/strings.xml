@@ -12,4 +12,5 @@
     <string name="add_skill_button">+</string>
     <string name="my_new_skill">     </string>
     <string name="chip_freelance">Freelance</string>
+    <string name="companyNameFragmentPiece">Company: </string>
 </resources>
