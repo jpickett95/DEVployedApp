@@ -7,6 +7,7 @@
     tools:context=".ProfilePage"
     tools:visibility="visible">
 
+    <!-- Top toolbar (Toolbar) -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_profilePage"
         android:layout_width="0dp"
@@ -18,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Toolbar back arrow button (ImageButton) -->
     <ImageButton
         android:id="@+id/backButton_profile"
         android:layout_width="wrap_content"
@@ -35,6 +37,7 @@
         app:srcCompat="@drawable/ic_baseline_arrow_back_24"
         tools:ignore="RedundantDescriptionCheck" />
 
+    <!-- Activity page container (ScrollView) -->
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
@@ -46,6 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_profilePage">
 
+        <!-- Activity page content container (LinearLayout) -->
         <LinearLayout
             android:id="@+id/profilePage"
             android:layout_width="match_parent"
@@ -53,18 +57,22 @@
             android:contentDescription="@string/profile_page_content"
             android:orientation="vertical">
 
+            <!-- Profile Image (ImageView) -->
             <ImageView
                 android:id="@+id/profileImage"
                 android:layout_width="161dp"
                 android:layout_height="188dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:background="@color/accent_LightSeaGreen"
+                android:background="#E2E3E1"
                 android:contentDescription="@string/profilepic"
-                android:scaleType="center"
-                app:srcCompat="@drawable/ic_launcher_foreground"
-                tools:srcCompat="@drawable/ic_launcher_foreground" />
+                android:longClickable="true"
+                android:saveEnabled="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_baseline_image_24"
+                tools:srcCompat="@drawable/ic_baseline_image_24" />
 
+            <!-- User's name (EditText) -->
             <EditText
                 android:id="@+id/editTextName"
                 android:layout_width="match_parent"
@@ -78,9 +86,9 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
+            <!-- User's email address (EditText) -->
             <EditText
                 android:id="@+id/editTextEmailAddress"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -92,6 +100,7 @@
                 android:minHeight="48dp"
                 android:textAlignment="center" />
 
+            <!-- User's Phone# (EditText) -->
             <EditText
                 android:id="@+id/editTextPhone"
                 android:layout_width="match_parent"
@@ -105,12 +114,14 @@
                 android:minHeight="48dp"
                 android:textAlignment="center" />
 
+            <!-- Programming languages container (ConstraintLayout) -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLayout_profile_programmingLanguages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp">
 
+                <!-- Programming languages container title (TextView) -->
                 <TextView
                     android:id="@+id/textView_profile_programmingLanguages"
                     android:layout_width="wrap_content"
@@ -123,6 +134,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Programming Languages" />
 
+                <!-- Programming languages chip group (ChipGroup) -->
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/ChipGroup_profile_programmingLanguages"
                     android:layout_width="0dp"
@@ -131,6 +143,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_profile_programmingLanguages">
 
+                    <!-- Demo chip - "Java" (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip4"
                         android:layout_width="wrap_content"
@@ -138,6 +151,7 @@
                         android:text="Java" />
                 </com.google.android.material.chip.ChipGroup>
 
+                <!-- Programming languages chip group 'add' button (ImageButton) -->
                 <ImageButton
                     android:id="@+id/programmingLanguages_addButton"
                     android:layout_width="wrap_content"
@@ -152,12 +166,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- Education level container (ConstraintLayout) -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLayout_education"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp">
 
+                <!-- Education level container title (TextView) -->
                 <TextView
                     android:id="@+id/textView_profile_education"
                     android:layout_width="match_parent"
@@ -171,6 +187,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Educational Experience" />
 
+                <!-- Education Level chip group (ChipGroup) -->
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/ChipGroup_education"
                     android:layout_width="0dp"
@@ -179,6 +196,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_profile_education">
 
+                    <!-- High School (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_highschool"
                         android:layout_width="wrap_content"
@@ -188,6 +206,7 @@
                         android:text="High School"
                         app:chipIconVisible="true" />
 
+                    <!-- Associate's Degree (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_associates"
                         android:layout_width="wrap_content"
@@ -197,6 +216,7 @@
                         android:text="Associate's"
                         app:chipIconVisible="true" />
 
+                    <!-- Bachelor's degree (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_bachelors"
                         android:layout_width="wrap_content"
@@ -206,6 +226,7 @@
                         android:text="Bachelor's"
                         app:chipIconVisible="true" />
 
+                    <!-- Master's Degree (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_masters"
                         android:layout_width="wrap_content"
@@ -215,6 +236,7 @@
                         android:text="Master's"
                         app:chipIconVisible="true" />
 
+                    <!-- Doctorate Degree (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_phd"
                         android:layout_width="wrap_content"
@@ -224,6 +246,7 @@
                         android:text="PhD"
                         app:chipIconVisible="true" />
 
+                    <!-- Coding Bootcamp (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_bootcamp"
                         android:layout_width="wrap_content"
@@ -235,6 +258,7 @@
                 </com.google.android.material.chip.ChipGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- Experience level container (ConstraintLayout) -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLayout_profile_experience"
                 android:layout_width="match_parent"
@@ -242,6 +266,7 @@
                 android:padding="10dp"
                 tools:layout_editor_absoluteY="537dp">
 
+                <!-- Experience level container title (TextView) -->
                 <TextView
                     android:id="@+id/textView_profile_experience"
                     android:layout_width="wrap_content"
@@ -253,6 +278,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <!-- Experience level chip group (ChipGroup) -->
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/ChipGroup_profile_experience"
                     android:layout_width="0dp"
@@ -261,6 +287,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_profile_experience">
 
+                    <!-- No Experience (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_noexp"
                         android:layout_width="wrap_content"
@@ -270,6 +297,7 @@
                         android:text="No Experience"
                         app:chipIconVisible="true" />
 
+                    <!-- Early Career (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_earlycareer"
                         android:layout_width="wrap_content"
@@ -279,6 +307,7 @@
                         android:text="Early Career"
                         app:chipIconVisible="true" />
 
+                    <!-- Mid Career (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_midcareer"
                         android:layout_width="wrap_content"
@@ -288,6 +317,7 @@
                         android:text="Mid Career"
                         app:chipIconVisible="true" />
 
+                    <!-- Senior Level (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_senior"
                         android:layout_width="wrap_content"
@@ -297,6 +327,7 @@
                         android:text="Senior Level"
                         app:chipIconVisible="true" />
 
+                    <!-- Executive (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_executive"
                         android:layout_width="wrap_content"
@@ -308,12 +339,14 @@
                 </com.google.android.material.chip.ChipGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- Industry preferences container (ConstraintLayout) -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLayout_profile_industrypreferences"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp">
 
+                <!-- Industry preferences container title (TextView) -->
                 <TextView
                     android:id="@+id/textView_profile_industrypreferences"
                     android:layout_width="wrap_content"
@@ -325,6 +358,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <!-- Industry preferences chip group (ChipGroup) -->
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/ChipGroup_profile_industrypreferences"
                     android:layout_width="0dp"
@@ -333,6 +367,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_profile_industrypreferences">
 
+                    <!-- Software Development (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_softwaredev"
                         android:layout_width="wrap_content"
@@ -342,6 +377,7 @@
                         android:text="Software Development"
                         app:chipIconVisible="true" />
 
+                    <!-- IT - 'Information Technology' (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_it"
                         android:layout_width="wrap_content"
@@ -351,6 +387,7 @@
                         android:text="IT"
                         app:chipIconVisible="true" />
 
+                    <!-- Front-End Development (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_frontend"
                         android:layout_width="wrap_content"
@@ -360,6 +397,7 @@
                         android:text="Front End"
                         app:chipIconVisible="true" />
 
+                    <!-- Back-End Development (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_backend"
                         android:layout_width="wrap_content"
@@ -369,6 +407,7 @@
                         android:text="Back End"
                         app:chipIconVisible="true" />
 
+                    <!-- Full-Stack Development (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_fullstack"
                         android:layout_width="wrap_content"
@@ -378,6 +417,7 @@
                         android:text="Full Stack"
                         app:chipIconVisible="true" />
 
+                    <!-- UX/UI - 'User Experience & User Interface' (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_uxui"
                         android:layout_width="wrap_content"
@@ -387,6 +427,7 @@
                         android:text="UX/UI"
                         app:chipIconVisible="true" />
 
+                    <!-- Game Development (Chip) -->
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_profile_gamedev"
                         android:layout_width="wrap_content"
