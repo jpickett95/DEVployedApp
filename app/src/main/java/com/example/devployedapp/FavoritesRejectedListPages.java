@@ -11,14 +11,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 /* reference webpages:
 Android Docs Create dynamic lists with RecyclerView: https://developer.android.com/develop/ui/views/layout/recyclerview
 Android Docs Example of adding RecyclerView: https://github.com/android/views-widgets-samples/commit/aea13d5dbb4b5f1844bcb7f1b330b93f90750052#diff-c26aac7ad610d30f5ab5e74a8f575f27604ae4a3ce747c87d23dbc0a94df22f6
 */
+/*Reference Videos:
+* RecyclerView - Everything you need to Know, Practical Coding: https://www.youtube.com/watch?v=Mc0XT58A1Z4
+* */
 
 public class FavoritesRejectedListPages extends AppCompatActivity {
 
-    private enum LayoutManagerType {
+    ArrayList<JobPostInformation> jobPostings = new ArrayList<>();
+    int[] companyLogos = {R.drawable.ic_baseline_add_24};
+
+        private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
         LINEAR_LAYOUT_MANAGER
     }
@@ -42,6 +50,8 @@ public class FavoritesRejectedListPages extends AppCompatActivity {
                 finish();
             }
         });
+
+        setUpJobPostModels();
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.recycler_view_fragment, container, false);
@@ -128,6 +138,15 @@ public class FavoritesRejectedListPages extends AppCompatActivity {
     //@Override
     public int getItemCount() {
         return 20;
+    }
+    private void setUpJobPostModels(){
+        String[] companyNames = getResources().getStringArray(R.array.company_names);
+        String[] jobTitles = getResources().getStringArray(R.array.job_titles);
+        String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
+
+        for (int i = 0; i < companyNames.length; i++){
+            jobPostings.add(new JobPostInformation(companyNames[i],jobTitles[i],skillsToMatch[i],companyLogos[i]));
+        }
     }
 
 }
