@@ -166,7 +166,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
     public void refreshProfile(){
         ChipGroup skillsChipGroup;
         ChipGroup expChipGroup;
-        skillsChipGroup = findViewById(R.id.profile_skills_chipGroup);
+        //skillsChipGroup = findViewById(R.id.profile_skills_chipGroup);
     }
 
 
