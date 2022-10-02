@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.DEVployedApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/brand_TyrianPurple</item>
+        <item name="colorPrimary">@color/brand_Pistachio</item>
         <item name="colorPrimaryVariant">@color/accent_RussianViolet</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
