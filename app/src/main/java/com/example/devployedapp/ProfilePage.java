@@ -93,7 +93,7 @@ public class ProfilePage extends AppCompatActivity {
         // Intent to pick image
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        ActivityResultContracts.StartActivityForResult(intent)
+        //ActivityResultContracts.StartActivityForResult(intent);
         startActivityForResult(intent, IMAGE_PICK_CODE);
     }
 
