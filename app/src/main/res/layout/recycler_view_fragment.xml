@@ -1,76 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="10dp">
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+    <!--//MOST IMPORTANT THING - OUTSIDE CONSTRAINT LAYOUT - SET LAYOUT_HEIGHT TO "WRAP CONTENT" ELSE SPACING IS WEIRD!-->
 
     <!--//this is layout for the jobs in a list format
-    upon clicking the individual pieces in the constraint layout, idea is to do a dialog popup of full posting/card view-->
-    <androidx.constraintlayout.widget.ConstraintLayout
+        upon clicking the individual pieces in the constraint layout, idea is to do a dialog popup of full posting/card view-->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="10dp">
+        app:cardBackgroundColor="@color/brand_Pistachio"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!--//this will be company logo-->
-        <ImageView
-            android:id="@+id/companyLogo"
-            android:layout_width="84dp"
-            android:layout_height="95dp"
-            android:layout_marginStart="4dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <!--//this will be company name-->
-        <TextView
-            android:id="@+id/companyName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Company: "
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/companyLogo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            <!--this will be the company logo-->
+            <ImageView
+                android:id="@+id/companyLogo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-        <!--//this will be job title-->
-        <TextView
-            android:id="@+id/jobTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Job Title: "
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/companyLogo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25" />
+            <!--this will be the company name-->
 
-        <!--//this will be populated by skills in the user profile that match words in the job description-->
-        <TextView
-            android:id="@+id/matchingSkills"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Matching Skills: "
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/companyLogo"
-            app:layout_constraintTop_toTopOf="@+id/companyName" />
+            <TextView
+                android:id="@+id/companyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="13dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="@string/companyNameFragmentPiece"
+                app:layout_constraintStart_toEndOf="@+id/companyLogo"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--this will be the position title-->
+            <TextView
+                android:id="@+id/smallTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="9dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Job Title"
+                app:layout_constraintStart_toEndOf="@+id/companyLogo"
+                app:layout_constraintTop_toBottomOf="@+id/smallSkillsMatch" />
 
-</LinearLayout>
+            <!--this will be the matching skills-->
+            <TextView
+                android:id="@+id/smallSkillsMatch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="40dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Matching Skills"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/companyLogo"
+                app:layout_constraintTop_toBottomOf="@+id/companyName"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
