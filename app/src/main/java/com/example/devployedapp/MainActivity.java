@@ -20,13 +20,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Menu button opens popup_filters
+        //Menu to go to profile page
         Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ProfilePage.class));
             }
         });
+        //Menu button to go to saved jobs page
         Button savedJobsButton = findViewById(R.id.Saved_Jobs_button);
         savedJobsButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -34,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // toolbar Back Button to exit the app
-        ImageButton backButton_main = findViewById(R.id.backButton_main);
+        //toolbar exit button to exit the app
+        ImageButton backButton_main = findViewById(R.id.exitButton_main);
         backButton_main.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 finish();

@@ -117,18 +117,18 @@
         app:layout_constraintTop_toBottomOf="@+id/jobCardView" />
 
     <ImageButton
-        android:id="@+id/backButton_main"
+        android:id="@+id/exitButton_main"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="#00FFFFFF"
-        android:contentDescription="Back arrow button."
+        android:contentDescription="exitApplicationButton"
         android:minWidth="48dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_main"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+        app:srcCompat="@drawable/ic_baseline_close_24" />
 
     <Button
         android:id="@+id/Saved_Jobs_button"
@@ -136,7 +136,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="30dp"
+        android:fontFamily="@font/alegreya_sc"
         android:text="Saved Jobs"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
