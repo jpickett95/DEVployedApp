@@ -19,6 +19,8 @@
         <item>Apple</item>
         <item>YouTube</item>
         <item>AWS</item>
+        <item>Cisco</item>
+        <item>Another Tech Co</item>
     </string-array>
     <string-array name="job_titles">
         <item>Software Engineer</item>
@@ -26,6 +28,8 @@
         <item>Back-End Engineer</item>
         <item>Full-Stack Developer</item>
         <item>Systems Manager</item>
+        <item>IT Specialist</item>
+        <item>Fancy Job Title</item>
     </string-array>
     <string-array name="skills_to_match">
         <item>C++</item>
@@ -33,5 +37,7 @@
         <item>Ruby</item>
         <item>Python</item>
         <item>Java</item>
+        <item>CSS</item>
+        <item>HTML</item>
     </string-array>
 </resources>

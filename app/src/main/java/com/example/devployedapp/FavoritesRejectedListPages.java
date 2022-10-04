@@ -21,7 +21,8 @@ Android Docs Example of adding RecyclerView: https://github.com/android/views-wi
 public class FavoritesRejectedListPages extends AppCompatActivity {
 
     ArrayList<JobPostInformation> jobPostings = new ArrayList<>();
-    int[] companyLogos = {R.drawable.ic_baseline_add_24};
+    int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
+            R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

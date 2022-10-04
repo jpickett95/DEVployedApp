@@ -36,7 +36,7 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         //this also UPDATES the views with info
         holder.tvName.setText(jobListArray.get(position).getCompanyName());
         holder.tvTitle.setText(jobListArray.get(position).getJobTitle());
-        holder.tvMatch.setText(jobListArray.get(position).getJobTitle());
+        holder.tvMatch.setText(jobListArray.get(position).getSkillsMatch());
         holder.imageView.setImageResource(jobListArray.get(position).getCompanyLogo());
 
     }

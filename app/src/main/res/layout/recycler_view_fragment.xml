@@ -42,11 +42,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="9dp"
+                android:text="Company"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:text="@string/companyNameFragmentPiece"
                 app:layout_constraintStart_toEndOf="@+id/companyLogo"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,7 +62,7 @@
                 android:textStyle="bold"
                 android:text="Job Title"
                 app:layout_constraintStart_toEndOf="@+id/companyLogo"
-                app:layout_constraintTop_toBottomOf="@+id/smallSkillsMatch" />
+                app:layout_constraintTop_toBottomOf="@+id/companyName" />
 
             <!--this will be the matching skills-->
             <TextView
@@ -71,14 +71,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="9dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="9dp"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:text="Matching Skills"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/companyLogo"
-                app:layout_constraintTop_toBottomOf="@+id/companyName"
+                app:layout_constraintTop_toBottomOf="@+id/smallTitle"
                 app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
