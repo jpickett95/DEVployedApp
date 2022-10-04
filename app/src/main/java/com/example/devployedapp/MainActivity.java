@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Menu button opens popup_filters
-        Button menuButton = (Button) findViewById(R.id.menuButton);
+        Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ProfilePage.class));
             }
         });
-        Button savedJobsButton = (Button) findViewById(R.id.Saved_Jobs_button);
+        Button savedJobsButton = findViewById(R.id.Saved_Jobs_button);
         savedJobsButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, FavoritesRejectedListPages.class));
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // toolbar Back Button to exit the app
-        ImageButton backButton_main = (ImageButton) findViewById(R.id.backButton_main);
+        ImageButton backButton_main = findViewById(R.id.backButton_main);
         backButton_main.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 finish();
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         // popup is dismissed when user clicks the completed button
         FloatingActionButton completedButton;
         filtersDialog.setContentView(R.layout.popup_filters);
-        completedButton = (FloatingActionButton) filtersDialog.findViewById(R.id.floatingActionButton_complete);
+        completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

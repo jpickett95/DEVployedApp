@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:padding="10dp">
+    android:padding="5dp">
     <!--//MOST IMPORTANT THING - OUTSIDE CONSTRAINT LAYOUT - SET LAYOUT_HEIGHT TO "WRAP CONTENT" ELSE SPACING IS WEIRD!-->
 
     <!--//this is layout for the jobs in a list format
@@ -30,6 +29,7 @@
                 android:id="@+id/companyLogo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:contentDescription="logo"
                 android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
                 android:layout_marginTop="9dp"
                 android:text="Company"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/companyLogo"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +59,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="9dp"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="Job Title"
                 app:layout_constraintStart_toEndOf="@+id/companyLogo"
@@ -74,7 +74,7 @@
                 android:layout_marginTop="9dp"
                 android:layout_marginBottom="9dp"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="Matching Skills"
                 app:layout_constraintBottom_toBottomOf="parent"
