@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //Menu button to go to saved jobs page
         Button rejectedJobsButton = findViewById(R.id.rejected_Jobs_button);
-        savedJobsButton.setOnClickListener(new View.OnClickListener(){
+        rejectedJobsButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class));
             }
