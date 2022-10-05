@@ -95,6 +95,7 @@ public class ProfilePage extends AppCompatActivity {
         intent.setType("image/*");
         //ActivityResultContracts.StartActivityForResult(intent);
         startActivityForResult(intent, IMAGE_PICK_CODE);
+
     }
 
     // Handle result of runtime permission
@@ -118,7 +119,7 @@ public class ProfilePage extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+        if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             // Set image to image view
             profileImage.setImageURI(data.getData());
         }
