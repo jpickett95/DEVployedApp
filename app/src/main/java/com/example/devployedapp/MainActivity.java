@@ -1,13 +1,13 @@
 package com.example.devployedapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -20,16 +20,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Menu button opens popup_filters
-        Button menuButton = (Button) findViewById(R.id.menuButton);
+        //Menu to go to profile page
+        Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ProfilePage.class));
             }
         });
+        //Menu button to go to saved jobs page
+        Button savedJobsButton = findViewById(R.id.Saved_Jobs_button);
+        savedJobsButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FavoritesRejectedListPages.class));
+            }
+        });
 
-        // toolbar Back Button to exit the app
-        ImageButton backButton_main = (ImageButton) findViewById(R.id.backButton_main);
+        //toolbar exit button to exit the app
+        ImageButton backButton_main = findViewById(R.id.exitButton_main);
         backButton_main.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 finish();
@@ -44,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         // popup is dismissed when user clicks the completed button
         FloatingActionButton completedButton;
         filtersDialog.setContentView(R.layout.popup_filters);
-        completedButton = (FloatingActionButton) filtersDialog.findViewById(R.id.floatingActionButton_complete);
+        completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

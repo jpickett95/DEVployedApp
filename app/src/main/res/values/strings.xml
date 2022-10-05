@@ -12,4 +12,32 @@
     <string name="add_skill_button">+</string>
     <string name="my_new_skill">     </string>
     <string name="chip_freelance">Freelance</string>
+    <string name="companyNameFragmentPiece">Company: </string>
+    <string-array name="company_names">
+        <item>Google</item>
+        <item>Microsoft</item>
+        <item>Apple</item>
+        <item>YouTube</item>
+        <item>AWS</item>
+        <item>Cisco</item>
+        <item>Another Tech Co</item>
+    </string-array>
+    <string-array name="job_titles">
+        <item>Software Engineer</item>
+        <item>Front-End Engineer</item>
+        <item>Back-End Engineer</item>
+        <item>Full-Stack Developer</item>
+        <item>Systems Manager</item>
+        <item>IT Specialist</item>
+        <item>Fancy Job Title</item>
+    </string-array>
+    <string-array name="skills_to_match">
+        <item>C++</item>
+        <item>C#</item>
+        <item>Ruby</item>
+        <item>Python</item>
+        <item>Java</item>
+        <item>CSS</item>
+        <item>HTML</item>
+    </string-array>
 </resources>
