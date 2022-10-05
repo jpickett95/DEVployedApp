@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:paddingLeft="40dp"
+    android:paddingTop="175dp"
+    android:paddingRight="40dp"
+    android:paddingBottom="100dp">
+
+    <TextView
+        android:id="@+id/helloText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E339"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        tools:text="Job Card" />
+
+    <View
+        android:id="@+id/item_swipe_left_indicator"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:alpha="0"
+        android:background="#A5F" />
+
+    <View
+        android:id="@+id/item_swipe_right_indicator"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="end"
+        android:layout_margin="10dp"
+        android:alpha="0"
+        android:background="#5AF" />
+
+</FrameLayout>

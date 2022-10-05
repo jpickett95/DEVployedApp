@@ -4,25 +4,29 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.295" />
-        <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.299" />
+        <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/layout/activity_profile_page.xml" value="0.255859375" />
+        <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/layout/choose_skills_experience.xml" value="0.128125" />
+        <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/layout/dialog_profile_languages.xml" value="0.255859375" />
         <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/layout/filterspopup.xml" value="0.255078125" />
+        <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/layout/popup_addnewprogramminglanguage.xml" value="0.255078125" />
         <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/layout/popup_filters.xml" value="0.255859375" />
-        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.287" />
-        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.287" />
-        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/drawable/ic_baseline_navigate_next_24.xml" value="0.287" />
-        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/drawable/ic_company_logos.xml" value="0.286" />
+        <entry key="..\:/Users/jpick/AndroidStudioProjects/DEVployedApp/app/src/main/res/layout/swipecards_item.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.287" />
+        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.362" />
+        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.287" />
+        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/drawable/stock_profile_background.xml" value="0.287" />
+        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/drawable/stock_profile_foreground.xml" value="0.184" />
         <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/activity_main.xml" value="0.3567708333333333" />
         <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/activity_profile_page.xml" value="0.29286019666524155" />
         <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/adding_skills.xml" value="0.31431159420289856" />
         <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/choose_skills_experience.xml" value="0.29286019666524155" />
-        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/dialog_profile_languages.xml" value="0.29286019666524155" />
-        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/list_pages_favorites_rejected.xml" value="0.29286019666524155" />
         <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/popup_filters.xml" value="0.29286019666524155" />
         <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/profile_page3.xml" value="0.246875" />
         <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/profile_page_v2.xml" value="0.3567708333333333" />
-        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/recycler_view_fragment.xml" value="0.29286019666524155" />
         <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/layout/skills_experiences.xml" value="0.2278751603249252" />
+        <entry key="..\:/Users/keral/OneDrive/Documents/GitHub/DEVployedApp/app/src/main/res/mipmap-anydpi-v26/stock_profile.xml" value="0.184" />
       </map>
     </option>
   </component>
