@@ -1,7 +1,6 @@
 package com.example.devployedapp;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,7 @@ Android Docs Example of adding RecyclerView: https://github.com/android/views-wi
 * RecyclerView - Everything you need to Know, Practical Coding: https://www.youtube.com/watch?v=Mc0XT58A1Z4
 * */
 
-public class FavoritesRejectedListPages extends AppCompatActivity {
+public class RejectedJobsListPage extends AppCompatActivity {
 
     ArrayList<JobPostInformation> jobPostings = new ArrayList<>();
     int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
@@ -27,17 +26,13 @@ public class FavoritesRejectedListPages extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_pages_favorites_rejected);
+        setContentView(R.layout.list_pages_rejected);
 
         // Toolbar 'Back Button' functionality to go 'back' a page.
         ImageButton backButton_profile = findViewById(R.id.backButton_SaveToMain);
-        backButton_profile.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton_profile.setOnClickListener(v -> finish());
 
-        RecyclerView recyclerView = findViewById(R.id.Saved_Jobs_RecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.Rejected_Jobs_RecyclerView);
         setUpJobPostModels();
         JobPost_RecyclerViewAdapter adapter = new JobPost_RecyclerViewAdapter(this, jobPostings);
         recyclerView.setAdapter(adapter);

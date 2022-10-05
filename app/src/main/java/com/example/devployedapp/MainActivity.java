@@ -31,7 +31,14 @@ public class MainActivity extends AppCompatActivity {
         Button savedJobsButton = findViewById(R.id.Saved_Jobs_button);
         savedJobsButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FavoritesRejectedListPages.class));
+                startActivity(new Intent(MainActivity.this, SavedJobsListPage.class));
+            }
+        });
+        //Menu button to go to saved jobs page
+        Button rejectedJobsButton = findViewById(R.id.rejected_Jobs_button);
+        savedJobsButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class));
             }
         });
 

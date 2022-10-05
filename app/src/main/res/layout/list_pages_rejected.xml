@@ -7,7 +7,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".FavoritesRejectedListPages">
+    tools:context=".SavedJobsListPage">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -38,13 +38,13 @@
         tools:ignore="RedundantDescriptionCheck" />
 
     <TextView
-        android:id="@+id/savedJobsTextView"
+        android:id="@+id/rejectedJobsTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
-        android:text="Saved Jobs"
+        android:text="Rejected Jobs"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toTopOf="@id/toolbar_main" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Saved_Jobs_RecyclerView"
+        android:id="@+id/Rejected_Jobs_RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="50dp"
