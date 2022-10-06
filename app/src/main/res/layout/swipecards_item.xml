@@ -1,40 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:paddingLeft="40dp"
-    android:paddingTop="175dp"
-    android:paddingRight="40dp"
-    android:paddingBottom="100dp">
+    android:paddingLeft="40sp"
+    android:paddingTop="20sp"
+    android:paddingRight="40sp"
+    android:paddingBottom="20sp"
+    android:outlineProvider="bounds"
+    android:clipToPadding="false">
 
-    <TextView
-        android:id="@+id/helloText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#E339"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="40sp"
-        tools:text="Job Card" />
+    <!-- CardView -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_swipeCards_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="4dp"
+        app:cardCornerRadius="10dp" >
 
-    <View
-        android:id="@+id/item_swipe_left_indicator"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_margin="10dp"
-        android:alpha="0"
-        android:background="#A5F" />
+        <!-- CardView FrameLayout Container -->
+        <FrameLayout
+            android:layout_width="250dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center">
 
-    <View
-        android:id="@+id/item_swipe_right_indicator"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_gravity="end"
-        android:layout_margin="10dp"
-        android:alpha="0"
-        android:background="#5AF" />
+            <!-- Company Logo (ImageView) -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/swipeCards_item_companyLogo"/>
 
-</FrameLayout>
+            <!-- Company Name (TextView) -->
+            <TextView
+                android:id="@+id/swipeCards_item_companyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="40sp"
+                tools:text="Job Card" />
+
+            <!-- Job Title (TextView) -->
+            <TextView
+                android:id="@+id/swipeCards_item_jobTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Job Title"/>
+
+            <!-- Skills Matched (TextView) -->
+            <TextView
+                android:id="@+id/swipeCards_item_skillsMatched"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="Skills that match!"/>
+
+            <!-- Swipe Indicators (NOT currently in use)
+            <View
+                android:id="@+id/item_swipe_left_indicator"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:alpha="0"
+                android:background="#A5F" />
+
+            <View
+                android:id="@+id/item_swipe_right_indicator"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="end"
+                android:layout_margin="10dp"
+                android:alpha="0"
+                android:background="#5AF" />
+                -->
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

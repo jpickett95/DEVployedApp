@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,35 +17,41 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     // For Job Swipe Cards
-    private ArrayList<String> al; // List of cards' names
-    private ArrayAdapter<String> arrayAdapter;
+    //private ArrayList<String> al; // List of cards' names
+    private JobPostInformation jobPosts_data[];
+    private swipeCardsArrayAdapter arrayAdapter;
     private int i; // for onAdapterAboutToEmpty()
 
     Dialog filtersDialog; // For filters popup window on main activity
+
+    ListView listView;
+    List<JobPostInformation> rowItems;
+    int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
+            R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // For SwipeCards until line (90) ***EDIT***
-        al = new ArrayList<>();
+        // For SwipeCards until line (107) ***EDIT***
+        rowItems = new ArrayList<JobPostInformation>();
             // Each 'add' is the name of the card
-        al.add("php");
-        al.add("c");
-        al.add("python");
-        al.add("java");
-        al.add("html");
-        al.add("c++");
-        al.add("css");
-        al.add("javascript");
+        String[] companyNames = getResources().getStringArray(R.array.company_names);
+        String[] jobTitles = getResources().getStringArray(R.array.job_titles);
+        String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
 
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.swipecards_item, R.id.helloText, al );
-        // arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'al' list from this point
+        for (int i = 0; i < companyNames.length; i++){
+            rowItems.add(new JobPostInformation(companyNames[i],jobTitles[i],skillsToMatch[i],companyLogos[i]));
+        }
+
+        arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems );
+        // arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
 
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
@@ -56,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void removeFirstObjectInAdapter() {
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
-                al.remove(0);
+                rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
@@ -76,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                al.add("XML ".concat(String.valueOf(i)));
+
+                // TESTING PURPOSES
+                JobPostInformation extraJobPost = new JobPostInformation("ExtraCompany".concat(String.valueOf(i)), "Extra Job".concat(String.valueOf(i)), "Extra Skills".concat(String.valueOf(i)), R.drawable.ic_baseline_add_24);
+                rowItems.add(extraJobPost);
                 arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
                 i++;
@@ -140,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         filtersDialog.show();
     }
 
-    // For SwipeCards until line (150) ***EDIT***
+    // For SwipeCards until line (166) ***EDIT***
     /*
     static void makeToast(Context ctx, String s){
         Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
