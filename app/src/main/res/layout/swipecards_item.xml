@@ -19,13 +19,14 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:elevation="4dp"
-        app:cardCornerRadius="10dp" >
+        app:cardCornerRadius="20dp" >
 
         <!-- CardView FrameLayout Container -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:background="@color/white">
 
             <!-- Company Logo (ImageView) -->
             <ImageView
@@ -60,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:paddingStart="5dp"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,6 +77,7 @@
                 android:layout_margin="5dp"
                 android:paddingStart="5dp"
                 android:textAlignment="textStart"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
