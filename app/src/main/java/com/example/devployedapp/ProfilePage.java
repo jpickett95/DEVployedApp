@@ -33,7 +33,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
     private EditText profileEmail;
     private EditText profilePhone;
     private ChipGroup educationalExperience;
-    private ChipGroup programminglanguages;
+    private ChipGroup programmingLanguages;
     private ChipGroup experienceLevel;
     private ChipGroup industryPreferences;
     private ImageView profileImage;
@@ -53,9 +53,9 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         profileEmail = findViewById(R.id.editTextEmailAddress);
         profilePhone = findViewById(R.id.editTextPhone);
         educationalExperience = findViewById(R.id.ChipGroup_education);
-        programminglanguages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
-        experienceLevel = findViewById(R.id.ChipGroup_experience);
-        industryPreferences = findViewById(R.id.ChipGroup_industries);
+        programmingLanguages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
+        experienceLevel = findViewById(R.id.ChipGroup_profile_experience);
+        industryPreferences = findViewById(R.id.ChipGroup_profile_industrypreferences);
         profileImage = findViewById(R.id.profileImage);
 
         // Add new programming languages
