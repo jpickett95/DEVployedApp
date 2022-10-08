@@ -67,8 +67,8 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
             }
         });
 
-        // Toolbar back arrow button click handler
-        ImageButton backButton_profile = (ImageButton) findViewById(R.id.backButton_profile);
+        // Toolbar 'Back Button' functionality to go 'back' a page.
+        ImageButton backButton_profile = findViewById(R.id.backButton_profile);
         backButton_profile.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 finish();
@@ -149,7 +149,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
     public void AddSkills(View v){
         FloatingActionButton doneAddingButton;
         skillsDialog.setContentView(R.layout.choose_skills_experience);
-        doneAddingButton = (FloatingActionButton) skillsDialog.findViewById(R.id.floatingActionButton_doneAdding);
+        doneAddingButton = skillsDialog.findViewById(R.id.floatingActionButton_doneAdding);
         doneAddingButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
