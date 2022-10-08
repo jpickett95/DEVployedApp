@@ -98,6 +98,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
+                android:saveEnabled="true"
                 android:textAlignment="center" />
 
             <!-- User's Phone# (EditText) -->
@@ -112,6 +113,7 @@
                 android:importantForAutofill="no"
                 android:inputType="phone"
                 android:minHeight="48dp"
+                android:saveEnabled="true"
                 android:textAlignment="center" />
 
             <!-- Programming languages container (ConstraintLayout) -->
@@ -139,6 +141,7 @@
                     android:id="@+id/ChipGroup_profile_programmingLanguages"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:saveEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_profile_programmingLanguages">
@@ -192,6 +195,7 @@
                     android:id="@+id/ChipGroup_education"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:saveEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_profile_education">
@@ -203,6 +207,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Completed High School."
+                        android:saveEnabled="true"
                         android:text="High School"
                         app:chipIconVisible="true" />
 
@@ -213,6 +218,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Completed an associate's degree."
+                        android:saveEnabled="true"
                         android:text="Associate's"
                         app:chipIconVisible="true" />
 
@@ -223,6 +229,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Completed a bachelor's degree."
+                        android:saveEnabled="true"
                         android:text="Bachelor's"
                         app:chipIconVisible="true" />
 
@@ -233,6 +240,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Completed a master's degree."
+                        android:saveEnabled="true"
                         android:text="Master's"
                         app:chipIconVisible="true" />
 
@@ -243,6 +251,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Completed a doctorate degree."
+                        android:saveEnabled="true"
                         android:text="PhD"
                         app:chipIconVisible="true" />
 
@@ -253,6 +262,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Completed a coding bootcamp or equivalent program."
+                        android:saveEnabled="true"
                         android:text="Coding Bootcamp"
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>
@@ -283,6 +293,7 @@
                     android:id="@+id/ChipGroup_profile_experience"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:saveEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_profile_experience">
@@ -294,6 +305,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="No previous industry experience."
+                        android:saveEnabled="true"
                         android:text="No Experience"
                         app:chipIconVisible="true" />
 
@@ -304,6 +316,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="0-1 years of industry experience."
+                        android:saveEnabled="true"
                         android:text="Early Career"
                         app:chipIconVisible="true" />
 
@@ -314,6 +327,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Mid Career (2-5 years experience)."
+                        android:saveEnabled="true"
                         android:text="Mid Career"
                         app:chipIconVisible="true" />
 
@@ -324,6 +338,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Senior level in your career (5+ years experience)."
+                        android:saveEnabled="true"
                         android:text="Senior Level"
                         app:chipIconVisible="true" />
 
@@ -334,6 +349,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Held an executive position."
+                        android:saveEnabled="true"
                         android:text="Executive"
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>
@@ -363,6 +379,7 @@
                     android:id="@+id/ChipGroup_profile_industrypreferences"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:saveEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_profile_industrypreferences">
@@ -374,6 +391,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Software development (engineering)"
+                        android:saveEnabled="true"
                         android:text="Software Development"
                         app:chipIconVisible="true" />
 
@@ -384,6 +402,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="IT filed (information technology)"
+                        android:saveEnabled="true"
                         android:text="IT"
                         app:chipIconVisible="true" />
 
@@ -394,6 +413,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Front-end development."
+                        android:saveEnabled="true"
                         android:text="Front End"
                         app:chipIconVisible="true" />
 
@@ -404,6 +424,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Back-end development."
+                        android:saveEnabled="true"
                         android:text="Back End"
                         app:chipIconVisible="true" />
 
@@ -414,6 +435,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Works both front-end and back-end development."
+                        android:saveEnabled="true"
                         android:text="Full Stack"
                         app:chipIconVisible="true" />
 
@@ -424,6 +446,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="User experience and user interface"
+                        android:saveEnabled="true"
                         android:text="UX/UI"
                         app:chipIconVisible="true" />
 
@@ -434,6 +457,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:contentDescription="Gaming software development."
+                        android:saveEnabled="true"
                         android:text="Game Development"
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>

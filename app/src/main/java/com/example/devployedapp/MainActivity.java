@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -22,8 +21,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // For Job Swipe Cards
-    //private ArrayList<String> al; // List of cards' names
-    private JobPostInformation jobPosts_data[];
+    //private ArrayList<String> al; // **** Replaced with 'rowItems'
+    //private JobPostInformation[] jobPosts_data;
     private swipeCardsArrayAdapter arrayAdapter;
     private int i; // for onAdapterAboutToEmpty()
 
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // For SwipeCards until line (107) ***EDIT***
+        // For SwipeCards until line (110) ***EDIT***
         rowItems = new ArrayList<JobPostInformation>();
             // Each 'add' is the name of the card
         String[] companyNames = getResources().getStringArray(R.array.company_names);
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems );
         // arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
 
-        SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
+        SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
         flingContainer.setAdapter(arrayAdapter);
 
@@ -72,12 +71,12 @@ public class MainActivity extends AppCompatActivity {
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
-                Toast.makeText(MainActivity.this, "Left!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Reject!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                Toast.makeText(MainActivity.this, "Right!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -106,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
+
+                // potentially link to job application or job posting on company website?
+                // ^^ OR pull up a popup window with more specific, detailed information
             }
         });
 
@@ -157,9 +159,9 @@ public class MainActivity extends AppCompatActivity {
     }
     @OnClick(R.id.right)
     public void right() {
-        *//**
-         * Trigger the right event manually.
-         *//*
+
+         // Trigger the right event manually.
+
         flingContainer.getTopCardListener().selectRight();
     }
     @OnClick(R.id.left)
