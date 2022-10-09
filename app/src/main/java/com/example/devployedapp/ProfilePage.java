@@ -111,6 +111,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         intent.setType("image/*");
         //ActivityResultContracts.StartActivityForResult(intent);
         startActivityForResult(intent, IMAGE_PICK_CODE);
+
     }
 
     // Handle result of runtime permission
