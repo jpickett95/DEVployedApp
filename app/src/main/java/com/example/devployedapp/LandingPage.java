@@ -16,6 +16,7 @@ public class LandingPage extends AppCompatActivity {
 
         Button reviewJobMatchesButton = findViewById(R.id.review_job_matches_button);
         reviewJobMatchesButton.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, MainActivity.class)));
+
         Button toSavedJobsList = findViewById(R.id.saved_matches_button);
         toSavedJobsList.setOnClickListener(new View.OnClickListener() {
             @Override
