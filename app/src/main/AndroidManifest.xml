@@ -17,6 +17,15 @@
         android:theme="@style/Theme.DEVployedApp"
         tools:targetApi="31">
         <activity
+            android:name=".LandingPage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ProfilePage"
             android:exported="false">
             <intent-filter>
@@ -33,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FavoritesRejectedListPages"
+            android:name=".SavedJobsListPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,6 +50,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RejectedJobsListPage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
