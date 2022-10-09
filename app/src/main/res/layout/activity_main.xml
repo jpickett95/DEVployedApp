@@ -3,9 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+ LandingPage_UponOpeningApp
    android:layout_height="match_parent">
     <!--//tools:context=".MainActivity">-->
 
+
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+master
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_main"
@@ -25,6 +31,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:background="#E3E2E2"
         app:layout_constraintEnd_toStartOf="@+id/filtersButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_main">
@@ -49,73 +56,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_main" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/jobCardView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filtersButton">
-
-        <Button
-            android:id="@+id/favoriteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            app:cornerRadius="20dp" />
-
-    </androidx.cardview.widget.CardView>
+    <com.lorentzos.flingswipe.SwipeFlingAdapterView
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00FFFFFF"
+        app:rotation_degrees="15.5"
+        tools:context=".MainActivity"
+        tools:layout_editor_absoluteY="57dp" />
 
     <Button
         android:id="@+id/menuButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
         android:text="Menu"
         android:textAlignment="center"
         android:textAllCaps="true"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jobCardView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/applyButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
         android:text="Apply"
         android:textAlignment="center"
         android:textAllCaps="true"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/menuButton"
-        app:layout_constraintTop_toBottomOf="@+id/jobCardView" />
+        app:layout_constraintStart_toEndOf="@+id/menuButton" />
 
     <Button
         android:id="@+id/rejectButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
         android:text="Reject"
         android:textAlignment="center"
         android:textAllCaps="true"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/menuButton"
-        app:layout_constraintTop_toBottomOf="@+id/jobCardView" />
+        app:layout_constraintEnd_toStartOf="@+id/menuButton" />
 
     <ImageButton
         android:id="@+id/exitButton_main"
