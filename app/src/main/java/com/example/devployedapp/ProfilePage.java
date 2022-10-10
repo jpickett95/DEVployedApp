@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +20,6 @@ import androidx.core.view.ViewCompat;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class ProfilePage extends AppCompatActivity implements LanguageDialog.LanguageDialogListener {
 
@@ -105,6 +101,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
     }
 
     // Used for profile image long-click
+    @SuppressWarnings("deprecation")
     private void pickImageFromGallery() {
         // Intent to pick image
         Intent intent = new Intent(Intent.ACTION_PICK);
