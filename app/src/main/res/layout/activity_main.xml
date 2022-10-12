@@ -3,15 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
- LandingPage_UponOpeningApp
-   android:layout_height="match_parent">
-    <!--//tools:context=".MainActivity">-->
-
-
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".MainActivity">
-master
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_main"
