@@ -22,4 +22,9 @@
         android:name="com.example.devployedapp.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <activity
+        android:id="@+id/nav_landing_page"
+        android:name="com.example.devployedapp.LandingPage"
+        android:label="LandingPage"
+        tools:layout="@layout/landing_page" />
 </navigation>
