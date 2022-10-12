@@ -6,44 +6,18 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 public class LandingPage extends AppCompatActivity {
 
 
-    private AppBarConfiguration mAppBarConfiguration;
-    private Object NavigationDrawer;
 
 
 
-    protected void onCreate(View view, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
 
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        NavController navController = Navigation.findNavController(view);
-        mAppBarConfiguration =
-                new AppBarConfiguration.Builder(navController.getGraph()).build();
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        NavigationUI.setupWithNavController(
-                toolbar, navController, mAppBarConfiguration);
 
-        /*//noinspection deprecation
-        @SuppressWarnings("deprecation") AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
-                .setDrawerLayout(appBarConfiguration.getDrawerLayout())
-                .build();
-        NavHostFragment navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment);
-        NavController navController = navHostFragment.getNavController();
-        NavigationView navView = findViewById(R.id.nav_view);
-        NavigationUI.setupWithNavController(navView, navController);
-
-        NavigationUI.setupWithNavController(
-                toolbar, navController, appBarConfiguration);*/
 
         Button reviewJobMatchesButton = findViewById(R.id.review_job_matches_button);
         reviewJobMatchesButton.setOnClickListener(new View.OnClickListener(){
@@ -75,6 +49,4 @@ public class LandingPage extends AppCompatActivity {
         });
     }
 
-    public void ShowFiltersPopup(View view) {
-    }
 }

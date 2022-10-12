@@ -5,13 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<include
-        layout="@layout/app_bar_navigation_drawer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"  android:layout_height="match_parent" android:layout_width="match_parent"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -21,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/devployed_logo" />
 
     <TextView
@@ -40,50 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <!--<com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@id/topToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:title="@string/app_name"
-                app:popupTheme="@style/Theme.AppCompat.DayNight"/>
-
-            <ImageButton
-                android:id="@+id/menuButton"
-                android:layout_width="57dp"
-                android:layout_height="56dp"
-                android:contentDescription="menuButtonLines"
-                android:scaleType="fitCenter"
-                android:backgroundTint="@color/brand_Pistachio"
-                app:layout_constraintRight_toRightOf="@id/topToolbar"
-                app:layout_constraintTop_toTopOf="@id/topToolbar"
-                app:srcCompat="@drawable/ic_baseline_menu_24" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>-->
-
-        <!--android:id="@+id/bottom_half_landingPage_constraint_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcomeTextView">-->
 
 
 

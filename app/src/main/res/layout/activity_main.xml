@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".LandingPage">
 
-    <include
-        layout="@layout/app_bar_navigation_drawer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <!--<SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
