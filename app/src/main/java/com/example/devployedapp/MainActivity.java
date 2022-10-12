@@ -2,6 +2,7 @@ package com.example.devployedapp;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     //private JobPostInformation[] jobPosts_data;
     private swipeCardsArrayAdapter arrayAdapter;
     private int i; // for onAdapterAboutToEmpty()
+    private final String SWIPED_RIGHT_ACTION = "com.example.devployed.SWIPED_RIGHT";
 
     Dialog filtersDialog; // For filters popup window on main activity
 
@@ -71,12 +74,19 @@ public class MainActivity extends AppCompatActivity {
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
-                Toast.makeText(MainActivity.this, "Reject!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Rejected!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
+                Intent swipedRight = new Intent();
+                swipedRight.setAction(SWIPED_RIGHT_ACTION);
+                swipedRight.putExtra("companyName", rowItems.get(0).CompanyName);
+                swipedRight.putExtra("jobTitle", rowItems.get(0).JobTitle);
+                swipedRight.putExtra("skills", rowItems.get(0).SkillsMatch);
+                swipedRight.putExtra("companyLogo", rowItems.get(0).CompanyLogo);
+                sendBroadcast(swipedRight);
             }
 
             @Override
