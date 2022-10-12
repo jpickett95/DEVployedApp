@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
@@ -37,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        //region card creation and swiping
         // For SwipeCards until line (110) ***EDIT***
         rowItems = new ArrayList<JobPostInformation>();
             // Each 'add' is the name of the card
@@ -110,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 // ^^ OR pull up a popup window with more specific, detailed information
             }
         });
+//endregion
 
         //Menu to go to profile page
         Button menuButton = findViewById(R.id.menuButton);
@@ -118,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ProfilePage.class));
             }
         });
-        //Menu button to go to saved jobs page
+        /*//Menu button to go to saved jobs page
         Button savedJobsButton = findViewById(R.id.Saved_Jobs_button);
         savedJobsButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -139,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
 
         filtersDialog = new Dialog(this); // For filters popup window on main activity
     }

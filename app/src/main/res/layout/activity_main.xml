@@ -6,19 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".LandingPage">
 
+    <include
+        layout="@layout/app_bar_navigation_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_main"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <SearchView
+    <!--<SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -29,7 +22,6 @@
         app:layout_constraintEnd_toStartOf="@+id/filtersButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_main">
-
     </SearchView>
 
     <Button
@@ -48,7 +40,7 @@
         android:textStyle="bold"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main" />-->
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/frame"
@@ -98,7 +90,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/menuButton" />
 
-    <ImageButton
+ <!--   <ImageButton
         android:id="@+id/exitButton_main"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -110,30 +102,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_close_24" />
-
-    <Button
-        android:id="@+id/Saved_Jobs_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="@font/alegreya_sc"
-        android:text="Saved Jobs"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-    <Button
-        android:id="@+id/rejected_Jobs_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/alegreya_sc"
-        android:text="Rejected Jobs"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:srcCompat="@drawable/ic_baseline_close_24" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

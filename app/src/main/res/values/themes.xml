@@ -16,4 +16,13 @@
         <!-- Customize your theme here. -->
 
     </style>
+
+    <style name="Theme.DEVployedApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DEVployedApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DEVployedApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -4,25 +4,53 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 public class LandingPage extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+
+
+    private AppBarConfiguration mAppBarConfiguration;
+    private Object NavigationDrawer;
+
+
+
+    protected void onCreate(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
 
-        Toolbar toolbar = findViewById(R.id.topToolbar);
-        setSupportActionBar(toolbar);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(view);
+        mAppBarConfiguration =
+                new AppBarConfiguration.Builder(navController.getGraph()).build();
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        NavigationUI.setupWithNavController(
+                toolbar, navController, mAppBarConfiguration);
 
-        /*getSupportActionBar().setLogo(R.drawable.ic_devployed_logo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);*/
+        /*//noinspection deprecation
+        @SuppressWarnings("deprecation") AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
+                .setDrawerLayout(appBarConfiguration.getDrawerLayout())
+                .build();
+        NavHostFragment navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+        NavigationView navView = findViewById(R.id.nav_view);
+        NavigationUI.setupWithNavController(navView, navController);
+
+        NavigationUI.setupWithNavController(
+                toolbar, navController, appBarConfiguration);*/
 
         Button reviewJobMatchesButton = findViewById(R.id.review_job_matches_button);
-        reviewJobMatchesButton.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, MainActivity.class)));
+        reviewJobMatchesButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(LandingPage.this, MainActivity.class));
+            }});
 
         Button toSavedJobsList = findViewById(R.id.saved_matches_button);
         toSavedJobsList.setOnClickListener(new View.OnClickListener() {
@@ -45,19 +73,8 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(new Intent(LandingPage.this, ProfilePage.class));
             }
         });
-        //toolbar exit button to exit the app
-        ImageButton backButton_main = findViewById(R.id.exitButton_main);
-        /*backButton_main.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                finish();
-            }
-        });*/
     }
-    /*public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.app_toolbar,menu);
-        return true;
-    }*/
+
     public void ShowFiltersPopup(View view) {
     }
 }
