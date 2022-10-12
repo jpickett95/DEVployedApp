@@ -19,5 +19,17 @@
         <item
             android:id="@+id/nav_landing_page"
             android:title="Landing Page" />
+        <item
+            android:id="@+id/nav_view_matches"
+            android:title="New Matches" />
+        <item
+            android:id="@+id/nav_saved_matches"
+            android:title="Saved Jobs" />
+        <item
+            android:id="@+id/nav_rejected_matches"
+            android:title="Rejected Jobs" />
+        <item
+            android:id="@+id/nav_profile"
+            android:title="Your Profile" />
     </group>
 </menu>

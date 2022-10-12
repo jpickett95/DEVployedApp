@@ -22,9 +22,30 @@
         android:name="com.example.devployedapp.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
     <activity
         android:id="@+id/nav_landing_page"
         android:name="com.example.devployedapp.LandingPage"
         android:label="LandingPage"
         tools:layout="@layout/landing_page" />
+    <activity
+        android:id="@+id/nav_view_matches"
+        android:name="com.example.devployedapp.MainActivity"
+        android:label="View Matches"
+        tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/nav_saved_matches"
+        android:name="com.example.devployedapp.SavedJobsListPage"
+        android:label="Saved Jobs"
+        tools:layout="@layout/list_pages_saved" />
+    <activity
+        android:id="@+id/nav_rejected_matches"
+        android:name="com.example.devployedapp.RejectedJobsListPage"
+        android:label="Rejected Jobs"
+        tools:layout="@layout/list_pages_rejected" />
+    <activity
+        android:id="@+id/nav_profile"
+        android:name="com.example.devployedapp.ProfilePage"
+        android:label="Profile Page"
+        tools:layout="@layout/activity_profile_page" />
 </navigation>

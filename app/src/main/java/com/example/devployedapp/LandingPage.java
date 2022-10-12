@@ -9,16 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LandingPage extends AppCompatActivity {
 
-
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
 
 
-
+//region Creation and clickListeners for 4 buttons on Landing Page
         Button reviewJobMatchesButton = findViewById(R.id.review_job_matches_button);
         reviewJobMatchesButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -47,6 +43,7 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(new Intent(LandingPage.this, ProfilePage.class));
             }
         });
+        //endregion
     }
 
 }
