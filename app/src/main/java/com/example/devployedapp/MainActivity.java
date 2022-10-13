@@ -17,6 +17,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import org.webparser.WebParser;
+import org.webparser.data.JobListing;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
     Dialog filtersDialog; // For filters popup window on main activity
 
     ListView listView;
-    List<JobPostInformation> rowItems;
+    List<JobListing> rowItems;
     int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
             R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
+
+    WebParser webparser = new WebParser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +48,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // For SwipeCards until line (110) ***EDIT***
-        rowItems = new ArrayList<JobPostInformation>();
+        rowItems = new ArrayList<JobListing>();
             // Each 'add' is the name of the card
         String[] companyNames = getResources().getStringArray(R.array.company_names);
         String[] jobTitles = getResources().getStringArray(R.array.job_titles);
         String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
 
-        for (int i = 0; i < companyNames.length; i++){
-            rowItems.add(new JobPostInformation(companyNames[i],jobTitles[i],skillsToMatch[i],companyLogos[i]));
+        for (int i = 0; i < 10; i++){
+            rowItems.add(webparser.GetJobListing());
         }
 
-        arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems );
+        arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems);
         // arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
@@ -82,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
                 Intent swipedRight = new Intent();
                 swipedRight.setAction(SWIPED_RIGHT_ACTION);
-                swipedRight.putExtra("companyName", rowItems.get(0).CompanyName);
-                swipedRight.putExtra("jobTitle", rowItems.get(0).JobTitle);
-                swipedRight.putExtra("skills", rowItems.get(0).SkillsMatch);
-                swipedRight.putExtra("companyLogo", rowItems.get(0).CompanyLogo);
+                //swipedRight.putExtra("companyName", rowItems.get(0).);
+                //swipedRight.putExtra("jobTitle", rowItems.get(0).JobTitle);
+                //swipedRight.putExtra("skills", rowItems.get(0).SkillsMatch);
+               // swipedRight.putExtra("companyLogo", rowItems.get(0).CompanyLogo);
                 sendBroadcast(swipedRight);
             }
 
@@ -94,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 // Ask for more data here
 
                 // TESTING PURPOSES
-                JobPostInformation extraJobPost = new JobPostInformation("ExtraCompany".concat(String.valueOf(i)), "Extra Job".concat(String.valueOf(i)), "Extra Skills".concat(String.valueOf(i)), R.drawable.ic_baseline_add_24);
-                rowItems.add(extraJobPost);
+                //JobPostInformation extraJobPost = new JobPostInformation("ExtraCompany".concat(String.valueOf(i)), "Extra Job".concat(String.valueOf(i)), "Extra Skills".concat(String.valueOf(i)), R.drawable.ic_baseline_add_24);
+                rowItems.add(webparser.GetJobListing());
                 arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
                 i++;
