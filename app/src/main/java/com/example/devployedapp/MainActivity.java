@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
 
     WebParser webparser = new WebParser();
+    // webparser.StartParsing(); // throws IOException
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,4 +193,5 @@ public class MainActivity extends AppCompatActivity {
         flingContainer.getTopCardListener().selectLeft();
     }
     */
+
 }
