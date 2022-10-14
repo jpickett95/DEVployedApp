@@ -26,6 +26,8 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 public class ProfilePage extends AppCompatActivity implements LanguageDialog.LanguageDialogListener {
 
     // Variables
@@ -228,6 +230,12 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         editor.putBoolean(PROFILE_INDUSTRY_IT, itINDChip.isChecked());
         editor.putBoolean(PROFILE_INDUSTRY_UXUI, uxuiINDChip.isChecked());
 
+        List<Integer> programminglanguagesChipIds = programmingLanguages.getCheckedChipIds();
+        for (Integer id: programminglanguagesChipIds) {
+            Chip chip = programmingLanguages.findViewById(id);
+            editor.putBoolean(""+id, chip.isChecked());
+        }
+
         editor.apply();
 
         Toast.makeText(this, "Profile Saved!", Toast.LENGTH_SHORT).show();
@@ -261,6 +269,12 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         frontendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_FRONTEND, false);
         backendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_BACKEND, false);
 
+        List<Integer> programminglanguagesChipIds = programmingLanguages.getCheckedChipIds();
+        for (Integer id: programminglanguagesChipIds) {
+            Chip chip = programmingLanguages.findViewById(id);
+            chip.setChecked(sharedPreferences.getBoolean(""+id, false));
+        }
+
     }
     public void updateViews(){
         // Text
@@ -291,6 +305,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         frontEndINDChip.setChecked(frontendOnOff);
         backEndINDChip.setChecked(backendOnOff);
         fullStackINDChip.setChecked(fullstackOnOff);
+
     }
 
     // Used for profile image long-click
@@ -365,6 +380,10 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         Chip newChip = new Chip(v.getContext());
         newChip.setText(text);
         newChip.setId(ViewCompat.generateViewId());
+        newChip.setCheckable(true);
+        newChip.setChecked(true);
+        newChip.setCheckedIconVisible(true);
+        newChip.setSaveEnabled(true);
 
         // When a chip is 'long clicked' it will be removed from the group
         newChip.setOnLongClickListener(new View.OnLongClickListener() {
