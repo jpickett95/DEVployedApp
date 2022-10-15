@@ -26,7 +26,9 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ProfilePage extends AppCompatActivity implements LanguageDialog.LanguageDialogListener {
 
@@ -84,9 +86,11 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
     public static final String PROFILE_INDUSTRY_FRONTEND = "profileIndustryFrontEnd";
     public static final String PROFILE_INDUSTRY_BACKEND = "profileIndustryBackEnd";
     public static final String PROFILE_INDUSTRY_FULLSTACK = "profileIndustryFullStack";
+    public static final String PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET = "profileProgrammingLanguages";
     private String fullName;
     private String email;
     private String phone;
+    private Set<String> programmingLanguagesChipNames;
     private boolean highSchoolOnOff;
     private boolean associatesOnOff;
     private boolean bachelorsOnOff;
@@ -230,11 +234,14 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         editor.putBoolean(PROFILE_INDUSTRY_IT, itINDChip.isChecked());
         editor.putBoolean(PROFILE_INDUSTRY_UXUI, uxuiINDChip.isChecked());
 
-        List<Integer> programminglanguagesChipIds = programmingLanguages.getCheckedChipIds();
-        for (Integer id: programminglanguagesChipIds) {
+        // For Programming Language Chips - Shared Preferences takes String Sets
+        programmingLanguagesChipNames = new HashSet<String>();
+        List<Integer> programmingLanguagesChipIds = programmingLanguages.getCheckedChipIds();
+        for (Integer id: programmingLanguagesChipIds) {
             Chip chip = programmingLanguages.findViewById(id);
-            editor.putBoolean(""+id, chip.isChecked());
+            programmingLanguagesChipNames.add(chip.getText().toString());
         }
+        editor.putStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET, programmingLanguagesChipNames);
 
         editor.apply();
 
@@ -269,11 +276,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         frontendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_FRONTEND, false);
         backendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_BACKEND, false);
 
-        List<Integer> programminglanguagesChipIds = programmingLanguages.getCheckedChipIds();
-        for (Integer id: programminglanguagesChipIds) {
-            Chip chip = programmingLanguages.findViewById(id);
-            chip.setChecked(sharedPreferences.getBoolean(""+id, false));
-        }
+        programmingLanguagesChipNames = sharedPreferences.getStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET,programmingLanguagesChipNames);
 
     }
     public void updateViews(){
@@ -306,6 +309,12 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         backEndINDChip.setChecked(backendOnOff);
         fullStackINDChip.setChecked(fullstackOnOff);
 
+        // Programming Languages
+        if (programmingLanguagesChipNames != null) {
+            for (String language : programmingLanguagesChipNames) {
+                applyText(language);
+            }
+        }
     }
 
     // Used for profile image long-click
