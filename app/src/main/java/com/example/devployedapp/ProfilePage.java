@@ -5,9 +5,14 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +31,8 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -109,6 +116,8 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
     private boolean fullstackOnOff;
     private boolean frontendOnOff;
     private boolean backendOnOff;
+
+    private String encodedImage;
 
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
@@ -234,6 +243,8 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         editor.putBoolean(PROFILE_INDUSTRY_IT, itINDChip.isChecked());
         editor.putBoolean(PROFILE_INDUSTRY_UXUI, uxuiINDChip.isChecked());
 
+        editor.putString(PROFILE_IMAGE, encodedImage);
+
         // For Programming Language Chips - Shared Preferences takes String Sets
         programmingLanguagesChipNames = new HashSet<String>();
         List<Integer> programmingLanguagesChipIds = programmingLanguages.getCheckedChipIds();
@@ -278,6 +289,8 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
 
         programmingLanguagesChipNames = sharedPreferences.getStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET,programmingLanguagesChipNames);
 
+        encodedImage = sharedPreferences.getString(PROFILE_IMAGE,"");
+
     }
     public void updateViews(){
         // Text
@@ -315,6 +328,13 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
                 applyText(language);
             }
         }
+
+        // Profile Image
+        if(!encodedImage.equalsIgnoreCase("")){
+            byte[] b = Base64.decode(encodedImage, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+            profileImage.setImageBitmap(bitmap);
+        }
     }
 
     // Used for profile image long-click
@@ -350,7 +370,21 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             // Set image to image view
-            profileImage.setImageURI(data.getData());
+            //profileImage.setImageURI(data.getData());
+            if(data != null) {
+                Uri imageUri = data.getData();
+                Bitmap image = null;
+                try {
+                    image = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                profileImage.setImageBitmap(image);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] b = baos.toByteArray();
+                encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+            }
         }
     }
 
