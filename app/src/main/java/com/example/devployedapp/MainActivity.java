@@ -20,11 +20,13 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import org.webparser.WebParser;
 import org.webparser.data.JobListing;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+//implements SearchCompleteCallback
+public class MainActivity extends AppCompatActivity  {
 
     // For Job Swipe Cards
     //private ArrayList<String> al; // **** Replaced with 'rowItems'
@@ -41,10 +43,16 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
 
     WebParser webparser = new WebParser();
+    // instantiate SearchCompleteHandler
     // webparser.StartParsing(); // throws IOException
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try {
+            webparser.StartParsing();
+        } catch (IOException io){
+
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
