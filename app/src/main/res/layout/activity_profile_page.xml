@@ -44,6 +44,7 @@
         android:layout_height="0dp"
         android:contentDescription="@string/profile_page"
         android:isScrollContainer="true"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,20 +58,37 @@
             android:contentDescription="@string/profile_page_content"
             android:orientation="vertical">
 
-            <!-- Profile Image (ImageView) -->
-            <ImageView
-                android:id="@+id/profileImage"
-                android:layout_width="161dp"
-                android:layout_height="188dp"
+            <androidx.cardview.widget.CardView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="#E2E3E1"
-                android:contentDescription="@string/profilepic"
-                android:longClickable="true"
-                android:saveEnabled="true"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_baseline_image_24"
-                tools:srcCompat="@drawable/ic_baseline_image_24" />
+                android:layout_margin="20dp"
+                app:cardBackgroundColor="@color/brand_Pistachio"
+                app:cardCornerRadius="250dp"
+                app:cardElevation="4sp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="165dp"
+                    android:layout_height="165dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="250dp">
+
+                    <!-- Profile Image (ImageView) -->
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="#E2E3E1"
+                        android:contentDescription="@string/profilepic"
+                        android:longClickable="true"
+                        android:saveEnabled="true"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_baseline_image_24"
+                        tools:srcCompat="@drawable/ic_baseline_image_24" />
+
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <!-- User's name (EditText) -->
             <EditText
@@ -78,43 +96,62 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_person_icon"
+                android:drawablePadding="12dp"
                 android:ems="10"
                 android:hint="Jane Doe"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:textAlignment="center"
+                android:paddingStart="5dp"
+                android:textAlignment="textStart"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <!-- User's email address (EditText) -->
             <EditText
                 android:id="@+id/editTextEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_margin="10dp"
+                android:autoLink="email"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_email_icon"
+                android:drawablePadding="12dp"
                 android:ems="10"
                 android:hint="@string/janedoe_gmail_com"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
+                android:paddingStart="5dp"
                 android:saveEnabled="true"
-                android:textAlignment="center" />
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <!-- User's Phone# (EditText) -->
             <EditText
                 android:id="@+id/editTextPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:autoLink="phone"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_phone_icon"
+                android:drawablePadding="12dp"
                 android:ems="10"
                 android:hint="@string/_123_456_7890"
                 android:importantForAutofill="no"
                 android:inputType="phone"
                 android:minHeight="48dp"
+                android:paddingStart="5dp"
                 android:saveEnabled="true"
-                android:textAlignment="center" />
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <!-- Programming languages container (ConstraintLayout) -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -128,8 +165,10 @@
                     android:id="@+id/textView_profile_programmingLanguages"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_code_24"
+                    android:drawablePadding="12dp"
                     android:padding="10dp"
-                    android:text="@string/skills_label"
+                    android:text="Programming Languages"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +183,7 @@
                     android:saveEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_profile_programmingLanguages"/>
+                    app:layout_constraintTop_toBottomOf="@+id/textView_profile_programmingLanguages" />
 
                 <!-- Programming languages chip group 'add' button (ImageButton) -->
                 <ImageButton
@@ -175,6 +214,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="Your previous educational experience level"
+                    android:drawableStart="@drawable/ic_baseline_school_24"
+                    android:drawablePadding="12dp"
                     android:padding="10dp"
                     android:text="Educational Experience"
                     android:textSize="16sp"
@@ -280,6 +321,8 @@
                     android:id="@+id/textView_profile_experience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_bar_chart_24"
+                    android:drawablePadding="12dp"
                     android:padding="10dp"
                     android:text="Experience Level"
                     android:textSize="16sp"
@@ -371,6 +414,8 @@
                     android:id="@+id/textView_profile_industrypreferences"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_work_24"
+                    android:drawablePadding="12dp"
                     android:padding="10dp"
                     android:text="Industry Preferences"
                     android:textSize="16sp"
@@ -485,10 +530,10 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        android:onClick="AddSkills"
         android:text="Save"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
