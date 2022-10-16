@@ -12,9 +12,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -24,6 +26,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.chip.Chip;
@@ -122,8 +126,6 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
 
-    Dialog skillsDialog; //to create popup to add Skills & Experiences
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,8 +210,88 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
             }
         });
 
-        // Dialog Boxes
-        skillsDialog = new Dialog(this);
+        // Chip Click Handlers
+        for (int i = 0; i < educationalExperience.getChildCount(); i++) {
+            Chip chip = (Chip)educationalExperience.getChildAt(i);
+            chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    saveData();
+                }
+            });
+        }
+        for (int i = 0; i < experienceLevel.getChildCount(); i++) {
+            Chip chip = (Chip)experienceLevel.getChildAt(i);
+            chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    saveData();
+                }
+            });
+        }
+        for (int i = 0; i < industryPreferences.getChildCount(); i++) {
+            Chip chip = (Chip)industryPreferences.getChildAt(i);
+            chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    saveData();
+                }
+            });
+        }
+
+        // Profile Name editText Listener
+        profileFullName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                saveData();
+            }
+        });
+
+        // Profile Email editText Listener
+        profileEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                saveData();
+            }
+        });
+
+        // Profile Phone editText Listener
+        profilePhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                saveData();
+            }
+        });
 
         // Shared Preferences
         loadData();
@@ -247,10 +329,10 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
 
         // For Programming Language Chips - Shared Preferences takes String Sets
         programmingLanguagesChipNames = new HashSet<String>();
-        List<Integer> programmingLanguagesChipIds = programmingLanguages.getCheckedChipIds();
-        for (Integer id: programmingLanguagesChipIds) {
-            Chip chip = programmingLanguages.findViewById(id);
+        for (int i = 0; i < programmingLanguages.getChildCount(); i++) {
+            Chip chip = (Chip)programmingLanguages.getChildAt(i);
             programmingLanguagesChipNames.add(chip.getText().toString());
+            editor.putBoolean("programminglang" + i, chip.isChecked());
         }
         editor.putStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET, programmingLanguagesChipNames);
 
@@ -324,8 +406,15 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
 
         // Programming Languages
         if (programmingLanguagesChipNames != null) {
+            int i =0;
             for (String language : programmingLanguagesChipNames) {
-                applyText(language);
+                ChipGroup languages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
+                Chip chip = createChip(languages, language);
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
+                String key = "programminglang" + i;
+                chip.setChecked(sharedPreferences.getBoolean(key, true));
+                languages .addView(chip);
+                i++;
             }
         }
 
@@ -342,7 +431,6 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         // Intent to pick image
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        //ActivityResultContracts.StartActivityForResult(intent);
         startActivityForResult(intent, IMAGE_PICK_CODE);
 
     }
@@ -384,6 +472,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
                 image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] b = baos.toByteArray();
                 encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+                saveData();
             }
         }
     }
@@ -394,34 +483,11 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         languageDialog.show(getSupportFragmentManager(), "language dialog");
     }
 
-    public void AddSkills(View v){
-        FloatingActionButton doneAddingButton;
-        skillsDialog.setContentView(R.layout.choose_skills_experience);
-        doneAddingButton = skillsDialog.findViewById(R.id.floatingActionButton_doneAdding);
-        doneAddingButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                skillsDialog.dismiss();
-                ////code here to 'refresh' the profile page to display selected items - another method?
-                /*ChipGroup skillsChipGroup = (ChipGroup) findViewById(R.id.profile_skills_chipGroup);
-                setVisible(true);
-                ChipGroup expChipGroup = (ChipGroup) findViewById(R.id.profile_exp_chipGroup);
-                setVisible(true);*/
-            }
-        });
-        skillsDialog.show();
-    }
-    public void refreshProfile(){
-        ChipGroup skillsChipGroup;
-        ChipGroup expChipGroup;
-        //skillsChipGroup = findViewById(R.id.profile_skills_chipGroup);
-    }
-
-
     // Create a new chip
     public Chip createChip(View v, String text){
         Chip newChip = new Chip(v.getContext());
         newChip.setText(text);
+        newChip.setChipBackgroundColor(ContextCompat.getColorStateList(v.getContext(),R.color.brand_Pistachio));
         newChip.setId(ViewCompat.generateViewId());
         newChip.setCheckable(true);
         newChip.setChecked(true);
@@ -434,7 +500,16 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
             public boolean onLongClick(View view) {
                 ChipGroup chipGroup = (ChipGroup) newChip.getParent();
                 chipGroup.removeView(newChip);
+                saveData();
                 return true;
+            }
+        });
+
+        // When a chip is 'clicked' and checked status is changed
+        newChip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                saveData();
             }
         });
 
@@ -447,5 +522,6 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         // Creates a new chip based off text input and dynamically adds it to the ChipGroup
         ChipGroup languages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
         languages .addView(createChip(languages, text));
+        saveData();
     }
 }

@@ -144,21 +144,14 @@
                     android:saveEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_profile_programmingLanguages">
-
-                    <!-- Demo chip - "Java" (Chip) -->
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Java" />
-                </com.google.android.material.chip.ChipGroup>
+                    app:layout_constraintTop_toBottomOf="@+id/textView_profile_programmingLanguages"/>
 
                 <!-- Programming languages chip group 'add' button (ImageButton) -->
                 <ImageButton
                     android:id="@+id/programmingLanguages_addButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/brand_Pistachio"
                     android:clickable="true"
                     android:contentDescription="Add a new programming language."
                     android:minHeight="48dp"
@@ -209,6 +202,7 @@
                         android:contentDescription="Completed High School."
                         android:saveEnabled="true"
                         android:text="High School"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Associate's Degree (Chip) -->
@@ -220,6 +214,7 @@
                         android:contentDescription="Completed an associate's degree."
                         android:saveEnabled="true"
                         android:text="Associate's"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Bachelor's degree (Chip) -->
@@ -231,6 +226,7 @@
                         android:contentDescription="Completed a bachelor's degree."
                         android:saveEnabled="true"
                         android:text="Bachelor's"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Master's Degree (Chip) -->
@@ -242,6 +238,7 @@
                         android:contentDescription="Completed a master's degree."
                         android:saveEnabled="true"
                         android:text="Master's"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Doctorate Degree (Chip) -->
@@ -253,6 +250,7 @@
                         android:contentDescription="Completed a doctorate degree."
                         android:saveEnabled="true"
                         android:text="PhD"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Coding Bootcamp (Chip) -->
@@ -264,6 +262,7 @@
                         android:contentDescription="Completed a coding bootcamp or equivalent program."
                         android:saveEnabled="true"
                         android:text="Coding Bootcamp"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -307,6 +306,7 @@
                         android:contentDescription="No previous industry experience."
                         android:saveEnabled="true"
                         android:text="No Experience"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Early Career (Chip) -->
@@ -318,6 +318,7 @@
                         android:contentDescription="0-1 years of industry experience."
                         android:saveEnabled="true"
                         android:text="Early Career"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Mid Career (Chip) -->
@@ -329,6 +330,7 @@
                         android:contentDescription="Mid Career (2-5 years experience)."
                         android:saveEnabled="true"
                         android:text="Mid Career"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Senior Level (Chip) -->
@@ -340,6 +342,7 @@
                         android:contentDescription="Senior level in your career (5+ years experience)."
                         android:saveEnabled="true"
                         android:text="Senior Level"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Executive (Chip) -->
@@ -351,6 +354,7 @@
                         android:contentDescription="Held an executive position."
                         android:saveEnabled="true"
                         android:text="Executive"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -393,6 +397,7 @@
                         android:contentDescription="Software development (engineering)"
                         android:saveEnabled="true"
                         android:text="Software Development"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- IT - 'Information Technology' (Chip) -->
@@ -404,6 +409,7 @@
                         android:contentDescription="IT filed (information technology)"
                         android:saveEnabled="true"
                         android:text="IT"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Front-End Development (Chip) -->
@@ -415,6 +421,7 @@
                         android:contentDescription="Front-end development."
                         android:saveEnabled="true"
                         android:text="Front End"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Back-End Development (Chip) -->
@@ -426,6 +433,7 @@
                         android:contentDescription="Back-end development."
                         android:saveEnabled="true"
                         android:text="Back End"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Full-Stack Development (Chip) -->
@@ -437,6 +445,7 @@
                         android:contentDescription="Works both front-end and back-end development."
                         android:saveEnabled="true"
                         android:text="Full Stack"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- UX/UI - 'User Experience & User Interface' (Chip) -->
@@ -448,6 +457,7 @@
                         android:contentDescription="User experience and user interface"
                         android:saveEnabled="true"
                         android:text="UX/UI"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
                     <!-- Game Development (Chip) -->
@@ -459,6 +469,7 @@
                         android:contentDescription="Gaming software development."
                         android:saveEnabled="true"
                         android:text="Game Development"
+                        app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
