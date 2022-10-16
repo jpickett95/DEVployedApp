@@ -19,6 +19,11 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import org.webparser.WebParser;
 import org.webparser.data.JobListing;
+import org.webparser.events.EventManager;
+import org.webparser.events.handlers.ListingAddedEventHandler;
+import org.webparser.events.handlers.SearchCompletedEventHandler;
+import org.webparser.events.interfaces.ListingAddedCallback;
+import org.webparser.events.interfaces.SearchCompletedCallback;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -26,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //implements SearchCompleteCallback
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements SearchCompletedCallback, ListingAddedCallback {
 
     // For Job Swipe Cards
     //private ArrayList<String> al; // **** Replaced with 'rowItems'
@@ -42,19 +47,22 @@ public class MainActivity extends AppCompatActivity  {
     int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
             R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
 
+    // For Webparser
     WebParser webparser = new WebParser();
-    // instantiate SearchCompleteHandler
-    // webparser.StartParsing(); // throws IOException
+    ListingAddedEventHandler<MainActivity> listingAddedEventHandler;
+    SearchCompletedEventHandler<MainActivity> searchCompletedEventHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try {
-            webparser.StartParsing();
-        } catch (IOException io){
-
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        listingAddedEventHandler = new ListingAddedEventHandler<>(this);
+        searchCompletedEventHandler = new SearchCompletedEventHandler<>(this);
+        webparser.eventManager.RegisterEventHandler(listingAddedEventHandler);
+        webparser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
+
+        try { webparser.StartParsing(); } catch (IOException io) { } catch (InterruptedException interrupted) { }
 
         // For SwipeCards until line (110) ***EDIT***
         rowItems = new ArrayList<JobListing>();
@@ -182,6 +190,21 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
         filtersDialog.show();
+    }
+
+    @Override
+    public void ListingWasAdded() {
+        // notification that a single listing was added to the DB
+    }
+
+    @Override
+    public void ListingWasAdded(JobListing jobListing) {
+        // passes the very specific job listing that was just added,
+    }
+
+    @Override
+    public void SearchHasCompleted() {
+
     }
 
     // For SwipeCards until line (166) ***EDIT***
