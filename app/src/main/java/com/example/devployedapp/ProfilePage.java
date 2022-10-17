@@ -1,7 +1,6 @@
 package com.example.devployedapp;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -21,34 +20,27 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputLayout;
+import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ProfilePage extends AppCompatActivity implements LanguageDialog.LanguageDialogListener {
 
-    // Variables
-    private ImageButton addLanguageButton;
     private EditText profileFullName;
     private EditText profileEmail;
     private EditText profilePhone;
-    private ChipGroup educationalExperience;
     private Chip highSchoolEDUChip;
     private Chip associatesEDUChip;
     private Chip bachelorsEDUChip;
@@ -56,13 +48,11 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
     private Chip phdEDUChip;
     private Chip bootcampEDUChip;
     private ChipGroup programmingLanguages;
-    private ChipGroup experienceLevel;
     private Chip noexpEXPChip;
     private Chip earlyEXPChip;
     private Chip midEXPChip;
     private Chip seniorEXPChip;
     private Chip executiveEXPChip;
-    private ChipGroup industryPreferences;
     private Chip softwareDevINDChip;
     private Chip gameDevINDChip;
     private Chip itINDChip;
@@ -71,7 +61,6 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
     private Chip backEndINDChip;
     private Chip fullStackINDChip;
     private ImageView profileImage;
-    private Button saveProfileButton;
 
     // Shared Preferences Constants
     public static final String SHARED_PREFERENCES = "sharedPreferences";
@@ -123,9 +112,6 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
 
     private String encodedImage;
 
-    private static final int IMAGE_PICK_CODE = 1000;
-    private static final int PERMISSION_CODE = 1001;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,7 +121,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         profileFullName = findViewById(R.id.editTextName);
         profileEmail = findViewById(R.id.editTextEmailAddress);
         profilePhone = findViewById(R.id.editTextPhone);
-        educationalExperience = findViewById(R.id.ChipGroup_education);
+        ChipGroup educationalExperience = findViewById(R.id.ChipGroup_education);
         highSchoolEDUChip = findViewById(R.id.chip_profile_highschool);
         associatesEDUChip = findViewById(R.id.chip_profile_associates);
         bachelorsEDUChip = findViewById(R.id.chip_profile_bachelors);
@@ -143,13 +129,13 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         phdEDUChip = findViewById(R.id.chip_profile_phd);
         bootcampEDUChip = findViewById(R.id.chip_profile_bootcamp);
         programmingLanguages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
-        experienceLevel = findViewById(R.id.ChipGroup_profile_experience);
+        ChipGroup experienceLevel = findViewById(R.id.ChipGroup_profile_experience);
         noexpEXPChip = findViewById(R.id.chip_profile_noexp);
         earlyEXPChip = findViewById(R.id.chip_profile_earlycareer);
         midEXPChip = findViewById(R.id.chip_profile_midcareer);
         seniorEXPChip = findViewById(R.id.chip_profile_senior);
         executiveEXPChip = findViewById(R.id.chip_profile_executive);
-        industryPreferences = findViewById(R.id.ChipGroup_profile_industrypreferences);
+        ChipGroup industryPreferences = findViewById(R.id.ChipGroup_profile_industrypreferences);
         softwareDevINDChip = findViewById(R.id.chip_profile_softwaredev);
         gameDevINDChip = findViewById(R.id.chip_profile_gamedev);
         itINDChip = findViewById(R.id.chip_profile_it);
@@ -158,10 +144,10 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         backEndINDChip = findViewById(R.id.chip_profile_backend);
         fullStackINDChip = findViewById(R.id.chip_profile_fullstack);
         profileImage = findViewById(R.id.profileImage);
-        saveProfileButton = findViewById(R.id.saveProfileButton);
+        Button saveProfileButton = findViewById(R.id.saveProfileButton);
 
         // Add new programming languages
-        addLanguageButton = findViewById(R.id.programmingLanguages_addButton);
+        ImageButton addLanguageButton = findViewById(R.id.programmingLanguages_addButton);
         addLanguageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,40 +165,27 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
 
         // Profile Image long-click handler
         profileImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public boolean onLongClick(View view) {
-                // Check runtime permission
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                        // Permission not granted, request it.
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                        // Show popup for runtime permission
-                        requestPermissions(permissions, PERMISSION_CODE);
-                    }
-                    else {
-                        // Permission is already granted
-                        pickImageFromGallery();
-                    }
-                }
-                else {
-                    // System OS is less than Marshmallow
-                    pickImageFromGallery();
-                }
-                return true;
-            }
-        });
 
-        // Save Profile Button click handler
-        saveProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveData();
+                boolean pick=true;
+                if(pick){
+                    if(!checkCameraPermission()) {
+                        requestCameraPermission();
+                    } else PickImage();
+                } else {
+                    if(!checkStoragePermission()) {
+                        requestStoragePermission();
+                    } else PickImage();
+                }
+                return pick;
             }
         });
 
         // Chip Click Handlers
         for (int i = 0; i < educationalExperience.getChildCount(); i++) {
-            Chip chip = (Chip)educationalExperience.getChildAt(i);
+            Chip chip = (Chip) educationalExperience.getChildAt(i);
             chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -221,7 +194,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
             });
         }
         for (int i = 0; i < experienceLevel.getChildCount(); i++) {
-            Chip chip = (Chip)experienceLevel.getChildAt(i);
+            Chip chip = (Chip) experienceLevel.getChildAt(i);
             chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -230,7 +203,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
             });
         }
         for (int i = 0; i < industryPreferences.getChildCount(); i++) {
-            Chip chip = (Chip)industryPreferences.getChildAt(i);
+            Chip chip = (Chip) industryPreferences.getChildAt(i);
             chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -328,7 +301,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         editor.putString(PROFILE_IMAGE, encodedImage);
 
         // For Programming Language Chips - Shared Preferences takes String Sets
-        programmingLanguagesChipNames = new HashSet<String>();
+        programmingLanguagesChipNames = new HashSet<>();
         for (int i = 0; i < programmingLanguages.getChildCount(); i++) {
             Chip chip = (Chip)programmingLanguages.getChildAt(i);
             programmingLanguagesChipNames.add(chip.getText().toString());
@@ -426,53 +399,33 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         }
     }
 
-    // Used for profile image long-click
-    private void pickImageFromGallery() {
-        // Intent to pick image
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent, IMAGE_PICK_CODE);
-
-    }
-
-    // Handle result of runtime permission
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSION_CODE: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission was granted
-                    pickImageFromGallery();
-                } else {
-                    // Permission was denied
-                    Toast.makeText(this, "Permission denied...!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-    }
-
     // Handle result of picked image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            // Set image to image view
-            //profileImage.setImageURI(data.getData());
-            if(data != null) {
-                Uri imageUri = data.getData();
-                Bitmap image = null;
-                try {
-                    image = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                } catch (IOException e) {
-                    e.printStackTrace();
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                if (result != null) {
+                    Uri resultUri = result.getUri();
+
+                    Picasso.with(this).load(resultUri).into(profileImage);
+                    Bitmap bitmap;
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        byte[] b = baos.toByteArray();
+                        encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+                        saveData();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                profileImage.setImageBitmap(image);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] b = baos.toByteArray();
-                encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-                saveData();
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+                error.printStackTrace();
             }
         }
     }
@@ -523,5 +476,26 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         ChipGroup languages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
         languages .addView(createChip(languages, text));
         saveData();
+    }
+
+    // For Profile Image
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void requestCameraPermission(){
+        requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+    }
+    private boolean checkCameraPermission() {
+        boolean res1=ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)==PackageManager.PERMISSION_GRANTED;
+        boolean res2=ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED;
+        return res1 && res2;
+    }
+    private boolean checkStoragePermission() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void requestStoragePermission() {
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 101);
+    }
+    private void PickImage() {
+        CropImage.activity().start(this);
     }
 }
