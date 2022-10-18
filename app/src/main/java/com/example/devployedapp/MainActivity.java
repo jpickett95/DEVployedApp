@@ -7,9 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,15 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     // For Job Swipe Cards
-    //private ArrayList<String> al; // **** Replaced with 'rowItems'
-    //private JobPostInformation[] jobPosts_data;
     private swipeCardsArrayAdapter arrayAdapter;
     private int i; // for onAdapterAboutToEmpty()
 
     Dialog filtersDialog; // For filters popup window on main activity
 
-    ListView listView;
     List<JobPostInformation> rowItems;
     int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
             R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
@@ -38,13 +34,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // For SwipeCards until line (110) ***EDIT***
-        rowItems = new ArrayList<JobPostInformation>();
-            // Each 'add' is the name of the card
+        // For SwipeCards
+        rowItems = new ArrayList<>();
         String[] companyNames = getResources().getStringArray(R.array.company_names);
         String[] jobTitles = getResources().getStringArray(R.array.job_titles);
         String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
-
         for (int i = 0; i < companyNames.length; i++){
             rowItems.add(new JobPostInformation(companyNames[i],jobTitles[i],skillsToMatch[i],companyLogos[i]));
         }
@@ -53,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         // arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
-
         flingContainer.setAdapter(arrayAdapter);
 
         // Swipe Listener
@@ -113,33 +106,19 @@ public class MainActivity extends AppCompatActivity {
 
         //Menu to go to profile page
         Button menuButton = findViewById(R.id.menuButton);
-        menuButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ProfilePage.class));
-            }
-        });
+        menuButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, ProfilePage.class)));
+
         //Menu button to go to saved jobs page
         Button savedJobsButton = findViewById(R.id.Saved_Jobs_button);
-        savedJobsButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SavedJobsListPage.class));
-            }
-        });
+        savedJobsButton.setOnClickListener((View view) -> startActivity(new Intent(MainActivity.this, SavedJobsListPage.class)));
+
         //Menu button to go to saved jobs page
         Button rejectedJobsButton = findViewById(R.id.rejected_Jobs_button);
-        rejectedJobsButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class));
-            }
-        });
+        rejectedJobsButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class)));
 
         //toolbar exit button to exit the app
         ImageButton backButton_main = findViewById(R.id.exitButton_main);
-        backButton_main.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton_main.setOnClickListener((View v) -> finish());
 
         filtersDialog = new Dialog(this); // For filters popup window on main activity
     }
@@ -150,16 +129,11 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton completedButton;
         filtersDialog.setContentView(R.layout.popup_filters);
         completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
-        completedButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                filtersDialog.dismiss();
-            }
-        });
+        completedButton.setOnClickListener((View view) -> filtersDialog.dismiss());
         filtersDialog.show();
     }
 
-    // For SwipeCards until line (166) ***EDIT***
+    // For SwipeCards
     /*
     static void makeToast(Context ctx, String s){
         Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();

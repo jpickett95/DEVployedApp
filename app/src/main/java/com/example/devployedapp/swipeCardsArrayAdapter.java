@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class swipeCardsArrayAdapter  extends ArrayAdapter<JobPostInformation> {
-    Context context;
+    //Context context;
 
     public swipeCardsArrayAdapter(Context context, int resourceId, List<JobPostInformation> jobPosts) {
         super(context, resourceId, jobPosts);

@@ -13,6 +13,12 @@
     <string name="my_new_skill">     </string>
     <string name="chip_freelance">Freelance</string>
     <string name="companyNameFragmentPiece">Company: </string>
+    <string name="my_profile">My Profile</string>
+    <string name="apply">Apply</string>
+    <string name="reject">Reject</string>
+    <string name="saved_jobs">Saved Jobs</string>
+    <string name="exitapplicationbutton">exitApplicationButton</string>
+    <string name="rejected_jobs">Rejected Jobs</string>
     <string-array name="company_names">
         <item>Google</item>
         <item>Microsoft</item>

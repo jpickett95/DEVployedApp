@@ -27,19 +27,11 @@ public class LanguageDialog extends AppCompatDialogFragment {
 
         builder.setView(view)
                 .setTitle("Enter Programming Language:")
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                })
-                .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                .setNegativeButton("Cancel", (DialogInterface dialogInterface, int i) -> {})
+                .setPositiveButton("Apply", (DialogInterface dialogInterface, int i) -> {
                         String language = editTextLanguage.getText().toString();
                         listener.applyText(language);
-                    }
-                });
+                    });
         editTextLanguage = view.findViewById(R.id.editText);
         return builder.create();
     }
@@ -51,7 +43,7 @@ public class LanguageDialog extends AppCompatDialogFragment {
         try {
             listener = (LanguageDialogListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "must implement LanguageDialogListener");
+            throw new ClassCastException(context + "must implement LanguageDialogListener");
         }
 
     }

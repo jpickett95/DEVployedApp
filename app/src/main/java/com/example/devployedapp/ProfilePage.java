@@ -14,7 +14,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -112,6 +111,7 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
 
     private String encodedImage;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,30 +144,17 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         backEndINDChip = findViewById(R.id.chip_profile_backend);
         fullStackINDChip = findViewById(R.id.chip_profile_fullstack);
         profileImage = findViewById(R.id.profileImage);
-        Button saveProfileButton = findViewById(R.id.saveProfileButton);
 
         // Add new programming languages
         ImageButton addLanguageButton = findViewById(R.id.programmingLanguages_addButton);
-        addLanguageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openLanguageDialog();
-            }
-        });
+        addLanguageButton.setOnClickListener((View view) -> openLanguageDialog());
 
         // Toolbar 'Back Button' functionality to go 'back' a page.
         ImageButton backButton_profile = findViewById(R.id.backButton_profile);
-        backButton_profile.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton_profile.setOnClickListener((View v) -> finish());
 
         // Profile Image long-click handler
-        profileImage.setOnLongClickListener(new View.OnLongClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public boolean onLongClick(View view) {
+        profileImage.setOnLongClickListener((View view) -> {
 
                 boolean pick=true;
                 if(pick){
@@ -180,36 +167,20 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
                     } else PickImage();
                 }
                 return pick;
-            }
-        });
+            });
 
         // Chip Click Handlers
         for (int i = 0; i < educationalExperience.getChildCount(); i++) {
             Chip chip = (Chip) educationalExperience.getChildAt(i);
-            chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    saveData();
-                }
-            });
+            chip.setOnCheckedChangeListener((CompoundButton compoundButton, boolean b) -> saveData());
         }
         for (int i = 0; i < experienceLevel.getChildCount(); i++) {
             Chip chip = (Chip) experienceLevel.getChildAt(i);
-            chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    saveData();
-                }
-            });
+            chip.setOnCheckedChangeListener((CompoundButton compoundButton, boolean b) -> saveData());
         }
         for (int i = 0; i < industryPreferences.getChildCount(); i++) {
             Chip chip = (Chip) industryPreferences.getChildAt(i);
-            chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    saveData();
-                }
-            });
+            chip.setOnCheckedChangeListener((CompoundButton compoundButton, boolean b) -> saveData());
         }
 
         // Profile Name editText Listener
@@ -448,23 +419,15 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         newChip.setSaveEnabled(true);
 
         // When a chip is 'long clicked' it will be removed from the group
-        newChip.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
+        newChip.setOnLongClickListener((View view) -> {
                 ChipGroup chipGroup = (ChipGroup) newChip.getParent();
                 chipGroup.removeView(newChip);
                 saveData();
                 return true;
-            }
-        });
+            });
 
         // When a chip is 'clicked' and checked status is changed
-        newChip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                saveData();
-            }
-        });
+        newChip.setOnCheckedChangeListener((CompoundButton compoundButton, boolean b) -> saveData());
 
         return newChip;
     }
