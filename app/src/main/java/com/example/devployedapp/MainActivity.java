@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
-
                 // potentially link to job application or job posting on company website?
                 // ^^ OR pull up a popup window with more specific, detailed information
             }
