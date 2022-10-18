@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//region SwipeCards and Flings
         // For SwipeCards
         rowItems = new ArrayList<>();
         String[] companyNames = getResources().getStringArray(R.array.company_names);
@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
                 // ^^ OR pull up a popup window with more specific, detailed information
             }
         });
-
+//endregion
+//region Button functions
         //Menu to go to profile page
         Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, ProfilePage.class)));
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         //toolbar exit button to exit the app
         ImageButton backButton_main = findViewById(R.id.exitButton_main);
         backButton_main.setOnClickListener((View v) -> finish());
+//endregion
 
         filtersDialog = new Dialog(this); // For filters popup window on main activity
     }

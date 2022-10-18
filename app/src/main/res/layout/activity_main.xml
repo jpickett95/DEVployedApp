@@ -89,7 +89,7 @@
         app:layout_constraintStart_toEndOf="@+id/menuButton" />
 
     <Button
-        android:id="@+id/rejectButton"
+        android:id="@+id/rejectedButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
