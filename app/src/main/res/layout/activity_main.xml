@@ -9,11 +9,11 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_main"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/Theme.ToolbarTheme"
+        app:popupTheme="@style/Widget.AppCompat.PopupMenu"
+        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

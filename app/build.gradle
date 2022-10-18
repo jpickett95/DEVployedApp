@@ -38,5 +38,7 @@ dependencies {
     implementation 'com.lorentzos.swipecards:library:1.0.9' //https://github.com/Diolor/Swipecards
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation(fileTree(dir: 'libs', include: ['*.jar']))
+
 
 }

@@ -7,12 +7,18 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class LandingPage extends AppCompatActivity {
+    private Toolbar mTopToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
+
+        mTopToolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        setSupportActionBar(mTopToolbar);
 
         Button reviewJobMatchesButton = findViewById(R.id.review_job_matches_button);
         reviewJobMatchesButton.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, MainActivity.class)));

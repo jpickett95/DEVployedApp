@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:icon="@drawable/ic_menu_lines"
+    app:showAsAction="collapseActionView">
+
+    <item
+        android:id="@+id/action_toLanding"
+        android:orderInCategory="1"
+        android:title="Home"/>
+    <item
+        android:id="@+id/action_toViewMatches"
+        android:orderInCategory="2"
+        android:title="View Job Matches"/>
+    <item
+        android:id="@+id/action_toSavedJobs"
+        android:orderInCategory="3"
+        android:title="Saved Matches"/>
+    <item
+        android:id="@+id/action_toRejectedJobs"
+        android:orderInCategory="4"
+        android:title="Rejected Matches"/>
+    <item
+        android:id="@+id/action_toProfilePage"
+        android:orderInCategory="5"
+        android:title="Profile"/>
+</menu>

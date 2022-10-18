@@ -7,12 +7,12 @@
     tools:context=".LandingPage">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_main2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/brand_TyrianPurple"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:id="@+id/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/Theme.ToolbarTheme"
+        app:popupTheme="@style/Widget.AppCompat.Light.PopupMenu"
+        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main2"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
         app:srcCompat="@mipmap/devployed_logo" />
 
     <TextView
