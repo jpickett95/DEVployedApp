@@ -30,6 +30,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlinx.coroutines.Job;
+
 //implements SearchCompleteCallback
 public class MainActivity extends AppCompatActivity implements SearchCompletedCallback, ListingAddedCallback {
 
@@ -139,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements SearchCompletedCa
             public void onItemClicked(int itemPosition, Object dataObject) {
                 Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
 
+                JobListing jobClicked = (JobListing) dataObject;
                 // potentially link to job application or job posting on company website?
                 // ^^ OR pull up a popup window with more specific, detailed information
             }
