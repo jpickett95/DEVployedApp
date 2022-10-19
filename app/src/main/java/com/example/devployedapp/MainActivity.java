@@ -25,7 +25,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ListingAddedCallback, SearchCompletedCallback {
 
-//region Variables called before OnCreate() method
+    //region Variables called before OnCreate() method
 
     // Variables For Job Swipe Cards
     private swipeCardsArrayAdapter arrayAdapter;
@@ -52,31 +52,30 @@ public class MainActivity extends AppCompatActivity implements ListingAddedCallb
         webparser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
 
 
-        // For SwipeCards
+    //region SwipeCards: Initialize and Parse
         rowItems = new ArrayList<>();
         String[] companyNames = getResources().getStringArray(R.array.company_names);
-        String[] jobTitles = getResources().getStringArray(R.array.job_titles);
-        String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
         for (int i = 0; i < companyNames.length; i++){
             rowItems.add(webparser.GetJobListing());
         }
+        //endregion
 
         arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems );
-        // arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
+        //arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
         flingContainer.setAdapter(arrayAdapter);
 
-        // Swipe Listener
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
-                // this is the simplest way to delete an object from the Adapter (/AdapterView)
+                //this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
                 rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
+    //region SwipeCards: After Swiping Functions
             @Override
             public void onLeftCardExit(Object dataObject) {
                 //Do something on the left!
@@ -89,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements ListingAddedCallb
             public void onRightCardExit(Object dataObject) {
                 Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
             }
+//endregion
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
