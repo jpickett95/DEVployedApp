@@ -30,95 +30,60 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_close_24" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="126dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginEnd="134dp"
-        android:layout_marginBottom="589dp"
+    <LinearLayout
+        android:layout_width="383dp"
+        android:layout_height="811dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main2"
-        app:srcCompat="@mipmap/devployed_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main2">
 
-    <TextView
-        android:id="@+id/welcomeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="157dp"
-        android:fontFamily="@font/alegreya_sc"
-        android:text="DEVployed"
-        android:textAlignment="center"
-        android:textColor="@color/accent_Claret"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="126dp"
+            android:layout_height="140dp"
+            app:srcCompat="@mipmap/devployed_logo" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottom_half_landingPage_constraint_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcomeTextView">
+        <TextView
+            android:id="@+id/welcomeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/alegreya_sc"
+            android:text="DEVployed"
+            android:textAlignment="center"
+            android:textColor="@color/accent_Claret"
+            android:textSize="48sp" />
 
         <Button
             android:id="@+id/review_job_matches_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="125dp"
-            android:layout_marginEnd="125dp"
-            android:layout_marginBottom="400dp"
-            android:text="Job Matches"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/rejected_matches_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="102dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="102dp"
-            android:text="Rejected Matches"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/saved_matches_button" />
+            android:layout_marginTop="10dp"
+            android:text="Job Matches" />
 
         <Button
             android:id="@+id/to_profile_page_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="148dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="149dp"
-            android:text="Profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rejected_matches_button" />
+            android:layout_marginTop="10dp"
+            android:text="Profile" />
+
+        <Button
+            android:id="@+id/rejected_matches_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Rejected Matches" />
 
         <Button
             android:id="@+id/saved_matches_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="115dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="116dp"
-            android:text="Saved Matches"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/review_job_matches_button" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginTop="10dp"
+            android:text="Saved Matches" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
