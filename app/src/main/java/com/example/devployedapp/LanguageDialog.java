@@ -25,6 +25,8 @@ public class LanguageDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_profile_languages, null);
 
+        editTextLanguage = view.findViewById(R.id.editText);
+
         builder.setView(view)
                 .setTitle("Enter Programming Language:")
                 .setNegativeButton("Cancel", (DialogInterface dialogInterface, int i) -> {})
@@ -32,7 +34,7 @@ public class LanguageDialog extends AppCompatDialogFragment {
                         String language = editTextLanguage.getText().toString();
                         listener.applyText(language);
                     });
-        editTextLanguage = view.findViewById(R.id.editText);
+
         return builder.create();
     }
 

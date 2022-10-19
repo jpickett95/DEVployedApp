@@ -152,7 +152,9 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
 
         // Add new programming languages
         ImageButton addLanguageButton = findViewById(R.id.programmingLanguages_addButton);
-        addLanguageButton.setOnClickListener((View view) -> openLanguageDialog());
+        addLanguageButton.setOnClickListener((View view) -> {
+            openLanguageDialog();
+        });
 
         // Profile Image long-click handler
         profileImage.setOnLongClickListener((View view) -> {
@@ -273,11 +275,13 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         editor.putString(PROFILE_IMAGE, encodedImage);
 
         // For Programming Language Chips - Shared Preferences takes String Sets
+        programmingLanguages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
         programmingLanguagesChipNames = new HashSet<>();
         for (int i = 0; i < programmingLanguages.getChildCount(); i++) {
             Chip chip = (Chip)programmingLanguages.getChildAt(i);
             programmingLanguagesChipNames.add(chip.getText().toString());
             editor.putBoolean("programminglang" + i, chip.isChecked());
+            editor.commit();
         }
         editor.putStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET, programmingLanguagesChipNames);
 
