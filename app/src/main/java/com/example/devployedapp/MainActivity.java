@@ -20,25 +20,25 @@ import com.example.webparser.events.interfaces.SearchCompletedCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ListingAddedCallback, SearchCompletedCallback {
 
-    // For Job Swipe Cards
+//region Variables called before OnCreate() method
+
+    // Variables For Job Swipe Cards
     private swipeCardsArrayAdapter arrayAdapter;
-    private int i; // for onAdapterAboutToEmpty()
+    List<JobListing> rowItems;
 
     Dialog filtersDialog; // For filters popup window on main activity
 
-    List<JobListing> rowItems;
-    int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
-            R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
-
+    // Variables For WebParser
     WebParser webparser;
     ListingAddedEventHandler<MainActivity> listingAddedEventHandler;
     SearchCompletedEventHandler<MainActivity> searchCompletedEventHandler;
+
+//endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements ListingAddedCallb
                 rowItems.add(webparser.GetJobListing());
                 arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
-                //i++;
             }
 
             @Override
