@@ -5,7 +5,6 @@ import com.example.webparser.data.JobListing;
 
 import com.example.webparser.targets.Cisco;
 //import com.example.webparser.targets.Google;
-example
 import com.example.webparser.events.handlers.SearchEventHandler;
 import com.example.webparser.threading.SearchRunner;
 
@@ -15,27 +14,13 @@ import java.util.*;
 
 
 public class WebParser {
-    private SearchEventHandler eventHandler;
-    private HashMap<String, ParserTarget> targets;
-    private HashMap<String, ParserTarget> selectedTargets;
-    private Vector<JobListing> parsedListings;
-    private Vector<JobListing> returnedListings;
-    public EventManager eventManager;
-
-    public void SetEventHandler(SearchEventHandler eventHandler){
-        this.eventHandler = eventHandler;
-    }
-
-    public SearchEventHandler GetEventHandler(){
-        return this.eventHandler;
-    }
+    private static final HashMap<String, ParserTarget> targets = new HashMap<>();
+    private static final HashMap<String, ParserTarget> selectedTargets = new HashMap<>();
+    private static final Vector<JobListing> parsedListings = new Vector<>();
+    private static final Vector<JobListing> returnedListings = new Vector<>();
+    public static final EventManager eventManager = new EventManager();
 
     public WebParser() {
-        eventManager = new EventManager();
-        targets = new HashMap<>();
-        selectedTargets = new HashMap<>();
-        parsedListings = new Vector<>();
-        returnedListings = new Vector<>();
         Initialize();
     }
 

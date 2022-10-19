@@ -11,13 +11,20 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.webparser.WebParser;
+import com.example.webparser.data.JobListing;
+import com.example.webparser.events.handlers.ListingAddedEventHandler;
+import com.example.webparser.events.handlers.SearchCompletedEventHandler;
+import com.example.webparser.events.interfaces.ListingAddedCallback;
+import com.example.webparser.events.interfaces.SearchCompletedCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ListingAddedCallback, SearchCompletedCallback {
 
     // For Job Swipe Cards
     private swipeCardsArrayAdapter arrayAdapter;
@@ -25,14 +32,25 @@ public class MainActivity extends AppCompatActivity {
 
     Dialog filtersDialog; // For filters popup window on main activity
 
-    List<JobPostInformation> rowItems;
+    List<JobListing> rowItems;
     int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
             R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
+
+    WebParser webparser;
+    ListingAddedEventHandler<MainActivity> listingAddedEventHandler;
+    SearchCompletedEventHandler<MainActivity> searchCompletedEventHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        webparser = new WebParser();
+        listingAddedEventHandler = new ListingAddedEventHandler(this);
+        searchCompletedEventHandler = new SearchCompletedEventHandler(this);
+        webparser.eventManager.RegisterEventHandler(listingAddedEventHandler);
+        webparser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
+
 
         // For SwipeCards
         rowItems = new ArrayList<>();
@@ -40,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         String[] jobTitles = getResources().getStringArray(R.array.job_titles);
         String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
         for (int i = 0; i < companyNames.length; i++){
-            rowItems.add(new JobPostInformation(companyNames[i],jobTitles[i],skillsToMatch[i],companyLogos[i]));
+            rowItems.add(webparser.GetJobListing());
         }
 
         arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems );
@@ -77,11 +95,10 @@ public class MainActivity extends AppCompatActivity {
                 // Ask for more data here
 
                 // TESTING PURPOSES
-                JobPostInformation extraJobPost = new JobPostInformation("ExtraCompany".concat(String.valueOf(i)), "Extra Job".concat(String.valueOf(i)), "Extra Skills".concat(String.valueOf(i)), R.drawable.ic_baseline_add_24);
-                rowItems.add(extraJobPost);
+                rowItems.add(webparser.GetJobListing());
                 arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
-                i++;
+                //i++;
             }
 
             @Override
@@ -130,6 +147,21 @@ public class MainActivity extends AppCompatActivity {
         completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener((View view) -> filtersDialog.dismiss());
         filtersDialog.show();
+    }
+
+    @Override
+    public void ListingWasAdded() {
+
+    }
+
+    @Override
+    public void ListingWasAdded(JobListing listing) {
+
+    }
+
+    @Override
+    public void SearchHasCompleted() {
+
     }
 
     // For SwipeCards

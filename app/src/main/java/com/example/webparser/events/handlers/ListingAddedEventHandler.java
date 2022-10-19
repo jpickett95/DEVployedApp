@@ -10,6 +10,6 @@ public class ListingAddedEventHandler <T extends ListingAddedCallback> extends S
     }
     public void EventHasCompleted(JobListing jobListing){
         this.target.ListingWasAdded();
-        this.t arget.ListingWasAdded(jobListing);
+        this.target.ListingWasAdded(jobListing);
     }
 }

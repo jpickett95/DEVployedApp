@@ -1,11 +1,9 @@
 package com.example.webparser.targets;
-import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
-import com.example.jsoup.Connection;
-import com.example.jsoup.Jsoup;
-import com.example.jsoup.nodes.Document;
-import com.example.jsoup.nodes.Element;
-import com.example.jsoup.select.Elements;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import com.example.webparser.data.JobListing;
 
 import java.io.IOException;

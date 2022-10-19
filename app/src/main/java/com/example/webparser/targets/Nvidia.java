@@ -1,7 +1,7 @@
 package com.example.webparser.targets;
-import com.example.jsoup.nodes.Document;
-import com.example.jsoup.nodes.Element;
-import com.example.jsoup.select.Elements;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.HashMap;
