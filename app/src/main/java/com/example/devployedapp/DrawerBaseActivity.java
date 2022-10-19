@@ -11,16 +11,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
 import android.util.Base64;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static final String SHARED_PREFERENCES = "sharedPreferences";
+    public static final String PROFILE_IMAGE = "profileImage";
+    public static final String PROFILE_NAME = "profileName";
+    private String encodedImage;
 
     DrawerLayout drawerLayout;
 
@@ -50,6 +59,18 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
+        encodedImage = sharedPreferences.getString(PROFILE_IMAGE,"");
+        String fullName = sharedPreferences.getString(PROFILE_NAME, "");
+        TextView navProfileName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.nav_profile_name);
+        navProfileName.setText(fullName);
+        ImageView navProfileImage = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.nav_profile_image);
+        if(!encodedImage.equalsIgnoreCase("")){
+            byte[] b = Base64.decode(encodedImage, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+            navProfileImage.setImageBitmap(bitmap);
+
+        }
     }
 
     @Override

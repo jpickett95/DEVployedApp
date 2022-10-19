@@ -28,14 +28,17 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
 
         // Find View IDs
         TextView companyName = (TextView) convertView.findViewById(R.id.swipeCards_item_companyName);
-        TextView jobTitle = (TextView) convertView.findViewById(R.id.swipeCards_item_jobTitle);
+        TextView jobTitleView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobTitle);
         TextView skillsMatched = (TextView) convertView.findViewById(R.id.swipeCards_item_skillsMatched);
         ImageView companyLogo = (ImageView) convertView.findViewById(R.id.swipeCards_item_companyLogo);
 
+        String location = jobPost.GetJobLocation();
+        String jobTitle = jobPost.GetJobTitle();
+        String jobDescription = jobPost.GetJobDescription();
         // Set variable data
-        companyName.setText(jobPost.GetJobLocation());
-        jobTitle.setText(jobPost.GetJobTitle());
-        skillsMatched.setText(jobPost.GetJobDescription());
+        if(location != null) {companyName.setText(location);} else {companyName.setText("Company Name Unavailable");}
+        if(jobTitle!= null) {jobTitleView.setText(jobTitle);} else {jobTitleView.setText("Job Title Unavailable");}
+        if(jobDescription != null) {skillsMatched.setText(jobDescription);} else {skillsMatched.setText("Skills Unavailable");}
         companyLogo.setImageResource(R.mipmap.ic_launcher);
 
         return convertView;

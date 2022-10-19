@@ -35,12 +35,13 @@
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
     <TextView
+        android:id="@+id/nav_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User's Name"
         android:textColor="@color/white"
         android:layout_gravity="center"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"/>
 
 </LinearLayout>
