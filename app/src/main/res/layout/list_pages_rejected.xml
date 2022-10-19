@@ -10,61 +10,15 @@
     tools:context=".SavedJobsListPage">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_main"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleMargin="10dp"
-        app:titleTextColor="@color/white" />
-
-    <ImageButton
-        android:id="@+id/backButton_SaveToMain"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/back_arrow_button"
-        android:minWidth="48dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar_main"
-        app:layout_constraintStart_toStartOf="@id/toolbar_main"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
-        tools:ignore="RedundantDescriptionCheck" />
-
-    <TextView
-        android:id="@+id/rejectedJobsTextView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif"
-        android:text="Rejected Jobs"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar_main"
-        app:layout_constraintEnd_toEndOf="@id/toolbar_main"
-        app:layout_constraintStart_toStartOf="@id/toolbar_main"
-        app:layout_constraintTop_toTopOf="@id/toolbar_main" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Rejected_Jobs_RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight="wrap_content"
-        app:layout_constraintTop_creator="10"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main">
+        app:layout_constraintTop_creator="10">
 
 
     </androidx.recyclerview.widget.RecyclerView>

@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.devployedapp.databinding.ActivityDrawerBaseBinding;
+import com.example.devployedapp.databinding.ActivityMainBinding;
 import com.example.webparser.WebParser;
 import com.example.webparser.data.JobListing;
 import com.example.webparser.events.handlers.ListingAddedEventHandler;
@@ -24,7 +26,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ListingAddedCallback, SearchCompletedCallback {
+public class MainActivity extends DrawerBaseActivity implements ListingAddedCallback, SearchCompletedCallback {
+
+    ActivityMainBinding activityMainBinding;
 
     // For Job Swipe Cards
     private swipeCardsArrayAdapter arrayAdapter;
@@ -43,7 +47,9 @@ public class MainActivity extends AppCompatActivity implements ListingAddedCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(activityMainBinding.getRoot());
+        allocateActivityTitle("Job Matches");
 
         webparser = new WebParser();
         listingAddedEventHandler = new ListingAddedEventHandler(this);
@@ -131,10 +137,6 @@ public class MainActivity extends AppCompatActivity implements ListingAddedCallb
         //Menu button to go to saved jobs page
         Button rejectedJobsButton = findViewById(R.id.rejected_Jobs_button);
         rejectedJobsButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class)));
-
-        //toolbar exit button to exit the app
-        ImageButton backButton_main = findViewById(R.id.exitButton_main);
-        backButton_main.setOnClickListener((View v) -> finish());
 
         filtersDialog = new Dialog(this); // For filters popup window on main activity
     }

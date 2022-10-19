@@ -19,6 +19,12 @@
     <string name="saved_jobs">Saved Jobs</string>
     <string name="exitapplicationbutton">exitApplicationButton</string>
     <string name="rejected_jobs">Rejected Jobs</string>
+    <string name="MainActivity_page_title">Job Matches</string>
+    <string name="ProfilePage_page_title">My Profile</string>
+    <string name="SavedJobsPage_page_title">Saved Jobs</string>
+    <string name="RejectedJobsPage_page_title">Rejected Jobs</string>
+    <string name="menu_drawer_open">Drawer Open</string>
+    <string name="menu_drawer_close">Drawer Close</string>
     <string-array name="company_names">
         <item>Google</item>
         <item>Microsoft</item>

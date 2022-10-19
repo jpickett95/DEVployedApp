@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.devployedapp.databinding.ListPagesRejectedBinding;
+
 import java.util.ArrayList;
 
 /* reference webpages:
@@ -17,8 +19,9 @@ Android Docs Example of adding RecyclerView: https://github.com/android/views-wi
 * RecyclerView - Everything you need to Know, Practical Coding: https://www.youtube.com/watch?v=Mc0XT58A1Z4
 * */
 
-public class RejectedJobsListPage extends AppCompatActivity {
+public class RejectedJobsListPage extends DrawerBaseActivity {
 
+    ListPagesRejectedBinding listPagesRejectedBinding;
     ArrayList<JobPostInformation> jobPostings = new ArrayList<>();
     int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
             R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
@@ -26,11 +29,9 @@ public class RejectedJobsListPage extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_pages_rejected);
-
-        // Toolbar 'Back Button' functionality to go 'back' a page.
-        ImageButton backButton_profile = findViewById(R.id.backButton_SaveToMain);
-        backButton_profile.setOnClickListener(v -> finish());
+        listPagesRejectedBinding = ListPagesRejectedBinding.inflate(getLayoutInflater());
+        setContentView(listPagesRejectedBinding.getRoot());
+        allocateActivityTitle("Rejected Jobs");
 
         RecyclerView recyclerView = findViewById(R.id.Rejected_Jobs_RecyclerView);
         setUpJobPostModels();

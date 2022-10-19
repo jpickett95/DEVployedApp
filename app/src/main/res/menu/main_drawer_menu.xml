@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_job_matches"
+            android:icon="@drawable/ic_baseline_work_24"
+            android:title="@string/MainActivity_page_title" />
+
+        <item android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="@string/ProfilePage_page_title" />
+
+        <item android:id="@+id/nav_saved_jobs"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            android:title="@string/SavedJobsPage_page_title" />
+
+        <item android:id="@+id/nav_rejected_jobs"
+            android:icon="@drawable/ic_baseline_delete_24"
+            android:title="@string/RejectedJobsPage_page_title" />
+    </group>
+
+</menu>

@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
+import com.example.devployedapp.databinding.ActivityProfilePageBinding;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.squareup.picasso.Picasso;
@@ -35,7 +36,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ProfilePage extends AppCompatActivity implements LanguageDialog.LanguageDialogListener {
+public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.LanguageDialogListener {
 
     private EditText profileFullName;
     private EditText profileEmail;
@@ -111,11 +112,15 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
 
     private String encodedImage;
 
+    ActivityProfilePageBinding activityProfilePageBinding;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_page);
+        activityProfilePageBinding = ActivityProfilePageBinding.inflate(getLayoutInflater());
+        setContentView(activityProfilePageBinding.getRoot());
+        allocateActivityTitle("My Profile");
 
         // Views
         profileFullName = findViewById(R.id.editTextName);
@@ -148,10 +153,6 @@ public class ProfilePage extends AppCompatActivity implements LanguageDialog.Lan
         // Add new programming languages
         ImageButton addLanguageButton = findViewById(R.id.programmingLanguages_addButton);
         addLanguageButton.setOnClickListener((View view) -> openLanguageDialog());
-
-        // Toolbar 'Back Button' functionality to go 'back' a page.
-        ImageButton backButton_profile = findViewById(R.id.backButton_profile);
-        backButton_profile.setOnClickListener((View v) -> finish());
 
         // Profile Image long-click handler
         profileImage.setOnLongClickListener((View view) -> {

@@ -2,12 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.devployedapp">
-
     <!-- Read External Storage Permission (For profile image on activity_profile_page.xml) -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,8 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DEVployedApp"
         tools:targetApi="31">
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
+        <activity
+            android:name=".DrawerBaseActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".LandingPage"
             android:exported="true">
@@ -64,7 +71,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
