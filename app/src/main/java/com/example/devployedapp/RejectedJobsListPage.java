@@ -1,9 +1,7 @@
 package com.example.devployedapp;
 
 import android.os.Bundle;
-import android.widget.ImageButton;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,21 +21,31 @@ public class RejectedJobsListPage extends DrawerBaseActivity {
 
     ListPagesRejectedBinding listPagesRejectedBinding;
     ArrayList<JobPostInformation> jobPostings = new ArrayList<>();
+
+    //region Hardcoded Company Logos - NEED TO REMOVE WHEN PARSER IS INTEGRATED
     int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
             R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
+//endregion
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //region Get layout via binding and Set Content View
         listPagesRejectedBinding = ListPagesRejectedBinding.inflate(getLayoutInflater());
         setContentView(listPagesRejectedBinding.getRoot());
-        allocateActivityTitle("Rejected Jobs");
+        //end region
 
+        allocateActivityTitle("Rejected Jobs"); //related to DrawerActivity
+
+        //region Recyclerview and Adapter
         RecyclerView recyclerView = findViewById(R.id.Rejected_Jobs_RecyclerView);
-        setUpJobPostModels();
         JobPost_RecyclerViewAdapter adapter = new JobPost_RecyclerViewAdapter(this, jobPostings);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //endregion
+
+        setUpJobPostModels();
     }
 
 
