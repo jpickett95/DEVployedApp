@@ -22,7 +22,6 @@ import com.example.webparser.events.interfaces.SearchCompletedCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,19 +29,20 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
 
     ActivityMainBinding activityMainBinding;
 
-    // For Job Swipe Cards
+    //region Variables called before OnCreate() method
+
+    // Variables For Job Swipe Cards
     private swipeCardsArrayAdapter arrayAdapter;
-    private int i; // for onAdapterAboutToEmpty()
+    List<JobListing> rowItems;
 
     Dialog filtersDialog; // For filters popup window on main activity
 
-    List<JobListing> rowItems;
-    int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
-            R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
-
+    // Variables For WebParser
     WebParser webparser;
     ListingAddedEventHandler<MainActivity> listingAddedEventHandler;
     SearchCompletedEventHandler<MainActivity> searchCompletedEventHandler;
+
+//endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,31 +58,30 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
         webparser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
 
 
-        // For SwipeCards
+    //region SwipeCards: Initialize and Parse
         rowItems = new ArrayList<>();
         String[] companyNames = getResources().getStringArray(R.array.company_names);
-        String[] jobTitles = getResources().getStringArray(R.array.job_titles);
-        String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
         for (int i = 0; i < companyNames.length; i++){
             rowItems.add(webparser.GetJobListing());
         }
+        //endregion
 
         arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems );
-        // arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
+        //arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
         flingContainer.setAdapter(arrayAdapter);
 
-        // Swipe Listener
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
-                // this is the simplest way to delete an object from the Adapter (/AdapterView)
+                //this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
                 rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
+    //region SwipeCards: After Swiping Functions
             @Override
             public void onLeftCardExit(Object dataObject) {
                 //Do something on the left!
@@ -95,6 +94,7 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
             public void onRightCardExit(Object dataObject) {
                 Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
             }
+//endregion
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
@@ -104,7 +104,6 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
                 rowItems.add(webparser.GetJobListing());
                 arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
-                //i++;
             }
 
             @Override
