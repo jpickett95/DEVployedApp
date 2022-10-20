@@ -5,5 +5,5 @@ public class Amazon extends ParserTarget {
 
 
     }
-    public String MakeSearchUrl() {return base_url + search_term;};
+    public String MakeSearchUrl() {return base_url + search_term;}
 }

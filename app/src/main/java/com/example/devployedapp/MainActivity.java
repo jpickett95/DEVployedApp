@@ -54,8 +54,8 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
         webparser = new WebParser();
         listingAddedEventHandler = new ListingAddedEventHandler(this);
         searchCompletedEventHandler = new SearchCompletedEventHandler(this);
-        webparser.eventManager.RegisterEventHandler(listingAddedEventHandler);
-        webparser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
+        WebParser.eventManager.RegisterEventHandler(listingAddedEventHandler);
+        WebParser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
 
 
     //region SwipeCards: Initialize and Parse

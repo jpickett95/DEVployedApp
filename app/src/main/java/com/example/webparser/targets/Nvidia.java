@@ -45,7 +45,8 @@ public class Nvidia extends ParserTarget
         String JobTitle;
         JobTitle = element.getElementsByAttributeValue("data-automation-id", "jobTitle").text();
         return JobTitle;
-    };
+    }
+
     public String GetListingURL(Element element){
         String JobListingURL;
         JobListingURL = element.getElementsByTag("a").attr("href");
@@ -53,14 +54,15 @@ public class Nvidia extends ParserTarget
     }
     public Elements GetJobListings(Element jobListingContainer){
         return new Elements();
-    };
+    }
+
     public String GetJobType(Element element){return "";}
     public Element GetListingContainer(Document document){
         Element CompanyListing;
         CompanyListing = document.getElementsByAttributeValue("role", "list").first();
         return CompanyListing;
     }
-    public String GetDepartment(Element element){return "";};
+    public String GetDepartment(Element element){return "";}
 
     // <td data-th="Location"></td>            //Location
     public String GetLocation(Element element){
@@ -95,7 +97,7 @@ public class Nvidia extends ParserTarget
         ListingContainerSelector = "#search-results";
         LogoSelector = "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/assets/logo";
     }
-    public String MakeSearchUrl() {return base_url + search_term;};
+    public String MakeSearchUrl() {return base_url + search_term;}
 
 
 }

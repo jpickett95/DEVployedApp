@@ -20,7 +20,8 @@ public class Google extends ParserTarget
         String JobTitle;
         JobTitle = element.getElementsByClass("h2.gc-card__title").text();
         return JobTitle;
-    };
+    }
+
     public String GetListingURL(Element element){
         String JobListingURL;
         JobListingURL = element.getElementsByTag("a").attr("href");
@@ -63,7 +64,7 @@ public class Google extends ParserTarget
 
         return  additionalInformation;
     }
-    public String MakeSearchUrl() {return base_url + search_term;};
+    public String MakeSearchUrl() {return base_url + search_term;}
 
     public Vector<JobListing> Main() throws IOException {
         Vector<JobListing> jobListings = new Vector<>();

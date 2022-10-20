@@ -17,7 +17,7 @@ public class Samsung extends ParserTarget{
         String JobTitle;
         JobTitle = element.getElementsByAttributeValue("data-automation-id", "jobTitle").text();
         return JobTitle;
-    };
+    }
 
     // <td data-th="Location"></td>            //Location
     public String GetLocation(Element element){
@@ -57,5 +57,5 @@ public class Samsung extends ParserTarget{
         base_url = "https://sec.wd3.myworkdayjobs.com/Samsung_Careers?Location_Country=bc33aa3152ec42d4995f4791a106ed09";
         LogoSelector = "https://sec.wd3.myworkdayjobs.com/Samsung_Careers/assets/logo";
     }
-    public String MakeSearchUrl() {return base_url + search_term;};
+    public String MakeSearchUrl() {return base_url + search_term;}
 }

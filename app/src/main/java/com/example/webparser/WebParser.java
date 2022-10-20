@@ -85,9 +85,7 @@ public class WebParser {
      * <hr>
      */
     public void RemoveTargetSite(String sitename){
-        if (selectedTargets.containsKey(sitename)) {
-            selectedTargets.remove(sitename);
-        }
+        selectedTargets.remove(sitename);
     }
 
     /**

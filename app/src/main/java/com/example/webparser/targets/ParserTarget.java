@@ -104,6 +104,6 @@ public abstract class ParserTarget  {
         for (JobListing listing:listings){
             parser.AddListing(listing);
         }
-        parser.eventManager.NotifySearchHasCompleted();
+        WebParser.eventManager.NotifySearchHasCompleted();
     }
 }

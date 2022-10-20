@@ -27,7 +27,7 @@ public class JobListing {
     private String JobListingUrl;
     private String JobType;
     private String JobDescription;
-    private HashMap<String, String> AdditionalInformation;
+    private final HashMap<String, String> AdditionalInformation;
 
     public JobListing(){
         JobTitle = "";

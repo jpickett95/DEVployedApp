@@ -53,7 +53,7 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
         listingAddedEventHandler = new ListingAddedEventHandler<>(this);
         //searchCompletedEventHandler = new SearchCompletedEventHandler(this);
         try {webparser.StartParsing();} catch (IOException io) { io.getStackTrace();} catch (InterruptedException inter){ inter.getStackTrace();}
-        webparser.eventManager.RegisterEventHandler(listingAddedEventHandler);
+        WebParser.eventManager.RegisterEventHandler(listingAddedEventHandler);
         //webparser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
 
     //region Assign setOnClickListeners for the buttons, which calls OnClick() method

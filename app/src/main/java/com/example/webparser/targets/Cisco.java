@@ -54,7 +54,7 @@ public class Cisco extends ParserTarget{
         String JobTitle;
         JobTitle = element.getElementsByAttributeValue("data-th", "Job Title").text();
         return JobTitle;
-    };
+    }
 
 
     //TODO: Implement this method (when I have time)
@@ -132,7 +132,7 @@ public class Cisco extends ParserTarget{
     //      and would make making search urls easier (for the most part)
     public String MakeSearchUrl(){
         return  base_url + search_term;
-    };
+    }
 
     public Vector<JobListing> Main() throws IOException {
         Vector<JobListing> jobListings = new Vector<>();
