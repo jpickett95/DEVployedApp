@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -51,9 +50,9 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
         loadingText.setVisibility(View.VISIBLE);
 
         webparser = new WebParser();
-        listingAddedEventHandler = new ListingAddedEventHandler(this);
+        listingAddedEventHandler = new ListingAddedEventHandler<>(this);
         //searchCompletedEventHandler = new SearchCompletedEventHandler(this);
-        try {webparser.StartParsing();} catch (IOException io) {} catch (InterruptedException inter){}
+        try {webparser.StartParsing();} catch (IOException io) { io.getStackTrace();} catch (InterruptedException inter){ inter.getStackTrace();}
         webparser.eventManager.RegisterEventHandler(listingAddedEventHandler);
         //webparser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
 
@@ -81,7 +80,7 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
         profilePageButton.setVisibility(buttonsVisibility);
     }
     public void onClick(View v){
-        Intent intent = null;
+        Intent intent;
         if (v == rejectedPageButton) {
             intent = new Intent(LandingPage.this, RejectedJobsListPage.class);
             startActivity(intent);
