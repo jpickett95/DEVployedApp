@@ -11,7 +11,7 @@ Back-end system: https://github.com/TristanAncelet/Devployed.App.WebParser
 
 | Name          | Number             | Email                          |
 |---------------|--------------------|--------------------------------|
-| Kera Linn     | +1 (###) ###-####  | @email.com                     |
+| Kera Linn     | +1 (###) ###-####  | kera.linn@yahoo.com            |
 | Jonah Pickett | +1 (407) 456-3864  | jhpickett@student.fullsail.edu |
 
 
