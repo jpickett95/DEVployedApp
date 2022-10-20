@@ -12,18 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_RecyclerViewAdapter.MyViewHolder> {
+
+    //region Variable Declarations
     Context context;
     ArrayList<JobPostInformation> jobListArray;
+    //endregion
 
     public JobPost_RecyclerViewAdapter(Context context, ArrayList<JobPostInformation> jobListArray) {
         this.context = context;
         this.jobListArray = jobListArray;
     }
 
-    @NonNull
-    @Override
+    @NonNull @Override
     public JobPost_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //This is where you inflate the layout (giving a look to our rows)
+
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_view_fragment, parent, false);
         return new JobPost_RecyclerViewAdapter.MyViewHolder(view);
@@ -34,17 +37,18 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         //assign values to the views we created in the recycler_view_fragment layout file
         //dependent based on the position of the recycler view
         //this also UPDATES the views with info
-        holder.tvName.setText(jobListArray.get(position).getCompanyName());
-        holder.tvTitle.setText(jobListArray.get(position).getJobTitle());
-        holder.tvMatch.setText(jobListArray.get(position).getSkillsMatch());
-        holder.imageView.setImageResource(jobListArray.get(position).getCompanyLogo());
 
+        holder.companyName.setText(jobListArray.get(position).getCompanyName());
+        holder.jobTitle.setText(jobListArray.get(position).getJobTitle());
+        holder.skillsMatch.setText(jobListArray.get(position).getSkillsMatch());
+        holder.imageViewLogo.setImageResource(jobListArray.get(position).getCompanyLogo());
     }
 
     @Override
     public int getItemCount() {
-        //the recycler view just wants to know the number of items you want displayed.
-        //This method assists the OnBind method
+        //the RecyclerView wants to know the number of items to display.
+        //This method assists the OnBind method.
+
         return jobListArray.size();
     }
 
@@ -53,16 +57,17 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         //takes views from recycler_view_fragment layout file similar to an onCreate method
 
         //creating variables for the items on the recyclerView fragment
-        ImageView imageView;
-        TextView tvName, tvTitle, tvMatch;
+        //MUST be declared here and NOT at the top to be accessed properly
+        ImageView imageViewLogo;
+        TextView companyName, jobTitle, skillsMatch;
 
         //initializing the variables
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.companyLogo);
-            tvName = itemView.findViewById(R.id.companyName);
-            tvTitle = itemView.findViewById(R.id.smallTitle);
-            tvMatch = itemView.findViewById(R.id.smallSkillsMatch);
+            imageViewLogo = itemView.findViewById(R.id.companyLogo);
+            companyName = itemView.findViewById(R.id.companyName);
+            jobTitle = itemView.findViewById(R.id.smallTitle);
+            skillsMatch = itemView.findViewById(R.id.smallSkillsMatch);
         }
     }
 }
