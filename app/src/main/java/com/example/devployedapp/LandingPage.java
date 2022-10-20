@@ -21,19 +21,25 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
     WebParser webparser;
     ListingAddedEventHandler<LandingPage> listingAddedEventHandler;
     //SearchCompletedEventHandler<LandingPage> searchCompletedEventHandler;
-
+    Button jobMatchesButton;
+    Button rejectedPageButton;
+    Button savedPageButton;
+    Button profilePageButton;
+    ImageButton exitApplicationButton;
     //region Button creation and assignment by id
-    Button jobMatchesButton = findViewById(R.id.review_job_matches_button);
-    Button rejectedPageButton = findViewById(R.id.rejected_matches_button);
-    Button savedPageButton = findViewById(R.id.saved_matches_button);
-    Button profilePageButton = findViewById(R.id.to_profile_page_button);
-    ImageButton exitApplicationButton = findViewById(R.id.exitButton);
+
 //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
+
+        jobMatchesButton = findViewById(R.id.review_job_matches_button);
+        rejectedPageButton = findViewById(R.id.rejected_matches_button);
+        savedPageButton = findViewById(R.id.saved_matches_button);
+        profilePageButton = findViewById(R.id.to_profile_page_button);
+        exitApplicationButton = findViewById(R.id.exitButton);
 
         setButtonsEnabled(false);
 
