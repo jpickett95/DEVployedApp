@@ -28,11 +28,15 @@ import androidx.core.view.ViewCompat;
 import com.example.devployedapp.databinding.ActivityProfilePageBinding;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -113,6 +117,9 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
     private String encodedImage;
 
     ActivityProfilePageBinding activityProfilePageBinding;
+
+    private ArrayList<Chip> programmingLanguagesChipList;
+    private static final String PROFILE_PLANG_CHIPLIST = "profileProgrammingLanguagesChipArrayList";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -250,6 +257,10 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        Gson gson = new Gson();
+        String json = gson.toJson(programmingLanguagesChipList);
+        editor.putString(PROFILE_PLANG_CHIPLIST, json);
+
         editor.putString(PROFILE_NAME, profileFullName.getText().toString());
         editor.putString(PROFILE_EMAIL, profileEmail.getText().toString());
         editor.putString(PROFILE_PHONE, profilePhone.getText().toString());
@@ -275,7 +286,7 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         editor.putString(PROFILE_IMAGE, encodedImage);
 
         // For Programming Language Chips - Shared Preferences takes String Sets
-        programmingLanguages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
+        /*programmingLanguages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
         programmingLanguagesChipNames = new HashSet<>();
         for (int i = 0; i < programmingLanguages.getChildCount(); i++) {
             Chip chip = (Chip)programmingLanguages.getChildAt(i);
@@ -283,7 +294,7 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
             editor.putBoolean("programminglang" + i, chip.isChecked());
             editor.commit();
         }
-        editor.putStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET, programmingLanguagesChipNames);
+        editor.putStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET, programmingLanguagesChipNames);*/
 
         editor.apply();
 
@@ -318,10 +329,17 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         frontendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_FRONTEND, false);
         backendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_BACKEND, false);
 
-        programmingLanguagesChipNames = sharedPreferences.getStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET,programmingLanguagesChipNames);
+        //programmingLanguagesChipNames = sharedPreferences.getStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET,programmingLanguagesChipNames);
 
         encodedImage = sharedPreferences.getString(PROFILE_IMAGE,"");
 
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(PROFILE_PLANG_CHIPLIST, null);
+        Type type = new TypeToken<ArrayList<Chip>>(){}.getType();
+        programmingLanguagesChipList = gson.fromJson(json, type);
+        if(programmingLanguagesChipList == null){
+            programmingLanguagesChipList = new ArrayList<>();
+        }
     }
     public void updateViews(){
         // Text
@@ -354,7 +372,7 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         fullStackINDChip.setChecked(fullstackOnOff);
 
         // Programming Languages
-        if (programmingLanguagesChipNames != null) {
+        /*if (programmingLanguagesChipNames != null) {
             int i =0;
             for (String language : programmingLanguagesChipNames) {
                 ChipGroup languages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
@@ -365,6 +383,10 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
                 languages .addView(chip);
                 i++;
             }
+        }*/
+        for(Chip chip: programmingLanguagesChipList){
+            ChipGroup languages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
+            languages.addView(chip);
         }
 
         // Profile Image
@@ -418,9 +440,11 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         newChip.setText(text);
         newChip.setChipBackgroundColor(ContextCompat.getColorStateList(v.getContext(),R.color.brand_Pistachio));
         newChip.setId(ViewCompat.generateViewId());
+        //String iconUri = "drawable://" + R.drawable.ic_baseline_check_24;
+        //newChip.setCheckedIcon(Uri.parse("android.resource://"+R.class.getPackage().getName()+"/"+R.drawable.ic_baseline_check_24));
         newChip.setCheckable(true);
         newChip.setChecked(true);
-        newChip.setCheckedIconVisible(true);
+        //newChip.setCheckedIconVisible(true);
         newChip.setSaveEnabled(true);
 
         // When a chip is 'long clicked' it will be removed from the group
@@ -434,6 +458,7 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         // When a chip is 'clicked' and checked status is changed
         newChip.setOnCheckedChangeListener((CompoundButton compoundButton, boolean b) -> saveData());
 
+        programmingLanguagesChipList.add(newChip);
         return newChip;
     }
 
