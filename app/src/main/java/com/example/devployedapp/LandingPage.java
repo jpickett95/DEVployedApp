@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,23 +27,28 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
     Button rejectedPageButton;
     Button savedPageButton;
     Button profilePageButton;
-    ImageButton exitApplicationButton;
-    //region Button creation and assignment by id
-
-//endregion
+    ProgressBar progressBar;
+    TextView loadingText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
 
+        //region Button creation and assignment by id
         jobMatchesButton = findViewById(R.id.review_job_matches_button);
         rejectedPageButton = findViewById(R.id.rejected_matches_button);
         savedPageButton = findViewById(R.id.saved_matches_button);
         profilePageButton = findViewById(R.id.to_profile_page_button);
-        exitApplicationButton = findViewById(R.id.exitButton);
+        progressBar = (ProgressBar) findViewById(R.id.progress_Bar);
+        loadingText = findViewById(R.id.textView);
+        //endregion
 
-        setButtonsEnabled(false);
+        //setButtonsEnabled(false);
+        setButtonsVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setIndeterminate(true);
+        loadingText.setVisibility(View.VISIBLE);
 
         webparser = new WebParser();
         listingAddedEventHandler = new ListingAddedEventHandler(this);
@@ -55,18 +62,23 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
         rejectedPageButton.setOnClickListener(this);
         savedPageButton.setOnClickListener(this);
         profilePageButton.setOnClickListener(this);
-        exitApplicationButton.setOnClickListener(this);
-//endregion
+    //endregion
 
     }
 
     //region Button Functions
-    private void setButtonsEnabled(boolean bool) {
+    /*private void setButtonsEnabled(boolean bool) {
             jobMatchesButton.setEnabled(bool);
             savedPageButton.setEnabled(bool);
             rejectedPageButton.setEnabled(bool);
             profilePageButton.setEnabled(bool);
             exitApplicationButton.setEnabled(bool);
+    }*/
+    private void setButtonsVisibility(int buttonsVisibility) {
+        jobMatchesButton.setVisibility(buttonsVisibility);
+        savedPageButton.setVisibility(buttonsVisibility);
+        rejectedPageButton.setVisibility(buttonsVisibility);
+        profilePageButton.setVisibility(buttonsVisibility);
     }
     public void onClick(View v){
         Intent intent = null;
@@ -90,17 +102,17 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
             startActivity(intent);
         }
 
-        else if (v == exitApplicationButton) {
-            finish();
-        }
     }
-//endregion
+    //endregion
 
     @Override
     public void ListingWasAdded() {
         // Reaction Method - where you can react to the fact that a listing was added
         this.runOnUiThread(() -> {
-            setButtonsEnabled(true);
+            //setButtonsEnabled(true);
+            setButtonsVisibility(View.VISIBLE);
+            progressBar.setVisibility((View.GONE));
+            loadingText.setVisibility(View.GONE);
         });
 
         listingAddedEventHandler.SetDisabled(); // So we don't call it again
