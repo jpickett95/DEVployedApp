@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.devployedapp.databinding.ListPagesSavedBinding;
+import com.example.webparser.data.JobListing;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ Android Docs Example of adding RecyclerView: https://github.com/android/views-wi
 public class SavedJobsListPage extends DrawerBaseActivity {
 
     ListPagesSavedBinding listPagesSavedBinding;
-    ArrayList<JobPostInformation> jobPostings = new ArrayList<>();
+    ArrayList<JobListing> jobPostings = new ArrayList<>();
     int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
             R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
 
@@ -33,9 +34,11 @@ public class SavedJobsListPage extends DrawerBaseActivity {
         listPagesSavedBinding = ListPagesSavedBinding.inflate(getLayoutInflater());
         setContentView(listPagesSavedBinding.getRoot());
         allocateActivityTitle("Saved Jobs");
+        DBManager dbManager = new DBManager(this);
+        jobPostings = dbManager.getSavedJobs();
 
         RecyclerView recyclerView = findViewById(R.id.Saved_Jobs_RecyclerView);
-        setUpJobPostModels();
+        //setUpJobPostModels();
         JobPost_RecyclerViewAdapter adapter = new JobPost_RecyclerViewAdapter(this, jobPostings);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -48,7 +51,7 @@ public class SavedJobsListPage extends DrawerBaseActivity {
         String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
 
         for (int i = 0; i < companyNames.length; i++){
-            jobPostings.add(new JobPostInformation(companyNames[i],jobTitles[i],skillsToMatch[i],companyLogos[i]));
+            //jobPostings.add(new JobPostInformation(companyNames[i],jobTitles[i],skillsToMatch[i],companyLogos[i]));
         }
     }
 

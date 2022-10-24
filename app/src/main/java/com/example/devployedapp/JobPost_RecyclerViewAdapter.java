@@ -9,13 +9,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.webparser.data.JobListing;
+
 import java.util.ArrayList;
 
 public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_RecyclerViewAdapter.MyViewHolder> {
     Context context;
-    ArrayList<JobPostInformation> jobListArray;
+    ArrayList<JobListing> jobListArray;
 
-    public JobPost_RecyclerViewAdapter(Context context, ArrayList<JobPostInformation> jobListArray) {
+    public JobPost_RecyclerViewAdapter(Context context, ArrayList<JobListing> jobListArray) {
         this.context = context;
         this.jobListArray = jobListArray;
     }
@@ -34,11 +37,27 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         //assign values to the views we created in the recycler_view_fragment layout file
         //dependent based on the position of the recycler view
         //this also UPDATES the views with info
-        holder.tvName.setText(jobListArray.get(position).getCompanyName());
-        holder.tvTitle.setText(jobListArray.get(position).getJobTitle());
-        holder.tvMatch.setText(jobListArray.get(position).getSkillsMatch());
-        holder.imageView.setImageResource(jobListArray.get(position).getCompanyLogo());
+        JobListing jobPost = jobListArray.get(position);
+        String location;
+        String jobTitle;
+        String jobDescription;
+        String jobType;
 
+        if(jobPost != null) {
+            location = jobPost.GetJobLocation();
+            jobTitle = jobPost.GetJobTitle();
+            jobDescription = jobPost.GetJobDescription();
+            jobType = jobPost.GetJobType();
+        } else {
+            location = "Company Name Unavailable";
+            jobTitle = "Job Title Unavailable";
+            jobDescription = "Skills Unavailable";
+            jobType = "Job Type Unavailable";
+        }
+        holder.tvName.setText(jobType);
+        holder.tvTitle.setText(jobTitle);
+        holder.tvMatch.setText(jobDescription);
+        holder.imageView.setImageResource(R.drawable.ic_baseline_work_24);
     }
 
     @Override

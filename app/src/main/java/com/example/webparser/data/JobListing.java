@@ -1,6 +1,9 @@
 package com.example.webparser.data;
 
 import java.util.HashMap;
+
+import kotlinx.coroutines.Job;
+
 /** JobListing (Data Class)
  * 
  * Members:
@@ -27,6 +30,7 @@ public class JobListing {
     private String JobListingUrl;
     private String JobType;
     private String JobDescription;
+    private long JobID;
     private HashMap<String, String> AdditionalInformation;
 
     public JobListing(){
@@ -64,6 +68,9 @@ public class JobListing {
 
     public void SetJobType(String jobType){ JobType = jobType; }
     public String GetJobType(){ return JobType; }
+
+    public void SetJobID(long id){JobID = id;}
+    public long GetJobID(){return JobID;}
 
     /**
     * This Method will append the:
