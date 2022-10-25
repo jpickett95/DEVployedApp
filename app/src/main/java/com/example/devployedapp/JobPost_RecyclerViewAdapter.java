@@ -43,6 +43,7 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         String jobDescription;
         String jobType;
 
+        // If jobPost is null, display "content unavailable" message; otherwise, display jobPost information
         if(jobPost != null) {
             location = jobPost.GetJobLocation();
             jobTitle = jobPost.GetJobTitle();
@@ -54,11 +55,15 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
             jobDescription = "Skills Unavailable";
             jobType = "Job Type Unavailable";
         }
+
+        // Assign data to views
         holder.tvName.setText(jobType);
         if (jobTitle.length() > 31) {
-            holder.tvTitle.setText(jobTitle.substring(0, 30) + "... ");
+            holder.tvTitle.setText(jobTitle.substring(0, 30) + "...");
         } else holder.tvTitle.setText(jobTitle);
-        holder.tvMatch.setText(jobDescription.substring(0, 100) + "... ");
+        if (jobDescription.length() > 101) {
+            holder.tvMatch.setText(jobDescription.substring(0, 100) + "...");
+        } else holder.tvMatch.setText(jobDescription);
         holder.imageView.setImageResource(R.drawable.ic_baseline_work_24);
     }
 
@@ -68,6 +73,8 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         //This method assists the OnBind method
         return jobListArray.size();
     }
+
+
 
     //MUST be static
     public static class MyViewHolder extends RecyclerView.ViewHolder{

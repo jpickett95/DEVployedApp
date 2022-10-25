@@ -115,10 +115,12 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
                 // Ask for more data here
 
                 // TESTING PURPOSES
-                dbManager.insert(webparser.GetJobListing());
-                rowItems.add(dbManager.getNextUnseenJobListing());
-                arrayAdapter.notifyDataSetChanged();
-                Log.d("LIST", "notified");
+                if(webparser.GetJobListing() != null) {
+                    dbManager.insert(webparser.GetJobListing());
+                    rowItems.add(dbManager.getNextUnseenJobListing());
+                    arrayAdapter.notifyDataSetChanged();
+                    Log.d("LIST", "notified");
+                } else { Log.d("LIST", "not changed");}
             }
 
             @Override

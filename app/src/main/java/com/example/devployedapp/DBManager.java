@@ -3,17 +3,12 @@ package com.example.devployedapp;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.webparser.data.JobListing;
 
-import java.sql.DatabaseMetaData;
 import java.sql.SQLDataException;
 import java.util.ArrayList;
-import java.util.Collection;
-
-import kotlinx.coroutines.Job;
 
 public class DBManager {
     private DBHelper dbHelper;
@@ -29,11 +24,13 @@ public class DBManager {
     private String[] DBColumns = new String[] {DBHelper.JOB_ID, DBHelper.JOB_URL, DBHelper.JOB_COMPANY_NAME, DBHelper.JOB_DESCRIPTION, DBHelper.JOB_TITLE,
             DBHelper.JOB_LOCATION, DBHelper.JOB_STATUS, DBHelper.JOB_TYPE, DBHelper.JOB_ADDITIONAL_INFORMATION};
 
+    // Constructor
     public DBManager(Context cntx) {
         context = cntx;
         try {this.open();} catch (SQLDataException sqle) {sqle.printStackTrace();}
     }
 
+    // Opens database; called in constructor
     public DBManager open() throws SQLDataException {
         dbHelper = new DBHelper(context);
         database = dbHelper.getWritableDatabase();
@@ -44,7 +41,13 @@ public class DBManager {
         dbHelper.close();
     }
 
+    // Inserts a JobListing object into the database
     public void insert(JobListing job){
+        Cursor cursor = null;
+        if(job.GetJobListingUrl() != null) {
+            cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_URL + " = ?", new String[]{job.GetJobListingUrl()}, null, null, null);
+        }
+        if(cursor.getCount() == 0) {
             ContentValues contentValues = new ContentValues();
             contentValues.put(DBHelper.JOB_TITLE, job.GetJobTitle());
             contentValues.put(DBHelper.JOB_LOCATION, job.GetJobLocation());
@@ -55,18 +58,23 @@ public class DBManager {
             contentValues.put(DBHelper.JOB_STATUS, UNSEEN);
             contentValues.put(DBHelper.JOB_URL, job.GetJobListingUrl());
             database.insert(DBHelper.DATABASE_TABLE, null, contentValues);
+        }
     }
-    public void insert(int job_id, String job_title, String job_status, String job_location, String job_company_name, String additional_information){
+    // Inserts an entry into the database - (custom input)
+    public void insertData( String job_title, String job_status, String job_location, String job_company_name, String additional_information, String job_description, String job_type, String job_url){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DBHelper.JOB_ID, job_id);
         contentValues.put(DBHelper.JOB_TITLE, job_title);
         contentValues.put(DBHelper.JOB_STATUS, job_status);
         contentValues.put(DBHelper.JOB_LOCATION, job_location);
         contentValues.put(DBHelper.JOB_COMPANY_NAME, job_company_name);
         contentValues.put(DBHelper.JOB_ADDITIONAL_INFORMATION, additional_information);
+        contentValues.put(DBHelper.JOB_DESCRIPTION, job_description);
+        contentValues.put(DBHelper.JOB_TYPE, job_type);
+        contentValues.put(DBHelper.JOB_URL, job_url);
         database.insert(DBHelper.DATABASE_TABLE, null, contentValues);
     }
 
+    // Updates an entry with a new JobListing object's data
     public int update(long _id, JobListing job){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBHelper.JOB_TITLE, job.GetJobTitle());
@@ -78,13 +86,17 @@ public class DBManager {
         int result = database.update(DBHelper.DATABASE_TABLE, contentValues, DBHelper.JOB_ID + "=" + _id, null);
         return result;
     }
-    public boolean updateData(int job_id, String job_title, String job_status, String job_location, String job_company_name, String additional_information){
+    // Update an entry with custom input
+    public boolean updateData( long job_id, String job_title, String job_status, String job_location, String job_company_name, String additional_information, String job_description, String job_type, String job_url){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBHelper.JOB_TITLE, job_title);
         contentValues.put(DBHelper.JOB_STATUS, job_status);
         contentValues.put(DBHelper.JOB_LOCATION, job_location);
         contentValues.put(DBHelper.JOB_COMPANY_NAME, job_company_name);
         contentValues.put(DBHelper.JOB_ADDITIONAL_INFORMATION, additional_information);
+        contentValues.put(DBHelper.JOB_DESCRIPTION, job_description);
+        contentValues.put(DBHelper.JOB_TYPE, job_type);
+        contentValues.put(DBHelper.JOB_URL, job_url);
         Cursor cursor = database.rawQuery("Select * from DBHelper.DATABASE_TABLE where DBHelper.JOB_ID = ?", new String[] {String.valueOf(job_id)});
         if(cursor.getCount()>0) {
 
@@ -98,6 +110,7 @@ public class DBManager {
             return false;
         }
     }
+    // Updates the job_status of an entry in the database
     public int updateJobStatus(long job_id, String status){
         if((status == UNSEEN) || (status == SEEN) || (status == REJECTED) || (status == SAVED) || status == APPLIED) {
             ContentValues contentValues = new ContentValues();
@@ -107,6 +120,7 @@ public class DBManager {
         } else {return -1;}
     }
 
+    // Returns a cursor to the first entry of the database
     public Cursor fetch(){
         Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, null, null, null,null, null);
         if(cursor != null) {
@@ -115,18 +129,15 @@ public class DBManager {
         return cursor;
     }
 
+    // Deletes an entry from the database
     public void delete(long _id){
         database.delete(DBHelper.DATABASE_TABLE, DBHelper.JOB_ID + "=" + _id, null);
     }
 
+    // Returns a JobListing of the first entry in the database
     public JobListing getFirstJobListing(){
         Cursor cursor = fetch();
-        JobListing job = new JobListing();
-        job.SetJobTitle(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_TITLE)));
-        job.SetJobListingUrl(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_URL)));
-        job.SetJobDescription(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_DESCRIPTION)));
-        job.SetJobLocation(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_LOCATION)));
-        job.SetJobType(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_TYPE)));
+        JobListing job = createJobListing(cursor);
         return job;
     }
     public JobListing getNextJobListing(){
@@ -142,6 +153,7 @@ public class DBManager {
         }
         return job;
     }
+    // Returns a JobListing of the 1st entry that is 'unseen'
     public JobListing getNextUnseenJobListing(){
         JobListing job = new JobListing();
         Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"unseen"}, null, null, null);
@@ -159,6 +171,7 @@ public class DBManager {
         if(cursor.getCount() > 0) {return true;} else {return false;}
     }
 
+    // Creates a JobListing object based off a cursor's data
     private JobListing createJobListing(Cursor cursor){
         JobListing job = new JobListing();
         job.SetJobTitle(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_TITLE)));
@@ -170,22 +183,24 @@ public class DBManager {
         return job;
     }
 
+    // Returns a list of all entries in database with a 'saved' job_status
     public ArrayList<JobListing> getSavedJobs(){
         ArrayList<JobListing> savedJobs = new ArrayList<>();
         Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"saved"}, null, null, null);
         if(cursor.moveToNext()) {
-            //cursor.moveToPrevious();
+            //cursor.moveToPrevious(); - causes index out of bounds crash?
             do {
                 savedJobs.add(createJobListing(cursor));
             } while (cursor.moveToNext());
         }
         return savedJobs;
     }
+    // Returns a list of all entries in database with a 'rejected' job_status
     public ArrayList<JobListing> getRejectedJobs(){
         ArrayList<JobListing> rejectedJobs = new ArrayList<>();
         Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"rejected"}, null, null, null);
         if(cursor.moveToNext()) {
-            //cursor.moveToPrevious();
+            //cursor.moveToPrevious(); - causes index out of bounds crash?
             do {
                 rejectedJobs.add(createJobListing(cursor));
             } while (cursor.moveToNext());

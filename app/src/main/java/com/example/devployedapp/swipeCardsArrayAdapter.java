@@ -37,6 +37,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
         String jobDescription;
         String jobType;
 
+        // Check is jobPost is null and display 'content unavailable' message if so
         if(jobPost != null) {
             location = jobPost.GetJobLocation();
             jobTitle = jobPost.GetJobTitle();
