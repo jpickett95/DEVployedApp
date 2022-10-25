@@ -33,6 +33,8 @@ public class RejectedJobsListPage extends DrawerBaseActivity {
         listPagesRejectedBinding = ListPagesRejectedBinding.inflate(getLayoutInflater());
         setContentView(listPagesRejectedBinding.getRoot());
         allocateActivityTitle("Rejected Jobs");
+        DBManager dbManager = new DBManager(this);
+        jobPostings = dbManager.getRejectedJobs();
 
         RecyclerView recyclerView = findViewById(R.id.Rejected_Jobs_RecyclerView);
         //setUpJobPostModels();

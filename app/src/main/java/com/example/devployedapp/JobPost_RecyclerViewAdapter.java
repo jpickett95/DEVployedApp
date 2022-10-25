@@ -55,8 +55,10 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
             jobType = "Job Type Unavailable";
         }
         holder.tvName.setText(jobType);
-        holder.tvTitle.setText(jobTitle);
-        holder.tvMatch.setText(jobDescription);
+        if (jobTitle.length() > 31) {
+            holder.tvTitle.setText(jobTitle.substring(0, 30) + "... ");
+        } else holder.tvTitle.setText(jobTitle);
+        holder.tvMatch.setText(jobDescription.substring(0, 100) + "... ");
         holder.imageView.setImageResource(R.drawable.ic_baseline_work_24);
     }
 

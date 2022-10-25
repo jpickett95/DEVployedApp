@@ -61,14 +61,11 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
         webparser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
 
         dbManager = new DBManager(this);
-        try {
-            dbManager = dbManager.open();
-        } catch (SQLDataException e) {
-            e.printStackTrace();
-        }
 
         for (int i = 0; i < 10; i++) {
-            dbManager.insert(webparser.GetJobListing());
+            if(webparser.GetJobListing() != null) {
+                dbManager.insert(webparser.GetJobListing());
+            }
         }
 
         //region SwipeCards: Initialize and Parse

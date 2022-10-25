@@ -31,6 +31,7 @@ public class DBManager {
 
     public DBManager(Context cntx) {
         context = cntx;
+        try {this.open();} catch (SQLDataException sqle) {sqle.printStackTrace();}
     }
 
     public DBManager open() throws SQLDataException {
@@ -173,6 +174,7 @@ public class DBManager {
         ArrayList<JobListing> savedJobs = new ArrayList<>();
         Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"saved"}, null, null, null);
         if(cursor.moveToNext()) {
+            //cursor.moveToPrevious();
             do {
                 savedJobs.add(createJobListing(cursor));
             } while (cursor.moveToNext());
@@ -183,6 +185,7 @@ public class DBManager {
         ArrayList<JobListing> rejectedJobs = new ArrayList<>();
         Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"rejected"}, null, null, null);
         if(cursor.moveToNext()) {
+            //cursor.moveToPrevious();
             do {
                 rejectedJobs.add(createJobListing(cursor));
             } while (cursor.moveToNext());
