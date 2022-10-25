@@ -119,6 +119,55 @@ public class DBManager {
             return result;
         } else {return -1;}
     }
+    // Updates the job_title of an entry in the database
+    public int updateJobTitle(long job_id, String job_title) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.JOB_TITLE, job_title);
+        int result = database.update(DBHelper.DATABASE_TABLE, contentValues, DBHelper.JOB_ID + "=" + job_id, null);
+        return result;
+    }
+    // Updates the job_type of an entry in the database
+    public int updateJobType(long job_id, String job_type) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.JOB_TYPE, job_type);
+        int result = database.update(DBHelper.DATABASE_TABLE, contentValues, DBHelper.JOB_ID + "=" + job_id, null);
+        return result;
+    }
+    // Updates the job_location of an entry in the database
+    public int updateJobLocation(long job_id, String job_location) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.JOB_LOCATION, job_location);
+        int result = database.update(DBHelper.DATABASE_TABLE, contentValues, DBHelper.JOB_ID + "=" + job_id, null);
+        return result;
+    }
+    // Updates the job_company_name of an entry in the database
+    public int updateJobCompanyName(long job_id, String company_name) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.JOB_COMPANY_NAME, company_name);
+        int result = database.update(DBHelper.DATABASE_TABLE, contentValues, DBHelper.JOB_ID + "=" + job_id, null);
+        return result;
+    }
+    // Updates the job_description of an entry in the database
+    public int updateJobDescription(long job_id, String job_description) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.JOB_DESCRIPTION, job_description);
+        int result = database.update(DBHelper.DATABASE_TABLE, contentValues, DBHelper.JOB_ID + "=" + job_id, null);
+        return result;
+    }
+    // Updates the job_url of an entry in the database
+    public int updateJobUrl(long job_id, String job_url) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.JOB_URL, job_url);
+        int result = database.update(DBHelper.DATABASE_TABLE, contentValues, DBHelper.JOB_ID + "=" + job_id, null);
+        return result;
+    }
+    // Updates the job_additional_information of an entry in the database
+    public int updateJobAdditionalInfo(long job_id, String additional_info) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.JOB_ADDITIONAL_INFORMATION, additional_info);
+        int result = database.update(DBHelper.DATABASE_TABLE, contentValues, DBHelper.JOB_ID + "=" + job_id, null);
+        return result;
+    }
 
     // Returns a cursor to the first entry of the database
     public Cursor fetch(){
