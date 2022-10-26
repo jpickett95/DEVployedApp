@@ -26,9 +26,10 @@ import java.sql.SQLDataException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends DrawerBaseActivity {
+public class MainActivity extends DrawerBaseActivity implements JobCardBlowUpInterface {
 
     ActivityMainBinding activityMainBinding;
+    JobCardBlowUpInterface jobCardBlowUpInterface;
 
     //region Variables called before OnCreate() method
 
@@ -43,7 +44,7 @@ public class MainActivity extends DrawerBaseActivity {
 //endregion
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState, JobCardBlowUpInterface jobCardBlowUpInterface) {
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
@@ -115,6 +116,14 @@ public class MainActivity extends DrawerBaseActivity {
                 Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
                 // potentially link to job application or job posting on company website?
                 // ^^ OR pull up a popup window with more specific, detailed information
+
+                JobListing job = (JobListing) dataObject;
+                job.OnCardClick(itemPosition);
+                /*if (jobCardBlowUpInterface != null) {
+                    if (itemPosition != jobCardBlowUpInterface.NO_POSITION){
+                        jobCardBlowUpInterface.OnCardClick(itemPosition);
+                    }
+                }*/
             }
         });
 
@@ -141,6 +150,13 @@ public class MainActivity extends DrawerBaseActivity {
         completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener((View view) -> filtersDialog.dismiss());
         filtersDialog.show();
+    }
+
+    @Override
+    public void OnCardClick(int position) {
+        Intent intent = new Intent(MainActivity.this,JobCardBlowUpInterface.class);
+
+        startActivity(intent);
     }
 
     // For SwipeCards

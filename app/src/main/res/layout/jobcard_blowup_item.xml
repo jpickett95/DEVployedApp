@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true">
+
+        <!-- Company Logo (ImageView) -->
+        <ImageView
+            android:id="@+id/cardBlowUp_item_companyLogo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Company Name (TextView) -->
+        <TextView
+            android:id="@+id/cardBlowUp_item_companyName"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardBlowUp_item_companyLogo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Company Name" />
+
+        <!-- Job Title (TextView) -->
+        <TextView
+            android:id="@+id/cardBlowUp_item_jobTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_companyName"
+            tools:text="Job Title" />
+
+        <!-- Skills Matched (TextView) -->
+        <TextView
+            android:id="@+id/cardBlowUp_item_skillsMatched"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:paddingStart="5dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_jobTitle"
+            tools:text="Skills that match!" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cardBlowUp_item_skillsMatched"
+            app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/cardBlowUp_item_fullDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="5dp"
+                    android:isScrollContainer="true"
+                    android:paddingStart="5dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Full job description" />
+        </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

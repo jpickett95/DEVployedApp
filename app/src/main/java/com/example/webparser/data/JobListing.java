@@ -1,5 +1,9 @@
 package com.example.webparser.data;
 
+import android.content.Intent;
+
+import com.example.devployedapp.MainActivity;
+
 import java.util.HashMap;
 
 import kotlinx.coroutines.Job;
