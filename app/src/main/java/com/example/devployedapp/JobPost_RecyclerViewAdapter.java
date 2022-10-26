@@ -9,24 +9,24 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.webparser.data.JobListing;
+
 import java.util.ArrayList;
 
 public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_RecyclerViewAdapter.MyViewHolder> {
-
-    //region Variable Declarations
     Context context;
-    ArrayList<JobPostInformation> jobListArray;
-    //endregion
+    ArrayList<JobListing> jobListArray;
 
-    public JobPost_RecyclerViewAdapter(Context context, ArrayList<JobPostInformation> jobListArray) {
+    public JobPost_RecyclerViewAdapter(Context context, ArrayList<JobListing> jobListArray) {
         this.context = context;
         this.jobListArray = jobListArray;
     }
 
-    @NonNull @Override
+    @NonNull
+    @Override
     public JobPost_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //This is where you inflate the layout (giving a look to our rows)
-
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_view_fragment, parent, false);
         return new JobPost_RecyclerViewAdapter.MyViewHolder(view);
@@ -37,11 +37,34 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         //assign values to the views we created in the recycler_view_fragment layout file
         //dependent based on the position of the recycler view
         //this also UPDATES the views with info
+        JobListing jobPost = jobListArray.get(position);
+        String location;
+        String jobTitle;
+        String jobDescription;
+        String jobType;
 
-        holder.companyName.setText(jobListArray.get(position).getCompanyName());
-        holder.jobTitle.setText(jobListArray.get(position).getJobTitle());
-        holder.skillsMatch.setText(jobListArray.get(position).getSkillsMatch());
-        holder.imageViewLogo.setImageResource(jobListArray.get(position).getCompanyLogo());
+        // If jobPost is null, display "content unavailable" message; otherwise, display jobPost information
+        if(jobPost != null) {
+            location = jobPost.GetJobLocation();
+            jobTitle = jobPost.GetJobTitle();
+            jobDescription = jobPost.GetJobDescription();
+            jobType = jobPost.GetJobType();
+        } else {
+            location = "Company Name Unavailable";
+            jobTitle = "Job Title Unavailable";
+            jobDescription = "Skills Unavailable";
+            jobType = "Job Type Unavailable";
+        }
+
+        // Assign data to views
+        holder.tvName.setText(jobType);
+        if (jobTitle.length() > 31) {
+            holder.tvTitle.setText(jobTitle.substring(0, 30) + "...");
+        } else holder.tvTitle.setText(jobTitle);
+        if (jobDescription.length() > 101) {
+            holder.tvMatch.setText(jobDescription.substring(0, 100) + "...");
+        } else holder.tvMatch.setText(jobDescription);
+        holder.imageView.setImageResource(R.drawable.ic_baseline_work_24);
     }
 
     @Override
@@ -57,17 +80,16 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         //takes views from recycler_view_fragment layout file similar to an onCreate method
 
         //creating variables for the items on the recyclerView fragment
-        //MUST be declared here and NOT at the top to be accessed properly
-        ImageView imageViewLogo;
-        TextView companyName, jobTitle, skillsMatch;
+        ImageView imageView;
+        TextView tvName, tvTitle, tvMatch;
 
         //initializing the variables
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewLogo = itemView.findViewById(R.id.companyLogo);
-            companyName = itemView.findViewById(R.id.companyName);
-            jobTitle = itemView.findViewById(R.id.smallTitle);
-            skillsMatch = itemView.findViewById(R.id.smallSkillsMatch);
+            imageView = itemView.findViewById(R.id.companyLogo);
+            tvName = itemView.findViewById(R.id.companyName);
+            tvTitle = itemView.findViewById(R.id.smallTitle);
+            tvMatch = itemView.findViewById(R.id.smallSkillsMatch);
         }
     }
 }

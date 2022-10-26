@@ -22,10 +22,11 @@ import com.example.webparser.events.interfaces.SearchCompletedCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import java.sql.SQLDataException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends DrawerBaseActivity implements ListingAddedCallback, SearchCompletedCallback {
+public class MainActivity extends DrawerBaseActivity {
 
     ActivityMainBinding activityMainBinding;
 
@@ -37,10 +38,7 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
 
     Dialog filtersDialog; // For filters popup window on main activity
 
-    // Variables For WebParser
-    WebParser webparser;
-    ListingAddedEventHandler<MainActivity> listingAddedEventHandler;
-    SearchCompletedEventHandler<MainActivity> searchCompletedEventHandler;
+    DBManager dbManager;
 
 //endregion
 
@@ -51,19 +49,10 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
         setContentView(activityMainBinding.getRoot());
         allocateActivityTitle("Job Matches");
 
-        webparser = new WebParser();
-        listingAddedEventHandler = new ListingAddedEventHandler(this);
-        searchCompletedEventHandler = new SearchCompletedEventHandler(this);
-        WebParser.eventManager.RegisterEventHandler(listingAddedEventHandler);
-        WebParser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
+        dbManager = new DBManager(this);
 
-
-    //region SwipeCards: Initialize and Parse
-        rowItems = new ArrayList<>();
-        String[] companyNames = getResources().getStringArray(R.array.company_names);
-        for (int i = 0; i < companyNames.length; i++){
-            rowItems.add(webparser.GetJobListing());
-        }
+        //region SwipeCards: Initialize and Parse
+        rowItems = dbManager.getUnseenJobs();
         //endregion
 
         arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems );
@@ -88,11 +77,15 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
                 Toast.makeText(MainActivity.this, "Reject!", Toast.LENGTH_SHORT).show();
+                JobListing job = (JobListing) dataObject;
+                dbManager.updateJobStatus(job.GetJobID(), dbManager.REJECTED);
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
                 Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
+                JobListing job = (JobListing) dataObject;
+                dbManager.updateJobStatus(job.GetJobID(), dbManager.SAVED);
             }
 //endregion
 
@@ -101,7 +94,7 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
                 // Ask for more data here
 
                 // TESTING PURPOSES
-                rowItems.add(webparser.GetJobListing());
+                rowItems.addAll(dbManager.getUnseenJobs());
                 arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
             }
@@ -148,21 +141,6 @@ public class MainActivity extends DrawerBaseActivity implements ListingAddedCall
         completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener((View view) -> filtersDialog.dismiss());
         filtersDialog.show();
-    }
-
-    @Override
-    public void ListingWasAdded() {
-
-    }
-
-    @Override
-    public void ListingWasAdded(JobListing listing) {
-
-    }
-
-    @Override
-    public void SearchHasCompleted() {
-
     }
 
     // For SwipeCards

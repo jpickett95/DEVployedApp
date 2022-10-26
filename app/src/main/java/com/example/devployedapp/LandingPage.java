@@ -21,7 +21,6 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
 
     WebParser webparser;
     ListingAddedEventHandler<LandingPage> listingAddedEventHandler;
-    //SearchCompletedEventHandler<LandingPage> searchCompletedEventHandler;
     Button jobMatchesButton;
     Button rejectedPageButton;
     Button savedPageButton;
@@ -43,7 +42,6 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
         loadingText = findViewById(R.id.textView);
         //endregion
 
-        //setButtonsEnabled(false);
         setButtonsVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setIndeterminate(true);
@@ -51,10 +49,8 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
 
         webparser = new WebParser();
         listingAddedEventHandler = new ListingAddedEventHandler<>(this);
-        //searchCompletedEventHandler = new SearchCompletedEventHandler(this);
         try {webparser.StartParsing();} catch (IOException io) { io.getStackTrace();} catch (InterruptedException inter){ inter.getStackTrace();}
-        WebParser.eventManager.RegisterEventHandler(listingAddedEventHandler);
-        //webparser.eventManager.RegisterEventHandler(searchCompletedEventHandler);
+        webparser.eventManager.RegisterEventHandler(listingAddedEventHandler);
 
     //region Assign setOnClickListeners for the buttons, which calls OnClick() method
         jobMatchesButton.setOnClickListener(this);
@@ -66,13 +62,6 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
     }
 
     //region Button Functions
-    /*private void setButtonsEnabled(boolean bool) {
-            jobMatchesButton.setEnabled(bool);
-            savedPageButton.setEnabled(bool);
-            rejectedPageButton.setEnabled(bool);
-            profilePageButton.setEnabled(bool);
-            exitApplicationButton.setEnabled(bool);
-    }*/
     private void setButtonsVisibility(int buttonsVisibility) {
         jobMatchesButton.setVisibility(buttonsVisibility);
         savedPageButton.setVisibility(buttonsVisibility);

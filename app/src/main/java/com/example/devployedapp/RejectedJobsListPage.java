@@ -1,11 +1,14 @@
 package com.example.devployedapp;
 
 import android.os.Bundle;
+import android.widget.ImageButton;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.devployedapp.databinding.ListPagesRejectedBinding;
+import com.example.webparser.data.JobListing;
 
 import java.util.ArrayList;
 
@@ -20,43 +23,21 @@ Android Docs Example of adding RecyclerView: https://github.com/android/views-wi
 public class RejectedJobsListPage extends DrawerBaseActivity {
 
     ListPagesRejectedBinding listPagesRejectedBinding;
-    ArrayList<JobPostInformation> jobPostings = new ArrayList<>();
-
-    //region Hardcoded Company Logos - NEED TO REMOVE WHEN PARSER IS INTEGRATED
-    int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
-            R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
-//endregion
+    ArrayList<JobListing> jobPostings = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //region Get layout via binding and Set Content View
         listPagesRejectedBinding = ListPagesRejectedBinding.inflate(getLayoutInflater());
         setContentView(listPagesRejectedBinding.getRoot());
-        //end region
+        allocateActivityTitle("Rejected Jobs");
+        DBManager dbManager = new DBManager(this);
+        jobPostings = dbManager.getRejectedJobs();
 
-        allocateActivityTitle("Rejected Jobs"); //related to DrawerActivity
-
-        //region Recyclerview and Adapter
         RecyclerView recyclerView = findViewById(R.id.Rejected_Jobs_RecyclerView);
         JobPost_RecyclerViewAdapter adapter = new JobPost_RecyclerViewAdapter(this, jobPostings);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //endregion
-
-        setUpJobPostModels();
-    }
-
-
-    private void setUpJobPostModels(){
-        String[] companyNames = getResources().getStringArray(R.array.company_names);
-        String[] jobTitles = getResources().getStringArray(R.array.job_titles);
-        String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
-
-        for (int i = 0; i < companyNames.length; i++){
-            jobPostings.add(new JobPostInformation(companyNames[i],jobTitles[i],skillsToMatch[i],companyLogos[i]));
-        }
     }
 
 }
