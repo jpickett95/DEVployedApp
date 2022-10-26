@@ -10,6 +10,7 @@ import com.example.webparser.data.JobListing;
 import com.example.webparser.events.handlers.ListingAddedEventHandler;
 import com.example.webparser.events.interfaces.ListingAddedCallback;
 
+import java.io.IOException;
 import java.sql.SQLDataException;
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class DBManager implements ListingAddedCallback {
 
         webparser = new WebParser();
         listingAddedEventHandler = new ListingAddedEventHandler(this);
+        try {webparser.StartParsing();} catch (IOException io) { io.getStackTrace();} catch (InterruptedException inter){ inter.getStackTrace();}
         webparser.eventManager.RegisterEventHandler(listingAddedEventHandler);
     }
 
