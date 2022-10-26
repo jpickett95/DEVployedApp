@@ -5,15 +5,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.webparser.WebParser;
 import com.example.webparser.data.JobListing;
+import com.example.webparser.events.handlers.ListingAddedEventHandler;
+import com.example.webparser.events.interfaces.ListingAddedCallback;
 
 import java.sql.SQLDataException;
 import java.util.ArrayList;
 
-public class DBManager {
+public class DBManager implements ListingAddedCallback {
     private DBHelper dbHelper;
     private Context context;
     private SQLiteDatabase database;
+    ListingAddedEventHandler<DBManager> listingAddedEventHandler;
+    WebParser webparser;
 
     static final String UNSEEN = "unseen";
     static final String SEEN = "seen";
@@ -28,6 +33,10 @@ public class DBManager {
     public DBManager(Context cntx) {
         context = cntx;
         try {this.open();} catch (SQLDataException sqle) {sqle.printStackTrace();}
+
+        webparser = new WebParser();
+        listingAddedEventHandler = new ListingAddedEventHandler(this);
+        webparser.eventManager.RegisterEventHandler(listingAddedEventHandler);
     }
 
     // Opens database; called in constructor
@@ -255,5 +264,28 @@ public class DBManager {
             } while (cursor.moveToNext());
         }
         return rejectedJobs;
+    }
+    // Returns a list of all entries in database with an 'unseen' job_status
+    public ArrayList<JobListing> getUnseenJobs(){
+        ArrayList<JobListing> unseenJobs = new ArrayList<>();
+        Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"unseen"}, null, null, null);
+        if(cursor.moveToNext()) {
+            //cursor.moveToPrevious(); - causes index out of bounds crash?
+            do {
+                unseenJobs.add(createJobListing(cursor));
+            } while (cursor.moveToNext());
+        }
+        return unseenJobs;
+    }
+
+    // For ListingAddedCallback
+    @Override
+    public void ListingWasAdded() {
+
+    }
+    @Override
+    public void ListingWasAdded(JobListing listing) {
+        // Adds JobListing to database once parsed
+        this.insert(listing);
     }
 }

@@ -25,8 +25,6 @@ public class SavedJobsListPage extends DrawerBaseActivity {
 
     ListPagesSavedBinding listPagesSavedBinding;
     ArrayList<JobListing> jobPostings = new ArrayList<>();
-    int[] companyLogos = {R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_arrow_back_24, R.drawable.ic_launcher_background,
-            R.drawable.ic_baseline_check_24, R.drawable.ic_baseline_navigate_next_24, R.drawable.ic_launcher_foreground, R.drawable.ic_baseline_add_24};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,21 +36,9 @@ public class SavedJobsListPage extends DrawerBaseActivity {
         jobPostings = dbManager.getSavedJobs();
 
         RecyclerView recyclerView = findViewById(R.id.Saved_Jobs_RecyclerView);
-        //setUpJobPostModels();
         JobPost_RecyclerViewAdapter adapter = new JobPost_RecyclerViewAdapter(this, jobPostings);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-
-    private void setUpJobPostModels(){
-        String[] companyNames = getResources().getStringArray(R.array.company_names);
-        String[] jobTitles = getResources().getStringArray(R.array.job_titles);
-        String[] skillsToMatch = getResources().getStringArray(R.array.skills_to_match);
-
-        for (int i = 0; i < companyNames.length; i++){
-            //jobPostings.add(new JobPostInformation(companyNames[i],jobTitles[i],skillsToMatch[i],companyLogos[i]));
-        }
     }
 
 }
