@@ -25,6 +25,7 @@ import kotlinx.coroutines.Job;
  * A copy of the HashMap can be retrived via the JobListing.GetAdditionalInformation() method.
  */
 public class JobListing {
+    private String Company;
     private String JobTitle;
     private String JobLocation;
     private String JobListingUrl;
@@ -34,6 +35,7 @@ public class JobListing {
     private HashMap<String, String> AdditionalInformation;
 
     public JobListing(){
+        Company = "";
         JobTitle = "";
         JobLocation = "";
         JobType = "";
@@ -53,6 +55,8 @@ public class JobListing {
         JobLocation = jobLocation;
         AdditionalInformation = new HashMap<>();
     }
+    public void SetCompanyName (String companyName){Company = companyName;}
+    public String GetCompanyName (){return Company;}
 
     public void SetJobListingUrl(String jobListingUrl){ JobListingUrl = jobListingUrl; }
     public String GetJobListingUrl(){ return JobListingUrl; }

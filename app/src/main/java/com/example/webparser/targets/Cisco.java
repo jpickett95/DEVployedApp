@@ -134,47 +134,41 @@ public class Cisco extends ParserTarget{
         return  base_url + search_term;
     }
 
-    public Vector<JobListing> Main() throws IOException {
-        Vector<JobListing> jobListings = new Vector<>();
-
+    public void Main() throws IOException {
         // This url with the "SearchJobResultsAJAX" (along with the same url args as with the regular search url)
         // gives us the listing-count of the total jobs that the site has for the args we've provided
         String resp = Jsoup.connect("https://jobs.cisco.com/jobs/SearchJobsResultsAJAX/?21178=%5B169482,207800%5D&21178_format=6020&21181=%5B186,194,187,191,185%5D&21181_format=6023&listFilterMode=1&projectOffset=25").get().getElementsByTag("body").text();
         //I will use this variable to setup a
-        //int numberOfListings = Integer.valueOf(resp);
+        int numberOfListings = Integer.valueOf(resp);
 
         //This (below) is what would allow this process (after altering the url to include the offset)
         //to repeat for each page of job listings that Cisco contains (will implement it when I have time)
         //but this is good enough to test for the moment.
         //
-        //for (int offset = 0; offset < numberOfListings; offset + 25) {
-        Document doc = Jsoup.connect(base_url).get();
+        for (int offset = 0; offset < numberOfListings;) {
+            Document doc = Jsoup.connect( "https://jobs.cisco.com/jobs/SearchJobs/?21178=%5B169482%2C207800%5D&21178_format=6020&listFilterMode=1&projectOffset=" + offset).get();
+            Element jobListingContainer = GetListingContainer(doc);
 
-        Element jobListingContainer = GetListingContainer(doc);
+            Elements jobListingsOnCurentPage = GetJobListings(jobListingContainer);
 
-        Elements jobListingsOnCurentPage = GetJobListings(jobListingContainer);
+            for (Element jobListing:jobListingsOnCurentPage){
+                JobListing newJobListing = new JobListing();
 
-        for (Element jobListing:jobListingsOnCurentPage){
-            JobListing newJobListing = new JobListing();
+                //Setting the job information that is available from the job listing screen
+                newJobListing.SetJobTitle(GetJobTitle(jobListing));
+                newJobListing.SetJobLocation(GetLocation(jobListing));
+                newJobListing.SetJobType(GetJobType(jobListing));
+                newJobListing.SetJobListingUrl(GetListingURL(jobListing));
 
-            //Setting the job information that is available from the job listing screen
-            newJobListing.SetJobTitle(GetJobTitle(jobListing));
-            newJobListing.SetJobLocation(GetLocation(jobListing));
-            newJobListing.SetJobType(GetJobType(jobListing));
-            newJobListing.SetJobListingUrl(GetListingURL(jobListing));
+                //requesting the individual job postings and getting the information from there (Description only so far will get others later)
+                Document doc_forPos = Jsoup.connect(newJobListing.GetJobListingUrl()).get();
+                //Setting the JobDescription from the actual job listing page (will implement the others later, as well as supply html to show what I'm scraping)
+                newJobListing.SetJobDescription(doc_forPos.getElementsByClass("job_description").first().text());
 
-            //requesting the individual job postings and getting the information from there (Description only so far will get others later)
-            Document doc_forPos = Jsoup.connect(newJobListing.GetJobListingUrl()).get();
-            //Setting the JobDescription from the actual job listing page (will implement the others later, as well as supply html to show what I'm scraping)
-            newJobListing.SetJobDescription(doc_forPos.getElementsByClass("job_description").first().text());
-
-            jobListings.add(newJobListing);
+                parser.AddListing(newJobListing);
+            }
+            offset = ((offset + 25) < numberOfListings) ? (offset + 25) : numberOfListings - 25;
         }
-        //}
-
-
-
-        return jobListings;
     }
 
 }

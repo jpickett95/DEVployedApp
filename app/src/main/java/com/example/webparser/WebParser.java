@@ -45,7 +45,7 @@ public class WebParser {
         //If you do not, the program will likely fail at runtime due to the Name variable being set with no value (unless you set the Name).
         AddTarget(new Cisco(this));
         //AddTarget(new Google());
-        AddTarget(new Amazon(this));
+        //AddTarget(new Amazon(this));
     }
     
     /**
@@ -134,7 +134,7 @@ public class WebParser {
     public void AddListing(JobListing listing){
         //This isn't implemented yet, but it is an example of what this can be used for.
         //for (EventHandler handler:events) {handler.Notify;};
-        parsedListings.add(listing);
+        //parsedListings.add(listing);
         eventManager.NotifyListingWasAdded(listing);
     }
 
@@ -153,13 +153,8 @@ public class WebParser {
 
         //This will iterate through every available ParserTarget and will add all of the returned
         //listings into the main parsedListings to be accessed in the UI
-        //for (ParserTarget mTarget:Targets){
-        //    mTarget.StartParsing(this);
-        //}
         SearchRunner runnerThread = new SearchRunner(Targets);
         runnerThread.start();
-
-        //runnerThread.join();
     }
 
     /**
