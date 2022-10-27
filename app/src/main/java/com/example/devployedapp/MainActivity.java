@@ -1,35 +1,28 @@
 package com.example.devployedapp;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.devployedapp.databinding.ActivityDrawerBaseBinding;
 import com.example.devployedapp.databinding.ActivityMainBinding;
-import com.example.webparser.WebParser;
+import com.example.devployedapp.databinding.JobcardBlowupItemBinding;
 import com.example.webparser.data.JobListing;
-import com.example.webparser.events.handlers.ListingAddedEventHandler;
-import com.example.webparser.events.handlers.SearchCompletedEventHandler;
-import com.example.webparser.events.interfaces.ListingAddedCallback;
-import com.example.webparser.events.interfaces.SearchCompletedCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import java.sql.SQLDataException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends DrawerBaseActivity implements JobCardBlowUpInterface {
+public class MainActivity extends DrawerBaseActivity{
 
     ActivityMainBinding activityMainBinding;
-    JobCardBlowUpInterface jobCardBlowUpInterface;
+
 
     //region Variables called before OnCreate() method
 
@@ -38,13 +31,13 @@ public class MainActivity extends DrawerBaseActivity implements JobCardBlowUpInt
     List<JobListing> rowItems;
 
     Dialog filtersDialog; // For filters popup window on main activity
-
+    Dialog jobCardBlowUpDialog; // For enlarging the jobCard upon clicking
     DBManager dbManager;
 
 //endregion
 
     @Override
-    protected void onCreate(Bundle savedInstanceState, JobCardBlowUpInterface jobCardBlowUpInterface) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
@@ -116,14 +109,16 @@ public class MainActivity extends DrawerBaseActivity implements JobCardBlowUpInt
                 Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
                 // potentially link to job application or job posting on company website?
                 // ^^ OR pull up a popup window with more specific, detailed information
+                //JobListing job = (JobListing) dataObject;
+                //jobCardBlowUpDialog.show();
+                //startActivity(new Intent(MainActivity.this,JobCardBlowUp.class).setData((Uri)
+                // dataObject));
 
-                JobListing job = (JobListing) dataObject;
-                job.OnCardClick(itemPosition);
-                /*if (jobCardBlowUpInterface != null) {
-                    if (itemPosition != jobCardBlowUpInterface.NO_POSITION){
-                        jobCardBlowUpInterface.OnCardClick(itemPosition);
-                    }
-                }*/
+
+                ShowJobCardExpanded();
+                //jobCardBlowUpDialog.show();
+
+
             }
         });
 
@@ -140,6 +135,8 @@ public class MainActivity extends DrawerBaseActivity implements JobCardBlowUpInt
         rejectedJobsButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class)));
 
         filtersDialog = new Dialog(this); // For filters popup window on main activity
+        //jobCardBlowUpDialog = new Dialog(this);
+        jobCardBlowUpDialog = new Dialog(this);
     }
 
     // For filters popup window on main activity
@@ -152,12 +149,34 @@ public class MainActivity extends DrawerBaseActivity implements JobCardBlowUpInt
         filtersDialog.show();
     }
 
-    @Override
-    public void OnCardClick(int position) {
-        Intent intent = new Intent(MainActivity.this,JobCardBlowUpInterface.class);
+    public void ShowJobCardExpanded() {
+        // popup is dismissed when user clicks the completed button
+        JobcardBlowupItemBinding jobcardBlowupItemBinding;
+        FloatingActionButton closeExpandedJobCard;
+        jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
 
-        startActivity(intent);
+        closeExpandedJobCard = jobCardBlowUpDialog.findViewById(R.id.floatingActionButton);
+        closeExpandedJobCard.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
+        jobCardBlowUpDialog.show();
     }
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        jobcardBlowupItemBinding = JobcardBlowupItemBinding.inflate(getLayoutInflater());
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.jobcard_blowup_item, jobcardBlowupItemBinding.getRoot());
+        closeExpandedJobCard = view.findViewById(R.id.floatingActionButton);
+
+        builder.setView(view)
+
+                .setOnDismissListener((DialogInterface.OnDismissListener) closeExpandedJobCard);
+
+        return builder.create();*/
+
+        /*jobCardBlowUpDialog.create().;
+        jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
+        closeExpandedJobCard = jobCardBlowUpDialog.findViewById(R.id.floatingActionButton);
+        closeExpandedJobCard.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
+        jobCardBlowUpDialog.show();*/
+
 
     // For SwipeCards
     /*
