@@ -27,15 +27,18 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
         }
 
         // Find View IDs
-        TextView companyName = (TextView) convertView.findViewById(R.id.swipeCards_item_companyName);
+        TextView companyNameView = (TextView) convertView.findViewById(R.id.swipeCards_item_companyName);
         TextView jobTitleView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobTitle);
-        TextView skillsMatched = (TextView) convertView.findViewById(R.id.swipeCards_item_skillsMatched);
-        ImageView companyLogo = (ImageView) convertView.findViewById(R.id.swipeCards_item_companyLogo);
+        TextView skillsMatchedView = (TextView) convertView.findViewById(R.id.swipeCards_item_skillsMatched);
+        ImageView companyLogoView = (ImageView) convertView.findViewById(R.id.swipeCards_item_companyLogo);
+        TextView jobLocationView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobLocation);
+        TextView jobTypeView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobType);
 
         String location;
         String jobTitle;
         String jobDescription;
         String jobType;
+        String companyName = "Company Name";
 
         // Check is jobPost is null and display 'content unavailable' message if so
         if(jobPost != null) {
@@ -47,13 +50,16 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             location = "Company Name Unavailable";
             jobTitle = "Job Title Unavailable";
             jobDescription = "Skills Unavailable";
+            jobType = "Job Type Unavailable";
         }
 
         // Set variable data
-        companyName.setText(location);
+        companyNameView.setText(companyName);
         jobTitleView.setText(jobTitle);
-        skillsMatched.setText(jobDescription);
-        companyLogo.setImageResource(R.mipmap.ic_launcher);
+        jobTypeView.setText(jobType);
+        jobLocationView.setText(location);
+        skillsMatchedView.setText(jobDescription);
+        companyLogoView.setImageResource(R.mipmap.ic_launcher);
 
         return convertView;
     }

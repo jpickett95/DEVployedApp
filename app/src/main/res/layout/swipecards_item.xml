@@ -37,9 +37,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Company Name (TextView) -->
+            <!-- Job Title (TextView) -->
             <TextView
-                android:id="@+id/swipeCards_item_companyName"
+                android:id="@+id/swipeCards_item_jobTitle"
                 android:layout_width="0dp"
                 android:layout_height="75dp"
                 android:layout_margin="5dp"
@@ -52,22 +52,52 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/swipeCards_item_companyLogo"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Company Name" />
+                tools:text="Job Title" />
 
-            <!-- Job Title (TextView) -->
+            <!-- Company Name (TextView) -->
             <TextView
-                android:id="@+id/swipeCards_item_jobTitle"
+                android:id="@+id/swipeCards_item_companyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:paddingStart="5dp"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/swipeCards_item_companyName"
-                tools:text="Job Title" />
+                app:layout_constraintTop_toBottomOf="@+id/swipeCards_item_jobTitle"
+                tools:text="Company Name" />
+
+            <!-- Job Type (TextView) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/swipeCards_item_jobType"
+                android:layout_margin="5dp"
+                android:paddingStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/swipeCards_item_companyName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Job type"/>
+
+            <!-- Job Location (TextView) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/swipeCards_item_jobLocation"
+                android:layout_margin="5dp"
+                android:paddingStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/swipeCards_item_jobType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Job Location"/>
 
             <!-- Skills Matched (TextView) -->
             <TextView
@@ -81,7 +111,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/swipeCards_item_jobTitle"
+                app:layout_constraintTop_toBottomOf="@+id/swipeCards_item_jobLocation"
                 tools:text="Skills that match!" />
 
             <!-- Swipe Indicators (NOT currently in use)
