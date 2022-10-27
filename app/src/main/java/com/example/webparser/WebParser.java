@@ -1,16 +1,18 @@
 package com.example.webparser;
 
-import com.example.webparser.targets.ParserTarget;
 import com.example.webparser.data.JobListing;
-
+import com.example.webparser.events.EventManager;
+import com.example.webparser.targets.Amazon;
 import com.example.webparser.targets.Cisco;
-//import com.example.webparser.targets.Google;
-import com.example.webparser.events.handlers.SearchEventHandler;
+import com.example.webparser.targets.ParserTarget;
 import com.example.webparser.threading.SearchRunner;
 
-import com.example.webparser.events.EventManager;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.Vector;
 
 
 public class WebParser {
@@ -43,6 +45,7 @@ public class WebParser {
         //If you do not, the program will likely fail at runtime due to the Name variable being set with no value (unless you set the Name).
         AddTarget(new Cisco(this));
         //AddTarget(new Google());
+        AddTarget(new Amazon(this));
     }
     
     /**
