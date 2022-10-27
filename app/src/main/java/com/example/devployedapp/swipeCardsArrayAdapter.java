@@ -1,6 +1,7 @@
 package com.example.devployedapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +9,24 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.webparser.data.JobListing;
+import androidx.core.content.ContextCompat;
 
+import com.example.webparser.data.JobListing;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
     //Context context;
+    public static final String SHARED_PREFERENCES = "sharedPreferences";
+    public static final String PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET = "profileProgrammingLanguages";
+    public static final String PROFILE_MYSKILLS_CHIPSTRINGSET = "profileMySkills";
+    private Set<String> languages;
+    private Set<String> skills;
+    Set<String> tagsToDisplay;
 
     public swipeCardsArrayAdapter(Context context, int resourceId, List<JobListing> jobPosts) {
         super(context, resourceId, jobPosts);
@@ -26,6 +39,12 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.swipecards_item, parent, false);
         }
 
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        languages = sharedPreferences.getStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET,languages);
+        skills = sharedPreferences.getStringSet(PROFILE_MYSKILLS_CHIPSTRINGSET, skills);
+        Set<String> tags = skills;
+        tags.addAll(languages);
+
         // Find View IDs
         TextView companyNameView = (TextView) convertView.findViewById(R.id.swipeCards_item_companyName);
         TextView jobTitleView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobTitle);
@@ -33,6 +52,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
         ImageView companyLogoView = (ImageView) convertView.findViewById(R.id.swipeCards_item_companyLogo);
         TextView jobLocationView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobLocation);
         TextView jobTypeView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobType);
+        ChipGroup tagsGroup = (ChipGroup) convertView.findViewById(R.id.swipeCards_item_tags);
 
         String location;
         String jobTitle;
@@ -46,6 +66,27 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             jobTitle = jobPost.GetJobTitle();
             jobDescription = jobPost.GetJobDescription();
             jobType = jobPost.GetJobType();
+
+            /*if (!tags.isEmpty()) {
+                tagsToDisplay = new HashSet<>();
+                for (String word : jobDescription.split("\\s+")) {
+                    for (String tag : tags) {
+                        if (word.contains(tag)) {
+                            tagsToDisplay.add(tag);
+                            tags.remove(tag);
+                        }
+                    }
+                }
+            }
+            if(!tagsToDisplay.isEmpty()){
+                for(String tag : tagsToDisplay){
+                    Chip chip = new Chip(getContext());
+                    chip.setChecked(false);
+                    chip.setText(tag);
+                    chip.setChipBackgroundColor(ContextCompat.getColorStateList(getContext(),R.color.brand_Pistachio));
+                    tagsGroup.addView(chip);
+                }
+            }*/
         } else {
             location = "Company Name Unavailable";
             jobTitle = "Job Title Unavailable";

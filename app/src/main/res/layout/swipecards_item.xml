@@ -99,6 +99,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Job Location"/>
 
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/swipeCards_item_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/swipeCards_item_jobLocation"/>
+
             <!-- Skills Matched (TextView) -->
             <TextView
                 android:id="@+id/swipeCards_item_skillsMatched"
@@ -111,7 +118,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/swipeCards_item_jobLocation"
+                app:layout_constraintTop_toBottomOf="@+id/swipeCards_item_tags"
                 tools:text="Skills that match!" />
 
             <!-- Swipe Indicators (NOT currently in use)
