@@ -172,6 +172,53 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- My Skills Container -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:id="@+id/ConstraintLayout_mySkills">
+
+                <!-- My Skills container title (TextView) -->
+                <TextView
+                    android:id="@+id/textView_profile_mySkills"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_skill_24"
+                    android:drawablePadding="12dp"
+                    android:padding="10dp"
+                    android:text="My Skills"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="My Skills" />
+
+                <!-- My Skills chip group (ChipGroup) -->
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/ChipGroup_profile_mySkills"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:saveEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_profile_mySkills" />
+
+                <!-- My Skills chip group 'add' button (ImageButton) -->
+                <ImageButton
+                    android:id="@+id/mySkills_addButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/brand_Pistachio"
+                    android:clickable="true"
+                    android:contentDescription="Add a new skill."
+                    android:minHeight="48dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ChipGroup_profile_mySkills"
+                    app:srcCompat="@drawable/ic_baseline_add_24" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <!-- Education level container (ConstraintLayout) -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLayout_education"
