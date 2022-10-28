@@ -67,26 +67,17 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             jobDescription = jobPost.GetJobDescription();
             jobType = jobPost.GetJobType();
 
-            /*if (!tags.isEmpty()) {
-                tagsToDisplay = new HashSet<>();
-                for (String word : jobDescription.split("\\s+")) {
-                    for (String tag : tags) {
-                        if (word.contains(tag)) {
-                            tagsToDisplay.add(tag);
-                            tags.remove(tag);
-                        }
+            if (!tags.isEmpty()) {
+                for (String tag: tags) {
+                    if(jobDescription.toUpperCase().contains(tag.toUpperCase())){
+                        Chip chip = new Chip(getContext());
+                        chip.setChecked(false);
+                        chip.setText(tag);
+                        chip.setChipBackgroundColor(ContextCompat.getColorStateList(getContext(),R.color.brand_Pistachio));
+                        tagsGroup.addView(chip);
                     }
                 }
             }
-            if(!tagsToDisplay.isEmpty()){
-                for(String tag : tagsToDisplay){
-                    Chip chip = new Chip(getContext());
-                    chip.setChecked(false);
-                    chip.setText(tag);
-                    chip.setChipBackgroundColor(ContextCompat.getColorStateList(getContext(),R.color.brand_Pistachio));
-                    tagsGroup.addView(chip);
-                }
-            }*/
         } else {
             location = "Company Name Unavailable";
             jobTitle = "Job Title Unavailable";
