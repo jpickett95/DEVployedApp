@@ -157,9 +157,7 @@ public class ProfilePage extends DrawerBaseActivity implements MySkillsDialog.My
 
         // Add new skills
         ImageButton addSkillButton = findViewById(R.id.mySkills_addButton);
-        addSkillButton.setOnClickListener((View view) -> {
-            openMySkillsDialog();
-        });
+        addSkillButton.setOnClickListener((View view) -> openMySkillsDialog());
 
         // Profile Image long-click handler
         profileImage.setOnLongClickListener((View view) -> {

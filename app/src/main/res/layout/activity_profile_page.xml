@@ -71,10 +71,12 @@
                 android:drawableStart="@drawable/custom_person_icon"
                 android:drawablePadding="12dp"
                 android:ems="10"
-                android:hint="Jane Doe"
+                android:hint="@string/jane_doe"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:autofillHints="name"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="24sp"
@@ -96,6 +98,8 @@
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:autofillHints="emailAddress"
                 android:saveEnabled="true"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -119,6 +123,8 @@
                 android:inputType="phone"
                 android:minHeight="48dp"
                 android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:autofillHints="phone"
                 android:saveEnabled="true"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -136,15 +142,15 @@
                     android:id="@+id/textView_profile_mySkills"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_baseline_skill_24"
                     android:drawablePadding="12dp"
                     android:padding="10dp"
-                    android:text="My Skills"
+                    android:text="@string/my_skills"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="My Skills" />
+                    tools:text="My Skills"
+                    app:drawableStartCompat="@drawable/ic_baseline_skill_24" />
 
                 <!-- My Skills chip group (ChipGroup) -->
                 <com.google.android.material.chip.ChipGroup
@@ -163,7 +169,8 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/brand_Pistachio"
                     android:clickable="true"
-                    android:contentDescription="Add a new skill."
+                    android:focusable="true"
+                    android:contentDescription="@string/add_a_new_skill"
                     android:minHeight="48dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -183,16 +190,16 @@
                     android:id="@+id/textView_profile_education"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:contentDescription="Your previous educational experience level"
-                    android:drawableStart="@drawable/ic_baseline_school_24"
+                    android:contentDescription="@string/your_previous_educational_experience_level"
                     android:drawablePadding="12dp"
                     android:padding="10dp"
-                    android:text="Educational Experience"
+                    android:text="@string/educational_experience"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Educational Experience" />
+                    tools:text="Educational Experience"
+                    app:drawableStartCompat="@drawable/ic_baseline_school_24" />
 
                 <!-- Education Level chip group (ChipGroup) -->
                 <com.google.android.material.chip.ChipGroup
@@ -210,9 +217,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Completed High School."
+                        android:contentDescription="@string/completed_high_school"
                         android:saveEnabled="true"
-                        android:text="High School"
+                        android:text="@string/high_school"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -222,9 +229,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Completed an associate's degree."
+                        android:contentDescription="@string/completed_an_associate_s_degree"
                         android:saveEnabled="true"
-                        android:text="Associate's"
+                        android:text="@string/associate_s"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -234,9 +241,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Completed a bachelor's degree."
+                        android:contentDescription="@string/completed_a_bachelor_s_degree"
                         android:saveEnabled="true"
-                        android:text="Bachelor's"
+                        android:text="@string/bachelor_s"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -246,9 +253,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Completed a master's degree."
+                        android:contentDescription="@string/completed_a_master_s_degree"
                         android:saveEnabled="true"
-                        android:text="Master's"
+                        android:text="@string/master_s"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -258,9 +265,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Completed a doctorate degree."
+                        android:contentDescription="@string/completed_a_doctorate_degree"
                         android:saveEnabled="true"
-                        android:text="PhD"
+                        android:text="@string/phd"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -270,9 +277,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Completed a coding bootcamp or equivalent program."
+                        android:contentDescription="@string/completed_a_coding_bootcamp_or_equivalent_program"
                         android:saveEnabled="true"
-                        android:text="Coding Bootcamp"
+                        android:text="@string/coding_bootcamp"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>
@@ -291,14 +298,14 @@
                     android:id="@+id/textView_profile_experience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_baseline_bar_chart_24"
                     android:drawablePadding="12dp"
                     android:padding="10dp"
-                    android:text="Experience Level"
+                    android:text="@string/experience_level"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableStartCompat="@drawable/ic_baseline_bar_chart_24" />
 
                 <!-- Experience level chip group (ChipGroup) -->
                 <com.google.android.material.chip.ChipGroup
@@ -316,9 +323,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="No previous industry experience."
+                        android:contentDescription="@string/no_previous_industry_experience"
                         android:saveEnabled="true"
-                        android:text="No Experience"
+                        android:text="@string/no_experience"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -328,9 +335,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="0-1 years of industry experience."
+                        android:contentDescription="@string/_0_1_years_of_industry_experience"
                         android:saveEnabled="true"
-                        android:text="Early Career"
+                        android:text="@string/early_career"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -340,9 +347,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Mid Career (2-5 years experience)."
+                        android:contentDescription="@string/mid_career_2_5_years_experience"
                         android:saveEnabled="true"
-                        android:text="Mid Career"
+                        android:text="@string/mid_career"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -352,9 +359,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Senior level in your career (5+ years experience)."
+                        android:contentDescription="@string/senior_level_in_your_career_5_years_experience"
                         android:saveEnabled="true"
-                        android:text="Senior Level"
+                        android:text="@string/senior_level"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -364,9 +371,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Held an executive position."
+                        android:contentDescription="@string/held_an_executive_position"
                         android:saveEnabled="true"
-                        android:text="Executive"
+                        android:text="@string/executive"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>
@@ -384,14 +391,14 @@
                     android:id="@+id/textView_profile_industrypreferences"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_baseline_work_24"
                     android:drawablePadding="12dp"
                     android:padding="10dp"
-                    android:text="Industry Preferences"
+                    android:text="@string/industry_preferences"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableStartCompat="@drawable/ic_baseline_work_24" />
 
                 <!-- Industry preferences chip group (ChipGroup) -->
                 <com.google.android.material.chip.ChipGroup
@@ -409,9 +416,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Software development (engineering)"
+                        android:contentDescription="@string/software_development_engineering"
                         android:saveEnabled="true"
-                        android:text="Software Development"
+                        android:text="@string/software_development"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -421,9 +428,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="IT filed (information technology)"
+                        android:contentDescription="@string/it_filed_information_technology"
                         android:saveEnabled="true"
-                        android:text="IT"
+                        android:text="@string/it"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -433,9 +440,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Front-end development."
+                        android:contentDescription="@string/front_end_development"
                         android:saveEnabled="true"
-                        android:text="Front End"
+                        android:text="@string/front_end"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -445,9 +452,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Back-end development."
+                        android:contentDescription="@string/back_end_development"
                         android:saveEnabled="true"
-                        android:text="Back End"
+                        android:text="@string/back_end"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -457,9 +464,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Works both front-end and back-end development."
+                        android:contentDescription="@string/works_both_front_end_and_back_end_development"
                         android:saveEnabled="true"
-                        android:text="Full Stack"
+                        android:text="@string/full_stack"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -469,9 +476,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="User experience and user interface"
+                        android:contentDescription="@string/user_experience_and_user_interface"
                         android:saveEnabled="true"
-                        android:text="UX/UI"
+                        android:text="@string/ux_ui"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
 
@@ -481,9 +488,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
-                        android:contentDescription="Gaming software development."
+                        android:contentDescription="@string/gaming_software_development"
                         android:saveEnabled="true"
-                        android:text="Game Development"
+                        android:text="@string/game_development"
                         app:chipBackgroundColor="@color/brand_Pistachio"
                         app:chipIconVisible="true" />
                 </com.google.android.material.chip.ChipGroup>
@@ -500,11 +507,12 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        android:text="Save"
+        android:text="@string/save"
         android:textSize="16sp"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="i.e. Agile Development, OOP, Java, C++, etc."
+        android:hint="@string/i_e_agile_development_oop_java_etc"
         android:inputType="text"
         android:minHeight="48dp" />
 </RelativeLayout>
