@@ -111,14 +111,10 @@ public class MainActivity extends DrawerBaseActivity {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 //Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
-                // potentially link to job application or job posting on company website?
-                // ^^ OR pull up a popup window with more specific, detailed information
 
+                // casts dataObject to JobListing and passes to the method to create full CardView
                 JobListing job = (JobListing) dataObject;
                 ShowJobCardExpanded(job);
-
-
-
             }
         });
 
@@ -150,35 +146,25 @@ public class MainActivity extends DrawerBaseActivity {
     }
 
     public void ShowJobCardExpanded(JobListing job) {
-        // popup is dismissed when user clicks the completed button
-        /*DialogFragment jobDialog = new DialogFragment();
-        jobDialog.show(getSupportFragmentManager(),"jobDialog");*/
+        // popup to display the full job description in a scrollView
         jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
-        FloatingActionButton closeButton;
+        Button closeButton;
         ImageView imageView = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyLogo);
         imageView.setImageResource(R.drawable.ic_baseline_work_24);
         TextView companyName, jobTitle, skillsMatched, fullDescription;
-        companyName = jobCardBlowUpDialog.findViewById(R.id.swipeCards_item_companyName);
+        companyName = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyName);
         jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);
         skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
-        //companyName.setText("Company Name");
+        companyName.setText(job.GetJobLocation());
         jobTitle.setText(job.GetJobTitle());
         skillsMatched.setText(job.GetJobType());
         fullDescription.setText(job.GetJobDescription());
 
 
-        closeButton = jobCardBlowUpDialog.findViewById(R.id.floatingActionButton);
+        closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);
         closeButton.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
         jobCardBlowUpDialog.show();
-
-        //jobCardBlowUpDialog = new Dialog(this);
-        //jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
-        //jobCardBlowUpDialog.show();
-
-
-        /*closeExpandedJobCardButton = jobCardBlowUpDialog.findViewById(R.id.floatingActionButton);
-        closeExpandedJobCardButton.setOnClickListener((View v) -> jobCardBlowUpDialog.dismiss());*/
     }
 
 

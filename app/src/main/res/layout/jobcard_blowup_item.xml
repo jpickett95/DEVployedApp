@@ -2,62 +2,63 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/cardBlowUp_item_layout"
-    android:clipToPadding="false">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <!-- Company Logo (ImageView) -->
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+        <Button
+            android:id="@+id/cardBlowUp_close_window"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_check_24" />
+            android:contentDescription="@string/closeWindow"
+            android:elevation="5dp"
+            android:foreground="@drawable/ic_baseline_close_24"
+            android:foregroundGravity="center"
+            app:iconTint="@color/black"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
 
+        <!-- Company Logo (ImageView) -->
         <ImageView
             android:id="@+id/cardBlowUp_item_companyLogo"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_margin="5dp"
+            android:contentDescription="@string/companyLogo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Company Name (TextView) -->
-        <TextView
-            android:id="@+id/cardBlowUp_item_companyName"
-            android:layout_width="0dp"
-            android:layout_height="75dp"
-            android:layout_margin="5dp"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardBlowUp_item_companyLogo"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Company Name" />
 
         <!-- Job Title (TextView) -->
         <TextView
             android:id="@+id/cardBlowUp_item_jobTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/cardBlowUp_close_window"
+            app:layout_constraintStart_toEndOf="@+id/cardBlowUp_item_companyLogo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Job Title" />
+
+        <!-- Company Name (TextView) -->
+        <TextView
+            android:id="@+id/cardBlowUp_item_companyName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:paddingStart="5dp"
+            android:padding="5dp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_companyName"
-            tools:text="Job Title" />
+            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_companyLogo"
+            tools:text="Company Name" />
 
         <!-- Skills Matched (TextView) -->
         <TextView
@@ -65,12 +66,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:paddingStart="5dp"
+            android:padding="5dp"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_jobTitle"
+            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_companyName"
             tools:text="Skills that match!" />
 
         <ScrollView
@@ -78,24 +79,20 @@
             android:layout_height="wrap_content"
             android:fillViewport="true"
             android:isScrollContainer="true"
-            app:layout_constraintTop_toBottomOf="@id/cardBlowUp_item_skillsMatched"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardBlowUp_item_skillsMatched">
 
-                <EditText
+                <TextView
                     android:id="@+id/cardBlowUp_item_fullDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
                     android:layout_margin="5dp"
                     android:isScrollContainer="true"
+                    android:padding="5dp"
                     android:scrollHorizontally="false"
-                    android:layout_gravity="fill"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
                     android:textColor="@color/black"
-                    android:singleLine="false"
-                    android:inputType="textMultiLine"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
