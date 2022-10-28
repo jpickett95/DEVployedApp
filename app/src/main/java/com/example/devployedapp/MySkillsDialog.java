@@ -13,25 +13,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class LanguageDialog extends AppCompatDialogFragment {
-    private EditText editTextLanguage;
-    private LanguageDialogListener listener;
+public class MySkillsDialog extends AppCompatDialogFragment {
+    private EditText editText;
+    private MySkillsDialogListener listener;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_profile_languages, null);
+        View view = inflater.inflate(R.layout.dialog_profile_skills, null);
 
-        editTextLanguage = view.findViewById(R.id.editText);
+        editText = view.findViewById(R.id.editText);
 
         builder.setView(view)
-                .setTitle("Enter Programming Language:")
+                .setTitle("Enter a new skill:")
                 .setNegativeButton("Cancel", (DialogInterface dialogInterface, int i) -> {})
                 .setPositiveButton("Apply", (DialogInterface dialogInterface, int i) -> {
-                        String language = editTextLanguage.getText().toString();
-                        listener.applyText(language);
+                        String skill = editText.getText().toString();
+                        listener.applySkillText(skill);
                     });
 
         return builder.create();
@@ -42,14 +42,14 @@ public class LanguageDialog extends AppCompatDialogFragment {
         super.onAttach(context);
 
         try {
-            listener = (LanguageDialogListener) context;
+            listener = (MySkillsDialogListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context + "must implement LanguageDialogListener");
+            throw new ClassCastException(context + "must implement MySkillsDialogListener");
         }
 
     }
 
-    public interface LanguageDialogListener{
-        void applyText(String text);
+    public interface MySkillsDialogListener{
+        void applySkillText(String text);
     }
 }

@@ -25,6 +25,8 @@
     <string name="RejectedJobsPage_page_title">Rejected Jobs</string>
     <string name="menu_drawer_open">Drawer Open</string>
     <string name="menu_drawer_close">Drawer Close</string>
+    <string name="pass">Pass</string>
+    <string name="company_logo_string">Company logo</string>
     <string-array name="company_names">
         <item>Google</item>
         <item>Microsoft</item>
