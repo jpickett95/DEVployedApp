@@ -41,7 +41,7 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Set;
 
-public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.LanguageDialogListener, MySkillsDialog.MySkillsDialogListener {
+public class ProfilePage extends DrawerBaseActivity implements MySkillsDialog.MySkillsDialogListener {
 
     private EditText profileFullName;
     private EditText profileEmail;
@@ -52,7 +52,6 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
     private Chip mastersEDUChip;
     private Chip phdEDUChip;
     private Chip bootcampEDUChip;
-    private ChipGroup programmingLanguages;
     private ChipGroup mySkills;
     private Chip noexpEXPChip;
     private Chip earlyEXPChip;
@@ -92,12 +91,10 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
     public static final String PROFILE_INDUSTRY_FRONTEND = "profileIndustryFrontEnd";
     public static final String PROFILE_INDUSTRY_BACKEND = "profileIndustryBackEnd";
     public static final String PROFILE_INDUSTRY_FULLSTACK = "profileIndustryFullStack";
-    public static final String PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET = "profileProgrammingLanguages";
     public static final String PROFILE_MYSKILLS_CHIPSTRINGSET = "profileMySkills";
     private String fullName;
     private String email;
     private String phone;
-    private Set<String> programmingLanguagesChipNames;
     private Set<String> mySkillsChipNames;
     private boolean highSchoolOnOff;
     private boolean associatesOnOff;
@@ -141,7 +138,6 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         mastersEDUChip = findViewById(R.id.chip_profile_masters);
         phdEDUChip = findViewById(R.id.chip_profile_phd);
         bootcampEDUChip = findViewById(R.id.chip_profile_bootcamp);
-        programmingLanguages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
         ChipGroup experienceLevel = findViewById(R.id.ChipGroup_profile_experience);
         noexpEXPChip = findViewById(R.id.chip_profile_noexp);
         earlyEXPChip = findViewById(R.id.chip_profile_earlycareer);
@@ -159,11 +155,6 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         profileImage = findViewById(R.id.profileImage);
         mySkills = findViewById(R.id.ChipGroup_profile_mySkills);
 
-        // Add new programming languages
-        ImageButton addLanguageButton = findViewById(R.id.programmingLanguages_addButton);
-        addLanguageButton.setOnClickListener((View view) -> {
-            openLanguageDialog();
-        });
         // Add new skills
         ImageButton addSkillButton = findViewById(R.id.mySkills_addButton);
         addSkillButton.setOnClickListener((View view) -> {
@@ -288,19 +279,6 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
 
         editor.putString(PROFILE_IMAGE, encodedImage);
 
-        // For Programming Language Chips - Shared Preferences takes String Sets
-        programmingLanguages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
-        if(programmingLanguages.getChildCount() > 0) {
-            programmingLanguagesChipNames = new HashSet<>();
-            for (int i = 0; i < programmingLanguages.getChildCount(); i++) {
-                Chip chip = (Chip) programmingLanguages.getChildAt(i);
-                String name = chip.getText().toString();
-                boolean isChecked = chip.isChecked();
-                editor.putBoolean(name, isChecked);
-                programmingLanguagesChipNames.add(name);
-            }
-            editor.putStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET, programmingLanguagesChipNames);
-        }
         // For My Skills Chips - Shared Preferences takes String Sets
         mySkills = findViewById(R.id.ChipGroup_profile_mySkills);
         if(mySkills.getChildCount() > 0) {
@@ -348,7 +326,7 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         frontendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_FRONTEND, false);
         backendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_BACKEND, false);
 
-        programmingLanguagesChipNames = sharedPreferences.getStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET,programmingLanguagesChipNames);
+        // String Sets
         mySkillsChipNames = sharedPreferences.getStringSet(PROFILE_MYSKILLS_CHIPSTRINGSET, mySkillsChipNames);
 
         encodedImage = sharedPreferences.getString(PROFILE_IMAGE,"");
@@ -383,15 +361,6 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         backEndINDChip.setChecked(backendOnOff);
         fullStackINDChip.setChecked(fullstackOnOff);
 
-        // Programming Languages
-        if (programmingLanguagesChipNames != null) {
-            for (String name_bool : programmingLanguagesChipNames) {
-                ChipGroup languages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
-                Chip chip = createChip(languages, name_bool);
-                chip.setChecked(sharedPreferences.getBoolean(chip.getText().toString(), true));
-            }
-        }
         // My Skills
         if (mySkillsChipNames != null) {
             for (String name_bool : mySkillsChipNames) {
@@ -441,42 +410,12 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         }
     }
 
-    // Programming Language Dialog Box
-    private void openLanguageDialog() {
-        LanguageDialog languageDialog = new LanguageDialog();
-        languageDialog.show(getSupportFragmentManager(), "language dialog");
-    }
     // My Skills Dialog Box
     private void openMySkillsDialog() {
         MySkillsDialog mySkillsDialog = new MySkillsDialog();
         mySkillsDialog.show(getSupportFragmentManager(), "Skills dialog");
     }
 
-    // Create a new chip
-    public Chip createChip(View v, String text){
-        Chip newChip = new Chip(v.getContext());
-        newChip.setText(text);
-        newChip.setChipBackgroundColor(ContextCompat.getColorStateList(v.getContext(),R.color.brand_Pistachio));
-        newChip.setId(ViewCompat.generateViewId());
-        newChip.setCheckable(true);
-        newChip.setChecked(true);
-        newChip.setCheckedIconVisible(true);
-        newChip.setSaveEnabled(true);
-
-        // When a chip is 'long clicked' it will be removed from the group
-        newChip.setOnLongClickListener((View view) -> {
-                ChipGroup chipGroup = (ChipGroup) newChip.getParent();
-                chipGroup.removeView(newChip);
-                saveData();
-                return true;
-            });
-
-        // When a chip is 'clicked' and checked status is changed
-        newChip.setOnCheckedChangeListener((CompoundButton compoundButton, boolean b) -> saveData());
-
-        programmingLanguages.addView(newChip);
-        return newChip;
-    }
     public Chip createSkillChip(View v, String text){
         Chip newChip = new Chip(v.getContext());
         newChip.setText(text);
@@ -502,14 +441,6 @@ public class ProfilePage extends DrawerBaseActivity implements LanguageDialog.La
         return newChip;
     }
 
-    // For LanguageDialog Java class
-    @Override
-    public void applyText(String text) {
-        // Creates a new chip based off text input and dynamically adds it to the ChipGroup
-        ChipGroup languages = findViewById(R.id.ChipGroup_profile_programmingLanguages);
-        createChip(languages, text);
-        saveData();
-    }
     // For MySkillsDialog Java class
     @Override
     public void applySkillText(String text) {

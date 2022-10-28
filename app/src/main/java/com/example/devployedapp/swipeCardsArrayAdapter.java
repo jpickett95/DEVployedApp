@@ -22,11 +22,8 @@ import java.util.Set;
 public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
     //Context context;
     public static final String SHARED_PREFERENCES = "sharedPreferences";
-    public static final String PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET = "profileProgrammingLanguages";
     public static final String PROFILE_MYSKILLS_CHIPSTRINGSET = "profileMySkills";
-    private Set<String> languages;
     private Set<String> skills;
-    Set<String> tagsToDisplay;
 
     public swipeCardsArrayAdapter(Context context, int resourceId, List<JobListing> jobPosts) {
         super(context, resourceId, jobPosts);
@@ -40,10 +37,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
         }
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
-        languages = sharedPreferences.getStringSet(PROFILE_PROGRAMMINGLANGUAGES_CHIPSTRINGSET,languages);
         skills = sharedPreferences.getStringSet(PROFILE_MYSKILLS_CHIPSTRINGSET, skills);
-        Set<String> tags = skills;
-        tags.addAll(languages);
 
         // Find View IDs
         TextView companyNameView = (TextView) convertView.findViewById(R.id.swipeCards_item_companyName);
@@ -67,12 +61,13 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             jobDescription = jobPost.GetJobDescription();
             jobType = jobPost.GetJobType();
 
-            if (!tags.isEmpty()) {
-                for (String tag: tags) {
-                    if(jobDescription.toUpperCase().contains(tag.toUpperCase())){
+            // Create 'tags' based off profile skills
+            if (!skills.isEmpty()) {
+                for (String skill: skills) {
+                    if(jobDescription.toUpperCase().contains(skill.toUpperCase())){
                         Chip chip = new Chip(getContext());
                         chip.setChecked(false);
-                        chip.setText(tag);
+                        chip.setText(skill);
                         chip.setChipBackgroundColor(ContextCompat.getColorStateList(getContext(),R.color.brand_Pistachio));
                         tagsGroup.addView(chip);
                     }
