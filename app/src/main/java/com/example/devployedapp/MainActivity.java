@@ -6,24 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.devployedapp.databinding.ActivityDrawerBaseBinding;
 import com.example.devployedapp.databinding.ActivityMainBinding;
-import com.example.webparser.WebParser;
 import com.example.webparser.data.JobListing;
-import com.example.webparser.events.handlers.ListingAddedEventHandler;
-import com.example.webparser.events.handlers.SearchCompletedEventHandler;
-import com.example.webparser.events.interfaces.ListingAddedCallback;
-import com.example.webparser.events.interfaces.SearchCompletedCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import java.sql.SQLDataException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends DrawerBaseActivity {
@@ -36,7 +26,7 @@ public class MainActivity extends DrawerBaseActivity {
     private swipeCardsArrayAdapter arrayAdapter;
     List<JobListing> rowItems;
 
-    Dialog filtersDialog; // For filters popup window on main activity
+    //Dialog filtersDialog; // For filters popup window on main activity
 
     DBManager dbManager;
 
@@ -78,14 +68,14 @@ public class MainActivity extends DrawerBaseActivity {
                 //If you want to use it just cast it (String) dataObject
                 Toast.makeText(MainActivity.this, "Reject!", Toast.LENGTH_SHORT).show();
                 JobListing job = (JobListing) dataObject;
-                dbManager.updateJobStatus(job.GetJobID(), dbManager.REJECTED);
+                dbManager.updateJobStatus(job.GetJobID(), DBManager.REJECTED);
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
                 Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
                 JobListing job = (JobListing) dataObject;
-                dbManager.updateJobStatus(job.GetJobID(), dbManager.SAVED);
+                dbManager.updateJobStatus(job.GetJobID(), DBManager.SAVED);
             }
 //endregion
 
@@ -122,7 +112,7 @@ public class MainActivity extends DrawerBaseActivity {
         Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, ProfilePage.class)));
 
-        //Menu button to go to saved jobs page
+        /*//Menu button to go to saved jobs page
         Button savedJobsButton = findViewById(R.id.Saved_Jobs_button);
         savedJobsButton.setOnClickListener((View view) -> startActivity(new Intent(MainActivity.this, SavedJobsListPage.class)));
 
@@ -130,18 +120,18 @@ public class MainActivity extends DrawerBaseActivity {
         Button rejectedJobsButton = findViewById(R.id.rejected_Jobs_button);
         rejectedJobsButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class)));
 
-        filtersDialog = new Dialog(this); // For filters popup window on main activity
+        filtersDialog = new Dialog(this); // For filters popup window on main activity*/
     }
 
     // For filters popup window on main activity
-    public void ShowFiltersPopup(View v){
+    /*public void ShowFiltersPopup(View v){
         // popup is dismissed when user clicks the completed button
         FloatingActionButton completedButton;
         filtersDialog.setContentView(R.layout.popup_filters);
         completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener((View view) -> filtersDialog.dismiss());
         filtersDialog.show();
-    }
+    }*/
 
     // For SwipeCards
     /*

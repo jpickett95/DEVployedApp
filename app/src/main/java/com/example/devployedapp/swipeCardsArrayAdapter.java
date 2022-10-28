@@ -15,7 +15,6 @@ import com.example.webparser.data.JobListing;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -40,13 +39,13 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
         skills = sharedPreferences.getStringSet(PROFILE_MYSKILLS_CHIPSTRINGSET, skills);
 
         // Find View IDs
-        TextView companyNameView = (TextView) convertView.findViewById(R.id.swipeCards_item_companyName);
-        TextView jobTitleView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobTitle);
-        TextView jobDescriptionView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobDescription);
-        ImageView companyLogoView = (ImageView) convertView.findViewById(R.id.swipeCards_item_companyLogo);
-        TextView jobLocationView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobLocation);
-        TextView jobTypeView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobType);
-        ChipGroup tagsGroup = (ChipGroup) convertView.findViewById(R.id.swipeCards_item_tags);
+        TextView companyNameView = convertView.findViewById(R.id.swipeCards_item_companyName);
+        TextView jobTitleView = convertView.findViewById(R.id.swipeCards_item_jobTitle);
+        TextView jobDescriptionView = convertView.findViewById(R.id.swipeCards_item_jobDescription);
+        ImageView companyLogoView = convertView.findViewById(R.id.swipeCards_item_companyLogo);
+        TextView jobLocationView = convertView.findViewById(R.id.swipeCards_item_jobLocation);
+        TextView jobTypeView = convertView.findViewById(R.id.swipeCards_item_jobType);
+        ChipGroup tagsGroup = convertView.findViewById(R.id.swipeCards_item_tags);
 
         String location;
         String jobTitle;
