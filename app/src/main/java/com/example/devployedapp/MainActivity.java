@@ -1,25 +1,29 @@
 package com.example.devployedapp;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 import com.example.devployedapp.databinding.ActivityMainBinding;
-import com.example.devployedapp.databinding.JobcardBlowupItemBinding;
 import com.example.webparser.data.JobListing;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.List;
 
-public class MainActivity extends DrawerBaseActivity{
+public class MainActivity extends DrawerBaseActivity {
 
     ActivityMainBinding activityMainBinding;
 
@@ -106,17 +110,13 @@ public class MainActivity extends DrawerBaseActivity{
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
                 // potentially link to job application or job posting on company website?
                 // ^^ OR pull up a popup window with more specific, detailed information
-                //JobListing job = (JobListing) dataObject;
-                //jobCardBlowUpDialog.show();
-                //startActivity(new Intent(MainActivity.this,JobCardBlowUp.class).setData((Uri)
-                // dataObject));
 
+                JobListing job = (JobListing) dataObject;
+                ShowJobCardExpanded(job);
 
-                ShowJobCardExpanded();
-                //jobCardBlowUpDialog.show();
 
 
             }
@@ -135,8 +135,8 @@ public class MainActivity extends DrawerBaseActivity{
         rejectedJobsButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class)));
 
         filtersDialog = new Dialog(this); // For filters popup window on main activity
-        //jobCardBlowUpDialog = new Dialog(this);
         jobCardBlowUpDialog = new Dialog(this);
+
     }
 
     // For filters popup window on main activity
@@ -149,33 +149,38 @@ public class MainActivity extends DrawerBaseActivity{
         filtersDialog.show();
     }
 
-    public void ShowJobCardExpanded() {
+    public void ShowJobCardExpanded(JobListing job) {
         // popup is dismissed when user clicks the completed button
-        JobcardBlowupItemBinding jobcardBlowupItemBinding;
-        FloatingActionButton closeExpandedJobCard;
+        /*DialogFragment jobDialog = new DialogFragment();
+        jobDialog.show(getSupportFragmentManager(),"jobDialog");*/
         jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
+        FloatingActionButton closeButton;
+        ImageView imageView = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyLogo);
+        imageView.setImageResource(R.drawable.ic_baseline_work_24);
+        TextView companyName, jobTitle, skillsMatched, fullDescription;
+        companyName = jobCardBlowUpDialog.findViewById(R.id.swipeCards_item_companyName);
+        jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);
+        skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
+        fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
+        //companyName.setText("Company Name");
+        jobTitle.setText(job.GetJobTitle());
+        skillsMatched.setText(job.GetJobType());
+        fullDescription.setText(job.GetJobDescription());
 
-        closeExpandedJobCard = jobCardBlowUpDialog.findViewById(R.id.floatingActionButton);
-        closeExpandedJobCard.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
+
+        closeButton = jobCardBlowUpDialog.findViewById(R.id.floatingActionButton);
+        closeButton.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
         jobCardBlowUpDialog.show();
+
+        //jobCardBlowUpDialog = new Dialog(this);
+        //jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
+        //jobCardBlowUpDialog.show();
+
+
+        /*closeExpandedJobCardButton = jobCardBlowUpDialog.findViewById(R.id.floatingActionButton);
+        closeExpandedJobCardButton.setOnClickListener((View v) -> jobCardBlowUpDialog.dismiss());*/
     }
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        jobcardBlowupItemBinding = JobcardBlowupItemBinding.inflate(getLayoutInflater());
-        LayoutInflater layoutInflater = getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.jobcard_blowup_item, jobcardBlowupItemBinding.getRoot());
-        closeExpandedJobCard = view.findViewById(R.id.floatingActionButton);
 
-        builder.setView(view)
-
-                .setOnDismissListener((DialogInterface.OnDismissListener) closeExpandedJobCard);
-
-        return builder.create();*/
-
-        /*jobCardBlowUpDialog.create().;
-        jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
-        closeExpandedJobCard = jobCardBlowUpDialog.findViewById(R.id.floatingActionButton);
-        closeExpandedJobCard.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
-        jobCardBlowUpDialog.show();*/
 
 
     // For SwipeCards

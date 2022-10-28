@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/cardBlowUp_item_layout"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true">
+    android:clipToPadding="false">
 
         <!-- Company Logo (ImageView) -->
 
@@ -76,18 +76,26 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:isScrollContainer="true"
             app:layout_constraintTop_toBottomOf="@id/cardBlowUp_item_skillsMatched"
             app:layout_constraintStart_toStartOf="parent">
 
-                <TextView
+                <EditText
                     android:id="@+id/cardBlowUp_item_fullDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:isScrollContainer="true"
+                    android:scrollHorizontally="false"
+                    android:layout_gravity="fill"
                     android:paddingStart="5dp"
-                    android:textAlignment="textStart"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/black"
+                    android:singleLine="false"
+                    android:inputType="textMultiLine"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

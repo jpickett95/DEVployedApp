@@ -7,7 +7,6 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
-
     <!-- <SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
