@@ -42,7 +42,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
         // Find View IDs
         TextView companyNameView = (TextView) convertView.findViewById(R.id.swipeCards_item_companyName);
         TextView jobTitleView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobTitle);
-        TextView skillsMatchedView = (TextView) convertView.findViewById(R.id.swipeCards_item_skillsMatched);
+        TextView jobDescriptionView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobDescription);
         ImageView companyLogoView = (ImageView) convertView.findViewById(R.id.swipeCards_item_companyLogo);
         TextView jobLocationView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobLocation);
         TextView jobTypeView = (TextView) convertView.findViewById(R.id.swipeCards_item_jobType);
@@ -85,7 +85,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
         jobTitleView.setText(jobTitle);
         jobTypeView.setText(jobType);
         jobLocationView.setText(location);
-        skillsMatchedView.setText(jobDescription);
+        jobDescriptionView.setText(jobDescription);
         companyLogoView.setImageResource(R.mipmap.ic_launcher);
 
         return convertView;
