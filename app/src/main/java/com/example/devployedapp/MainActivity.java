@@ -147,22 +147,23 @@ public class MainActivity extends DrawerBaseActivity {
 
     public void ShowJobCardExpanded(JobListing job) {
         // popup to display the full job description in a scrollView
+        TextView companyName, jobTitle, skillsMatched, fullDescription;
+
         jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
-        Button closeButton;
+        Button closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);;
         ImageView imageView = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyLogo);
         imageView.setImageResource(R.drawable.ic_baseline_work_24);
-        TextView companyName, jobTitle, skillsMatched, fullDescription;
+
         companyName = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyName);
         jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);
         skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
+
         companyName.setText(job.GetJobLocation());
         jobTitle.setText(job.GetJobTitle());
         skillsMatched.setText(job.GetJobType());
         fullDescription.setText(job.GetJobDescription());
 
-
-        closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);
         closeButton.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
         jobCardBlowUpDialog.show();
     }
