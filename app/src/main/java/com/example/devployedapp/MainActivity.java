@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+ JobCardBlowUpInterface_KL
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+=======
+
 
 import com.example.devployedapp.databinding.ActivityMainBinding;
 import com.example.webparser.data.JobListing;
@@ -34,8 +37,10 @@ public class MainActivity extends DrawerBaseActivity {
     private swipeCardsArrayAdapter arrayAdapter;
     List<JobListing> rowItems;
 
+JobCardBlowUpInterface_KL
     Dialog filtersDialog; // For filters popup window on main activity
     Dialog jobCardBlowUpDialog; // For enlarging the jobCard upon clicking
+
     DBManager dbManager;
 
 //endregion
@@ -76,14 +81,14 @@ public class MainActivity extends DrawerBaseActivity {
                 //If you want to use it just cast it (String) dataObject
                 Toast.makeText(MainActivity.this, "Reject!", Toast.LENGTH_SHORT).show();
                 JobListing job = (JobListing) dataObject;
-                dbManager.updateJobStatus(job.GetJobID(), dbManager.REJECTED);
+                dbManager.updateJobStatus(job.GetJobID(), DBManager.REJECTED);
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
                 Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
                 JobListing job = (JobListing) dataObject;
-                dbManager.updateJobStatus(job.GetJobID(), dbManager.SAVED);
+                dbManager.updateJobStatus(job.GetJobID(), DBManager.SAVED);
             }
 //endregion
 
@@ -122,28 +127,27 @@ public class MainActivity extends DrawerBaseActivity {
         Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, ProfilePage.class)));
 
-        //Menu button to go to saved jobs page
+        /*//Menu button to go to saved jobs page
         Button savedJobsButton = findViewById(R.id.Saved_Jobs_button);
         savedJobsButton.setOnClickListener((View view) -> startActivity(new Intent(MainActivity.this, SavedJobsListPage.class)));
 
         //Menu button to go to saved jobs page
         Button rejectedJobsButton = findViewById(R.id.rejected_Jobs_button);
         rejectedJobsButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class)));
-
+JobCardBlowUpInterface_KL
         filtersDialog = new Dialog(this); // For filters popup window on main activity
         jobCardBlowUpDialog = new Dialog(this);
-
     }
 
     // For filters popup window on main activity
-    public void ShowFiltersPopup(View v){
+    /*public void ShowFiltersPopup(View v){
         // popup is dismissed when user clicks the completed button
         FloatingActionButton completedButton;
         filtersDialog.setContentView(R.layout.popup_filters);
         completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener((View view) -> filtersDialog.dismiss());
         filtersDialog.show();
-    }
+    }*/
 
     public void ShowJobCardExpanded(JobListing job) {
         // popup to display the full job description in a scrollView
