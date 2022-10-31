@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardBlowUp_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/cardBlowUp_close_window"
+            android:layout_width="45dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="5dp"
+            android:contentDescription="@string/closeWindow"
+            android:elevation="5dp"
+            android:foreground="@drawable/ic_baseline_close_24"
+            android:foregroundGravity="center"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <!-- Company Logo (ImageView) -->
+        <ImageView
+            android:id="@+id/cardBlowUp_item_companyLogo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/companyLogo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Job Title (TextView) -->
+        <TextView
+            android:id="@+id/cardBlowUp_item_jobTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintRight_toLeftOf="@id/cardBlowUp_close_window"
+            app:layout_constraintLeft_toRightOf="@+id/cardBlowUp_item_companyLogo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Job Title" />
+
+        <!-- Company Name (TextView) -->
+        <TextView
+            android:id="@+id/cardBlowUp_item_companyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_jobTitle"
+            tools:text="Company Name" />
+
+        <!-- Skills Matched (TextView) -->
+        <TextView
+            android:id="@+id/cardBlowUp_item_skillsMatched"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_companyName"
+            tools:text="Skills that match!" />
+
+        <!--Scrollview Container set attribute layout_constraintHeight to wrap_content_constrained, allowing the child Textview to wrap content but the scrollview to remain constrained to the items above it-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="10dp"
+            android:fillViewport="false"
+            android:isScrollContainer="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight="wrap_content_constrained"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardBlowUp_item_skillsMatched">
+
+                <TextView
+                    android:id="@+id/cardBlowUp_item_fullDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:text="Full job description" />
+        </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

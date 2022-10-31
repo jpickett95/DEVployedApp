@@ -15,12 +15,15 @@ import com.example.webparser.data.JobListing;
 import java.util.ArrayList;
 
 public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_RecyclerViewAdapter.MyViewHolder> {
+    private final JobCardBlowUpInterface jobCardBlowUpInterface;
     Context context;
     ArrayList<JobListing> jobListArray;
 
-    public JobPost_RecyclerViewAdapter(Context context, ArrayList<JobListing> jobListArray) {
+    public JobPost_RecyclerViewAdapter(Context context, ArrayList<JobListing> jobListArray,
+                                       JobCardBlowUpInterface jobCardBlowUpInterface) {
         this.context = context;
         this.jobListArray = jobListArray;
+        this.jobCardBlowUpInterface = jobCardBlowUpInterface;
     }
 
     @NonNull
@@ -29,7 +32,7 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         //This is where you inflate the layout (giving a look to our rows)
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_view_fragment, parent, false);
-        return new JobPost_RecyclerViewAdapter.MyViewHolder(view);
+        return new JobPost_RecyclerViewAdapter.MyViewHolder(view, jobCardBlowUpInterface);
     }
 
     @Override
@@ -84,12 +87,24 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         TextView tvName, tvTitle, tvMatch;
 
         //initializing the variables
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, JobCardBlowUpInterface jobCardBlowUpInterface) {
             super(itemView);
             imageView = itemView.findViewById(R.id.companyLogo);
             tvName = itemView.findViewById(R.id.companyName);
             tvTitle = itemView.findViewById(R.id.smallTitle);
             tvMatch = itemView.findViewById(R.id.smallSkillsMatch);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (jobCardBlowUpInterface != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            jobCardBlowUpInterface.OnCardClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }
