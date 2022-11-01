@@ -95,8 +95,9 @@ public class Amazon extends ParserTarget {
     @Override
     public void Main() throws IOException {
 
-        APIRequest request = new APIRequest(base_url);
-        JSONObject json = request.getJson();
+        APIRequest req = new APIRequest();
+        req.SetURL(base_url);
+        JSONObject json = req.getJson();
         JSONArray jobs = null;
 
         try {
@@ -104,7 +105,7 @@ public class Amazon extends ParserTarget {
             JSONObject newJson;
             for (int i = 0; i < totalJobs;) {
 
-                APIRequest req = new APIRequest("https://www.amazon.jobs/en/search.json?offset=" + i + "&result_limit=100&sort=relevant&category%5B%5D=operations-it-support-engineering&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&");
+                req.SetURL("https://www.amazon.jobs/en/search.json?offset=" + i + "&result_limit=100&sort=relevant&category%5B%5D=operations-it-support-engineering&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&");
 
                 newJson = req.getJson();
                 jobs = newJson.getJSONArray("jobs");
