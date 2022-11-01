@@ -8,9 +8,9 @@
 
         <Button
             android:id="@+id/cardBlowUp_close_window"
-            android:layout_width="45dp"
+            android:layout_width="48dp"
             android:layout_height="0dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:contentDescription="@string/closeWindow"
             android:elevation="5dp"
             android:foreground="@drawable/ic_baseline_close_24"
@@ -22,8 +22,8 @@
         <!-- Company Logo (ImageView) -->
         <ImageView
             android:id="@+id/cardBlowUp_item_companyLogo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_margin="5dp"
             android:contentDescription="@string/companyLogo"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,57 +32,68 @@
         <!-- Job Title (TextView) -->
         <TextView
             android:id="@+id/cardBlowUp_item_jobTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
             android:layout_margin="5dp"
+            android:autoSizeTextType="uniform"
+            android:clickable="true"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="@color/brand_Pistachio"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintRight_toLeftOf="@id/cardBlowUp_close_window"
             app:layout_constraintLeft_toRightOf="@+id/cardBlowUp_item_companyLogo"
+            app:layout_constraintRight_toLeftOf="@id/cardBlowUp_close_window"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Job Title" />
 
         <!-- Company Name (TextView) -->
-        <TextView
-            android:id="@+id/cardBlowUp_item_companyName"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/cardBlowUp_linearLayout1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/cardBlowUp_scrollView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_jobTitle"
-            tools:text="Company Name" />
+            app:layout_constraintTop_toBottomOf="@id/cardBlowUp_item_companyLogo">
 
-        <!-- Skills Matched (TextView) -->
-        <TextView
-            android:id="@+id/cardBlowUp_item_skillsMatched"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardBlowUp_item_companyName"
-            tools:text="Skills that match!" />
+                <TextView
+                    android:id="@+id/cardBlowUp_item_companyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingStart="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Company Name" />
+
+                <!-- Skills Matched (TextView) -->
+                <TextView
+                    android:id="@+id/cardBlowUp_item_skillsMatched"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingStart="5dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    tools:text="Skills that match!" />
+        </LinearLayout>
 
         <!--Scrollview Container set attribute layout_constraintHeight to wrap_content_constrained, allowing the child Textview to wrap content but the scrollview to remain constrained to the items above it-->
         <ScrollView
+            android:id="@+id/cardBlowUp_scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_marginStart="10dp"
             android:fillViewport="false"
             android:isScrollContainer="true"
+            android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight="wrap_content_constrained"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardBlowUp_item_skillsMatched">
+            app:layout_constraintTop_toBottomOf="@id/cardBlowUp_linearLayout1">
 
                 <TextView
                     android:id="@+id/cardBlowUp_item_fullDescription"

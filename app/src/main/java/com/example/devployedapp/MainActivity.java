@@ -2,12 +2,12 @@ package com.example.devployedapp;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
- JobCardBlowUpInterface_KL
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-=======
+
 
 
 import com.example.devployedapp.databinding.ActivityMainBinding;
@@ -37,7 +37,6 @@ public class MainActivity extends DrawerBaseActivity {
     private swipeCardsArrayAdapter arrayAdapter;
     List<JobListing> rowItems;
 
-JobCardBlowUpInterface_KL
     Dialog filtersDialog; // For filters popup window on main activity
     Dialog jobCardBlowUpDialog; // For enlarging the jobCard upon clicking
 
@@ -58,7 +57,7 @@ JobCardBlowUpInterface_KL
         rowItems = dbManager.getUnseenJobs();
         //endregion
 
-        arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems );
+        arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems);
         //arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
@@ -73,7 +72,7 @@ JobCardBlowUpInterface_KL
                 arrayAdapter.notifyDataSetChanged();
             }
 
-    //region SwipeCards: After Swiping Functions
+            //region SwipeCards: After Swiping Functions
             @Override
             public void onLeftCardExit(Object dataObject) {
                 //Do something on the left!
@@ -134,8 +133,8 @@ JobCardBlowUpInterface_KL
         //Menu button to go to saved jobs page
         Button rejectedJobsButton = findViewById(R.id.rejected_Jobs_button);
         rejectedJobsButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class)));
-JobCardBlowUpInterface_KL
-        filtersDialog = new Dialog(this); // For filters popup window on main activity
+
+        filtersDialog = new Dialog(this); // For filters popup window on main activity*/
         jobCardBlowUpDialog = new Dialog(this);
     }
 
@@ -149,17 +148,25 @@ JobCardBlowUpInterface_KL
         filtersDialog.show();
     }*/
 
-    public void ShowJobCardExpanded(JobListing job) {
+    public void ShowJobCardExpanded(JobListing job){
         // popup to display the full job description in a scrollView
         TextView companyName, jobTitle, skillsMatched, fullDescription;
 
         jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
-        Button closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);;
+        Button closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);
         ImageView imageView = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyLogo);
         imageView.setImageResource(R.drawable.ic_baseline_work_24);
 
         companyName = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyName);
         jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);
+        jobTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse(job.GetJobListingUrl());
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+                startActivity(webIntent);
+            }
+        });
         skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
 
@@ -170,8 +177,8 @@ JobCardBlowUpInterface_KL
 
         closeButton.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
         jobCardBlowUpDialog.show();
+        jobCardBlowUpDialog.getWindow().setLayout((15 * getResources().getDisplayMetrics().widthPixels)/16, (15 * getResources().getDisplayMetrics().heightPixels)/16);
     }
-
 
 
     // For SwipeCards

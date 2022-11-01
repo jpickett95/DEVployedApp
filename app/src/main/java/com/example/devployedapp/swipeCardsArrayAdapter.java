@@ -64,11 +64,14 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             if (!skills.isEmpty()) {
                 for (String skill: skills) {
                     if(jobDescription.toUpperCase().contains(skill.toUpperCase())){
-                        Chip chip = new Chip(getContext());
-                        chip.setChecked(false);
-                        chip.setText(skill);
-                        chip.setChipBackgroundColor(ContextCompat.getColorStateList(getContext(),R.color.brand_Pistachio));
-                        tagsGroup.addView(chip);
+                        Boolean isChecked = sharedPreferences.getBoolean(skill,false);
+                        if (isChecked) {
+                            Chip chip = new Chip(getContext());
+                            chip.setChecked(false);
+                            chip.setText(skill);
+                            chip.setChipBackgroundColor(ContextCompat.getColorStateList(getContext(), R.color.brand_Pistachio));
+                            tagsGroup.addView(chip);
+                        }
                     }
                 }
             }
