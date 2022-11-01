@@ -44,9 +44,9 @@ public class WebParser {
          * }
          */
         //If you do not, the program will likely fail at runtime due to the Name variable being set with no value (unless you set the Name).
-        //AddTarget(new Cisco(this));
-        AddTarget(new Google());
-        //AddTarget(new Amazon(this));
+        AddTarget(new Cisco(this));
+        AddTarget(new Google(this));
+        AddTarget(new Amazon(this));
     }
     
     /**

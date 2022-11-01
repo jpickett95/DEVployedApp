@@ -6,7 +6,10 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
+
+import com.example.webparser.WebParser;
 import com.example.webparser.data.JobListing;
 
 import java.io.IOException;
@@ -19,7 +22,8 @@ import kotlinx.coroutines.Job;
 
 public class Google extends ParserTarget
 {
-    public Google(){
+    public Google(WebParser parser){
+        super(parser);
         Name = "Google";
         base_url = "https://careers.google.com/api/v3/search/?distance=50&location=Canada&location=United%20States&q=&skills=Development%2C%20IT";
     }
@@ -33,7 +37,7 @@ public class Google extends ParserTarget
         String qualification_string = new String();
         Vector<String> qualifications = new Vector<>();
 
-        Element ul = element.getElementsByTag("ul").first();
+        Element ul = element.select("ul").first();
 
         Elements lis = ul.getElementsByTag("li");
 
@@ -41,7 +45,7 @@ public class Google extends ParserTarget
             qualifications.add(li.text().trim());
         }
 
-        qualification_string = String.join(";", qualifications);
+        qualification_string = String.join("\n", qualifications);
 
 
         return qualification_string;
@@ -82,24 +86,26 @@ public class Google extends ParserTarget
 
         try {
 
-            for (int page = 1; jobsAreEmpty; page++) {
-                request.SetURL(base_url + page);
+            for (int page = 1; !jobsAreEmpty; page++) {
+                String url = base_url + page;
+                request.SetURL(url);
                 JSONObject response = request.getJson();
 
                 JSONArray jobs = response.getJSONArray("jobs");
 
                 if (jobs.length() > 0) {
-                    for (int i = 0; jobs.length() != 0; i++) {
+                    for (int i = 0; i < jobs.length(); i++) {
                         JSONObject job_info = jobs.getJSONObject(i);
                         JSONArray locations = job_info.getJSONArray("locations");
                         String title = job_info.getString("title");
                         String listingUrl = job_info.getString("apply_url");
 
                         String raw_qualifications_html = job_info.getString("qualifications");
-                        Element jsoup_qualifications_html = new Element(raw_qualifications_html);
+                        Element jsoup_qualifications_html = Parser.parse(raw_qualifications_html, "");
                         String qualifications = GetQualifications(jsoup_qualifications_html);
 
-                        String JobDescription = new Element(job_info.getString("description")).text();
+                        Element jobHtml = Jsoup.parse(job_info.getString("description"));
+                        String JobDescription = jobHtml.text();
 
                         Vector<String> location_names = new Vector<>();
 
@@ -125,8 +131,8 @@ public class Google extends ParserTarget
                         newJobListing.SetJobListingUrl(listingUrl);
                         newJobListing.SetJobDescription(JobDescription);
 
-                        //parser.AddListing(newJobListing);
-                        parser.PrintListingInformation(newJobListing);
+                        //parser.PrintListingInformation(newJobListing);
+                        parser.AddListing(newJobListing);
                     }
                 } else {
                     jobsAreEmpty = true;

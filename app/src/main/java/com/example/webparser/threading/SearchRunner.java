@@ -48,7 +48,6 @@ public class SearchRunner extends Thread {
                 e.printStackTrace();
                 System.out.println("SearchRunner: " + target.GetName() + " failed to finished parsing");
             }
-
         }
     }
 }

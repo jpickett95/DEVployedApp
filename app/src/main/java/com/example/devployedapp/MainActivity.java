@@ -22,6 +22,7 @@ import com.example.webparser.events.interfaces.SearchCompletedCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import java.io.IOException;
 import java.sql.SQLDataException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,12 @@ public class MainActivity extends DrawerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            new WebParser().StartParsing();
+        }
+        catch (IOException e){e.printStackTrace();}
+        catch (InterruptedException e){e.printStackTrace();}
+
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
         allocateActivityTitle("Job Matches");
