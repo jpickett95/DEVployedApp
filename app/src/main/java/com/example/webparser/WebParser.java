@@ -152,9 +152,11 @@ public class WebParser {
             Targets = targets.values();
         }
 
+        System.out.println("WebParser: About to begin Parsing");
         //This will iterate through every available ParserTarget and will add all of the returned
         //listings into the main parsedListings to be accessed in the UI
         SearchRunner runnerThread = new SearchRunner(Targets);
+        System.out.println("WebParser: runnerThread launched.");
         runnerThread.start();
     }
 

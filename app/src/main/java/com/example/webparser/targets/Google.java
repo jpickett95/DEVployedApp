@@ -125,7 +125,7 @@ public class Google extends ParserTarget
                         newJobListing.SetJobListingUrl(listingUrl);
                         newJobListing.SetJobDescription(JobDescription);
 
-                        parser.AddListing(newJobListing);
+                        //parser.AddListing(newJobListing);
                         parser.PrintListingInformation(newJobListing);
                     }
                 } else {
