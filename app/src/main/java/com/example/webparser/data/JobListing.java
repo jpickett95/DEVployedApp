@@ -30,6 +30,7 @@ public class JobListing {
     private String JobLocation;
     private String JobListingUrl;
     private String JobType;
+    private String JobQualifications;
     private String JobDescription;
     private long JobID;
     private HashMap<String, String> AdditionalInformation;
@@ -39,6 +40,7 @@ public class JobListing {
         JobTitle = "";
         JobLocation = "";
         JobType = "";
+        JobQualifications = "";
         JobDescription = "";
         JobListingUrl = "";
         AdditionalInformation = new HashMap<>();
@@ -66,6 +68,10 @@ public class JobListing {
 
     public void SetJobLocation(String jobLocation){ JobLocation = jobLocation; }
     public String GetJobLocation(){ return JobLocation; }
+
+
+    public void SetJobQualifications(String jobQualifications){JobQualifications = jobQualifications;}
+    public String GetJobQualifications(){ return JobQualifications; }
 
     public void SetJobDescription(String jobDescription){JobDescription = jobDescription;}
     public String GetJobDescription(){ return JobDescription; }
