@@ -11,10 +11,8 @@ import okhttp3.Response;
 
 public class APIRequest {
     String mUrl;
-    public APIRequest(String url){
-        mUrl = url;
-    }
-
+    public APIRequest(){ mUrl = "";};
+    public void SetURL(String Url){mUrl = Url;}
     public JSONObject getJson(){
         String json = "{\"message\":\"not found\"}";
 
