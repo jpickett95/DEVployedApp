@@ -45,13 +45,6 @@ public class MainActivity extends DrawerBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        try {
-            new WebParser().StartParsing();
-        }
-        catch (IOException e){e.printStackTrace();}
-        catch (InterruptedException e){e.printStackTrace();}
-
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
         allocateActivityTitle("Job Matches");
