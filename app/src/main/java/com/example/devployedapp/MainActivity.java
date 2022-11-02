@@ -1,27 +1,24 @@
 package com.example.devployedapp;
 
+import static android.text.TextUtils.concat;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.service.autofill.RegexValidator;
+import android.text.Spanned;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.util.StringBuilderPrinter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-
-
 
 import com.example.devployedapp.databinding.ActivityMainBinding;
 import com.example.webparser.data.JobListing;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.List;
@@ -169,18 +166,33 @@ public class MainActivity extends DrawerBaseActivity {
         });
         skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
+        String prettyJobDesc = JobDescriptionBeautifier(job.GetJobDescription());
 
         companyName.setText(job.GetJobLocation());
         jobTitle.setText(job.GetJobTitle());
         skillsMatched.setText(job.GetJobType());
-        fullDescription.setText(job.GetJobDescription());
+        fullDescription.setText(prettyJobDesc);
 
         closeButton.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
         jobCardBlowUpDialog.show();
         jobCardBlowUpDialog.getWindow().setLayout((15 * getResources().getDisplayMetrics().widthPixels)/16, (15 * getResources().getDisplayMetrics().heightPixels)/16);
     }
 
+    public String JobDescriptionBeautifier(String jobDescription){
+        //Pattern pattern = Pattern.compile(". ");
+        StringBuilder stringBuilder = new StringBuilder();
 
+        String[] splitDescription = jobDescription.split("\\.\\s|\\R|\\$", 0);
+        for (int i = 0; i < splitDescription.length; i++) {
+            stringBuilder.append(splitDescription[i]).append(". \n\t");
+
+        }
+        return stringBuilder.toString();
+    }
+
+
+//possibly for jobCard original on Main Activity use ellipsize which fits text w an ellipsis at
+// the end of it
 
 
     // For SwipeCards
