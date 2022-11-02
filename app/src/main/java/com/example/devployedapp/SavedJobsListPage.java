@@ -1,6 +1,9 @@
 package com.example.devployedapp;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.BinderThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,7 +59,7 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
         jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
         Button closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);
         ImageView imageView = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyLogo);
-        imageView.setImageResource(R.drawable.ic_baseline_work_24);
+        imageView.setImageResource(R.drawable.custom_saved_heart_icon);
 
         companyName = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyName);
         jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);
@@ -64,10 +68,19 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
 
         companyName.setText(jobPostings.get(position).GetJobLocation());
         jobTitle.setText(jobPostings.get(position).GetJobTitle());
+        jobTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse(jobPostings.get(position).GetJobListingUrl());
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+                startActivity(webIntent);
+            }
+        });
         skillsMatched.setText(jobPostings.get(position).GetJobType());
         fullDescription.setText(jobPostings.get(position).GetJobDescription());
 
         closeButton.setOnClickListener((View v) -> jobCardBlowUpDialog.dismiss());
         jobCardBlowUpDialog.show();
+        jobCardBlowUpDialog.getWindow().setLayout((15 * getResources().getDisplayMetrics().widthPixels)/16, (15 * getResources().getDisplayMetrics().heightPixels)/16);
     }
 }

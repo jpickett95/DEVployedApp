@@ -67,7 +67,13 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         if (jobDescription.length() > 101) {
             holder.tvMatch.setText(jobDescription.substring(0, 100) + "...");
         } else holder.tvMatch.setText(jobDescription);
-        holder.imageView.setImageResource(R.drawable.ic_baseline_work_24);
+        // to change the image on the left of each recyclerView listing based on the activity
+        if (context instanceof RejectedJobsListPage){
+            holder.imageView.setImageResource(R.drawable.custom_rejected_cross_icon);
+        }
+        else if (context instanceof SavedJobsListPage){
+            holder.imageView.setImageResource(R.drawable.custom_saved_heart_icon);
+        }
     }
 
     @Override

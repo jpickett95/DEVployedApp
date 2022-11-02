@@ -155,7 +155,7 @@ public class MainActivity extends DrawerBaseActivity {
         jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
         Button closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);
         ImageView imageView = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyLogo);
-        imageView.setImageResource(R.drawable.ic_baseline_work_24);
+        imageView.setImageResource(R.mipmap.ic_launcher);
 
         companyName = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyName);
         jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);
@@ -179,6 +179,8 @@ public class MainActivity extends DrawerBaseActivity {
         jobCardBlowUpDialog.show();
         jobCardBlowUpDialog.getWindow().setLayout((15 * getResources().getDisplayMetrics().widthPixels)/16, (15 * getResources().getDisplayMetrics().heightPixels)/16);
     }
+
+
 
 
     // For SwipeCards
