@@ -15,7 +15,7 @@
             android:title="@string/SavedJobsPage_page_title" />
 
         <item android:id="@+id/nav_rejected_jobs"
-            android:icon="@drawable/ic_baseline_delete_24"
+            android:icon="@drawable/custom_rejected_cross_icon"
             android:title="@string/RejectedJobsPage_page_title" />
     </group>
 

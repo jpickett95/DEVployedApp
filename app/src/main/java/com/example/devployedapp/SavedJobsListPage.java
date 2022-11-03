@@ -21,14 +21,6 @@ import com.example.webparser.data.JobListing;
 
 import java.util.ArrayList;
 
-/* reference webpages:
-Android Docs Create dynamic lists with RecyclerView: https://developer.android.com/develop/ui/views/layout/recyclerview
-Android Docs Example of adding RecyclerView: https://github.com/android/views-widgets-samples/commit/aea13d5dbb4b5f1844bcb7f1b330b93f90750052#diff-c26aac7ad610d30f5ab5e74a8f575f27604ae4a3ce747c87d23dbc0a94df22f6
-*/
-/*Reference Videos:
-* RecyclerView - Everything you need to Know, Practical Coding: https://www.youtube.com/watch?v=Mc0XT58A1Z4
-* */
-
 public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlowUpInterface{
 
     ListPagesSavedBinding listPagesSavedBinding;
@@ -59,7 +51,7 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
         jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
         Button closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);
         ImageView imageView = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyLogo);
-        imageView.setImageResource(R.drawable.custom_saved_heart_icon);
+        imageView.setImageResource(R.drawable.ic_baseline_favorite_24);
 
         companyName = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyName);
         jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);

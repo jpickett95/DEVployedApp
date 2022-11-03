@@ -60,19 +60,19 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
         }
 
         // Assign data to views
-        holder.tvName.setText(jobType);
+        holder.companyName.setText(jobType);
         if (jobTitle.length() > 31) {
-            holder.tvTitle.setText(jobTitle.substring(0, 30) + "...");
-        } else holder.tvTitle.setText(jobTitle);
+            holder.jobTitle.setText(jobTitle.substring(0, 30) + "...");
+        } else holder.jobTitle.setText(jobTitle);
         if (jobDescription.length() > 101) {
-            holder.tvMatch.setText(jobDescription.substring(0, 100) + "...");
-        } else holder.tvMatch.setText(jobDescription);
+            holder.skillsMatch.setText(jobDescription.substring(0, 100) + "...");
+        } else holder.skillsMatch.setText(jobDescription);
         // to change the image on the left of each recyclerView listing based on the activity
         if (context instanceof RejectedJobsListPage){
             holder.imageView.setImageResource(R.drawable.custom_rejected_cross_icon);
         }
         else if (context instanceof SavedJobsListPage){
-            holder.imageView.setImageResource(R.drawable.custom_saved_heart_icon);
+            holder.imageView.setImageResource(R.drawable.ic_baseline_favorite_24);
         }
     }
 
@@ -90,15 +90,15 @@ public class JobPost_RecyclerViewAdapter extends RecyclerView.Adapter<JobPost_Re
 
         //creating variables for the items on the recyclerView fragment
         ImageView imageView;
-        TextView tvName, tvTitle, tvMatch;
+        TextView companyName, jobTitle, skillsMatch;
 
         //initializing the variables
         public MyViewHolder(@NonNull View itemView, JobCardBlowUpInterface jobCardBlowUpInterface) {
             super(itemView);
             imageView = itemView.findViewById(R.id.companyLogo);
-            tvName = itemView.findViewById(R.id.companyName);
-            tvTitle = itemView.findViewById(R.id.smallTitle);
-            tvMatch = itemView.findViewById(R.id.smallSkillsMatch);
+            companyName = itemView.findViewById(R.id.companyName);
+            jobTitle = itemView.findViewById(R.id.smallTitle);
+            skillsMatch = itemView.findViewById(R.id.smallSkillsMatch);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
