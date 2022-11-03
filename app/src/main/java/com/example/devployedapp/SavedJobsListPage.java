@@ -65,6 +65,8 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
         jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);
         skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
+        String prettyJobDesc =
+                JobDescriptionBeautifier(jobPostings.get(position).GetJobDescription());
 
         companyName.setText(jobPostings.get(position).GetJobLocation());
         jobTitle.setText(jobPostings.get(position).GetJobTitle());
@@ -77,10 +79,20 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
             }
         });
         skillsMatched.setText(jobPostings.get(position).GetJobType());
-        fullDescription.setText(jobPostings.get(position).GetJobDescription());
+        fullDescription.setText(prettyJobDesc);
 
         closeButton.setOnClickListener((View v) -> jobCardBlowUpDialog.dismiss());
         jobCardBlowUpDialog.show();
         jobCardBlowUpDialog.getWindow().setLayout((15 * getResources().getDisplayMetrics().widthPixels)/16, (15 * getResources().getDisplayMetrics().heightPixels)/16);
+    }
+    public String JobDescriptionBeautifier(String jobDescription){
+        StringBuilder stringBuilder = new StringBuilder();
+
+        String[] splitDescription = jobDescription.split("\\.\\s|\\R|\\$", 0);
+        for (int i = 0; i < splitDescription.length; i++) {
+            stringBuilder.append(splitDescription[i]).append(". \n\t");
+
+        }
+        return stringBuilder.toString();
     }
 }

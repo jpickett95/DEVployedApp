@@ -179,7 +179,6 @@ public class MainActivity extends DrawerBaseActivity {
     }
 
     public String JobDescriptionBeautifier(String jobDescription){
-        //Pattern pattern = Pattern.compile(". ");
         StringBuilder stringBuilder = new StringBuilder();
 
         String[] splitDescription = jobDescription.split("\\.\\s|\\R|\\$", 0);
