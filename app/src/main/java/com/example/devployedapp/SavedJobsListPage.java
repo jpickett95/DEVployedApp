@@ -90,7 +90,7 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
 
         String[] splitDescription = jobDescription.split("\\.\\s|\\R|\\$", 0);
         for (int i = 0; i < splitDescription.length; i++) {
-            stringBuilder.append(splitDescription[i]).append(". \n\t");
+            stringBuilder.append(splitDescription[i]).append(". \n\n\t");
 
         }
         return stringBuilder.toString();
