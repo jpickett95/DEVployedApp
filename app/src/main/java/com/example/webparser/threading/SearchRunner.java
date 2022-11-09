@@ -35,13 +35,19 @@ public class SearchRunner extends Thread {
 
     public SearchRunner(Collection<ParserTarget> targets){
         this.targets = targets;
+        System.out.println("SearchRunner: Instance of SearchRunner was created");
     }
     public void run(){
+        System.out.println("SearchRunner: About to iterate through ParserTargets");
         for (ParserTarget target : targets) {
+            System.out.println("SearchRunner: About to try ParserTarget.StartParsing() on " + target.GetName());
             try {
                 target.StartParsing();
-            } catch (IOException e) { }
-
+                System.out.println("SearchRunner: " + target.GetName() + " successfully finished parsing");
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("SearchRunner: " + target.GetName() + " failed to finished parsing");
+            }
         }
     }
 }
