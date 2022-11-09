@@ -47,9 +47,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation files('lib\\jsoup-1.15.3.jar')
     implementation files('lib\\okhttp-4.7.2.jar')
-    implementation files('lib\\jackson-databind-2.14.0-rc2.jar')
-    implementation files('lib\\jackson-core-2.14.0-rc2.jar')
-    implementation files('lib\\jackson-annotations-2.14.0-rc2.jar')
     implementation files('lib/okhttp-4.7.2.jar')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

@@ -167,7 +167,7 @@ public class Cisco extends ParserTarget{
 
                 parser.AddListing(newJobListing);
             }
-            offset = ((offset + 25) < numberOfListings) ? (offset + 25) : numberOfListings - 25;
+            offset = ((offset + 25) < numberOfListings) ? (offset + 25) : numberOfListings;
         }
     }
 

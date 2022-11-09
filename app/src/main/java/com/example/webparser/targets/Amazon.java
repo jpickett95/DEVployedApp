@@ -36,10 +36,23 @@ public class Amazon extends ParserTarget {
         return null;
     }
 
+    public String GetJobDescription(String description){
+        String[] jobDescriptionItems = description.split("<ul>");
+        String descriptionBeforeList = jobDescriptionItems[0].replace("<br/>", "\n");
+        String list = "<ul>" + jobDescriptionItems[1];
+        String responsibilityList = "\n";
+        Element htmlResponsibilityList = Jsoup.parse(list);
+        for (Element responsibility:htmlResponsibilityList.getElementsByTag("li")){
+            responsibilityList += "- " + responsibility.text() + "\n";
+        }
+        return descriptionBeforeList + responsibilityList;
+    }
 
     //TODO: Implement this method (when I have time)
-    public String GetQualifications(Element element) {
-        return null;
+    public String GetQualifications(Element element) { return null; }
+
+    public String GetQualifications (String responsiblities){
+        return responsiblities.replace("<br/>", "\n");
     }
 
     // <td data-th="Location"></td>            //Location
@@ -115,20 +128,13 @@ public class Amazon extends ParserTarget {
                     JSONObject job = jobs.getJSONObject(job_num);
                     jobListing = new JobListing();
                     jobListing.SetJobTitle(job.getString("title"));
-                    jobListing.SetJobDescription(job.getString("description"));
+                    jobListing.SetJobDescription(GetJobDescription(job.getString("description")));
+                    jobListing.SetJobQualifications(GetQualifications(job.getString("basic_qualifications")));
                     jobListing.SetJobListingUrl(job.getString("url_next_step"));
                     jobListing.SetJobLocation(job.getString("location"));
                     jobListing.SetCompanyName(job.getString("company_name"));
-
-                    System.out.println(
-                            "JobListing.Title : " + jobListing.GetJobTitle() + "\n" +
-                            "JobListing.Location : " + jobListing.GetJobLocation() + "\n" +
-                            "JobListing.Company : " + jobListing.GetCompanyName() + "\n" +
-                            "JobListing.ListingUrl :" + jobListing.GetJobListingUrl() + "\n" +
-                            "JobListing.Description : " + jobListing.GetJobDescription() + "\n\n"
-                    );
-
-                    parser.AddListing(jobListing);
+                    parser.PrintListingInformation(jobListing);
+                    //parser.AddListing(jobListing);
                 }
                 i = ((i + 100) < totalJobs) ? (i + 100) : (totalJobs - i);
             }
