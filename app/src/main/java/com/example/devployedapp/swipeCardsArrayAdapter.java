@@ -61,7 +61,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             jobType = jobPost.GetJobType();
 
             // Create 'tags' based off profile skills
-            if (!skills.isEmpty()) {
+            if (skills != null && !skills.isEmpty()) {
                 for (String skill: skills) {
                     if(jobDescription.toUpperCase().contains(skill.toUpperCase())){
                         Boolean isChecked = sharedPreferences.getBoolean(skill,false);
