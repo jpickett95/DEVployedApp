@@ -37,22 +37,38 @@ public class Amazon extends ParserTarget {
     }
 
     public String GetJobDescription(String description){
-        String[] jobDescriptionItems = description.split("<ul>");
-        String descriptionBeforeList = jobDescriptionItems[0].replace("<br/>", "\n");
-        String list = "<ul>" + jobDescriptionItems[1];
-        String responsibilityList = "\n";
-        Element htmlResponsibilityList = Jsoup.parse(list);
-        for (Element responsibility:htmlResponsibilityList.getElementsByTag("li")){
-            responsibilityList += "- " + responsibility.text() + "\n";
+
+        String mainDescription = description.replace("<br/>", "\n");
+        String responsibilitySection;
+
+        if (description.contains("<ul>")) {
+            Elements htmlResponsibilityLists = Jsoup.parse(mainDescription).getElementsByTag("ul");
+            for (Element responsibilityList : htmlResponsibilityLists) {
+                responsibilitySection = "";
+                for (Element responsibility : responsibilityList.getElementsByTag("li")) {
+                    responsibilitySection += "- " + responsibility.text() + "\n";
+                }
+                mainDescription = mainDescription.replace(responsibilityList.html().replace("\n",""), responsibilitySection);
+            }
         }
-        return descriptionBeforeList + responsibilityList;
+
+        return mainDescription;
     }
 
     //TODO: Implement this method (when I have time)
     public String GetQualifications(Element element) { return null; }
 
-    public String GetQualifications (String responsiblities){
-        return responsiblities.replace("<br/>", "\n");
+    public String GetQualifications (String qualifications){
+        String outputQualifications = "";
+        if (qualifications.contains("<ul>")) {
+            Elements lists = Jsoup.parse(qualifications).getElementsByTag("ul");
+            for (Element list:lists){
+                for (Element qualification:list.getElementsByTag("li")){
+                    outputQualifications += qualification.text() + "\n";
+                }
+            }
+        }
+        return outputQualifications;
     }
 
     // <td data-th="Location"></td>            //Location
@@ -136,7 +152,7 @@ public class Amazon extends ParserTarget {
                     parser.PrintListingInformation(jobListing);
                     //parser.AddListing(jobListing);
                 }
-                i = ((i + 100) < totalJobs) ? (i + 100) : (totalJobs - i);
+                i = ((i + 100) < totalJobs) ? (i + 100) : totalJobs;
             }
         } catch (JSONException e){
             e.printStackTrace();
