@@ -1,16 +1,19 @@
 package com.example.webparser;
 
-import com.example.webparser.targets.ParserTarget;
 import com.example.webparser.data.JobListing;
-
+import com.example.webparser.events.EventManager;
+import com.example.webparser.targets.Amazon;
 import com.example.webparser.targets.Cisco;
-//import com.example.webparser.targets.Google;
-import com.example.webparser.events.handlers.SearchEventHandler;
+import com.example.webparser.targets.Google;
+import com.example.webparser.targets.ParserTarget;
 import com.example.webparser.threading.SearchRunner;
 
-import com.example.webparser.events.EventManager;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.Vector;
 
 
 public class WebParser {
@@ -41,8 +44,9 @@ public class WebParser {
          * }
          */
         //If you do not, the program will likely fail at runtime due to the Name variable being set with no value (unless you set the Name).
-        AddTarget(new Cisco(this));
-        //AddTarget(new Google());
+        //AddTarget(new Cisco(this));
+        AddTarget(new Google(this));
+        //AddTarget(new Amazon(this));
     }
     
     /**
@@ -131,7 +135,7 @@ public class WebParser {
     public void AddListing(JobListing listing){
         //This isn't implemented yet, but it is an example of what this can be used for.
         //for (EventHandler handler:events) {handler.Notify;};
-        parsedListings.add(listing);
+        //parsedListings.add(listing);
         eventManager.NotifyListingWasAdded(listing);
     }
 
@@ -148,15 +152,12 @@ public class WebParser {
             Targets = targets.values();
         }
 
+        System.out.println("WebParser: About to begin Parsing");
         //This will iterate through every available ParserTarget and will add all of the returned
         //listings into the main parsedListings to be accessed in the UI
-        //for (ParserTarget mTarget:Targets){
-        //    mTarget.StartParsing(this);
-        //}
         SearchRunner runnerThread = new SearchRunner(Targets);
+        System.out.println("WebParser: runnerThread launched.");
         runnerThread.start();
-
-        //runnerThread.join();
     }
 
     /**
@@ -275,5 +276,17 @@ public class WebParser {
         }
 
         return JobCollection;
+    }
+
+    public void PrintListingInformation(JobListing jobListing){
+        System.out.println(
+                "Job Title:          "   + jobListing.GetJobTitle()          + "\n" +
+                "Job Company Name:   "   + jobListing.GetCompanyName()       + "\n" +
+                "Job Location:       "   + jobListing.GetJobLocation()       + "\n" +
+                "Job Type:           "   + jobListing.GetJobType()           + "\n" +
+                "Job Description:    "   + jobListing.GetJobDescription()    + "\n" +
+                "Job Qualifications: "   + jobListing.GetJobQualifications() + "\n" +
+                "\n"
+        );
     }
 }

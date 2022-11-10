@@ -4,29 +4,43 @@ import static android.text.TextUtils.concat;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.service.autofill.RegexValidator;
 import android.text.Spanned;
 import android.util.Log;
+
 import android.util.StringBuilderPrinter;
+
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import com.example.devployedapp.databinding.ActivityDrawerBaseBinding;
 import com.example.devployedapp.databinding.ActivityMainBinding;
+import com.example.webparser.WebParser;
 import com.example.webparser.data.JobListing;
+
+import com.example.webparser.events.handlers.ListingAddedEventHandler;
+import com.example.webparser.events.handlers.SearchCompletedEventHandler;
+import com.example.webparser.events.interfaces.ListingAddedCallback;
+import com.example.webparser.events.interfaces.SearchCompletedCallback;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import java.io.IOException;
+import java.sql.SQLDataException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends DrawerBaseActivity {
 
     ActivityMainBinding activityMainBinding;
-
 
     //region Variables called before OnCreate() method
 
@@ -35,7 +49,6 @@ public class MainActivity extends DrawerBaseActivity {
     List<JobListing> rowItems;
 
     Dialog filtersDialog; // For filters popup window on main activity
-    Dialog jobCardBlowUpDialog; // For enlarging the jobCard upon clicking
 
     DBManager dbManager;
 
@@ -44,6 +57,7 @@ public class MainActivity extends DrawerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
         allocateActivityTitle("Job Matches");
@@ -54,7 +68,7 @@ public class MainActivity extends DrawerBaseActivity {
         rowItems = dbManager.getUnseenJobs();
         //endregion
 
-        arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems);
+        arrayAdapter = new swipeCardsArrayAdapter(this, R.layout.swipecards_item, rowItems );
         //arrayAdapter.notifyDataSetChanged(); must be called after adding new items to the 'rowItems' list from this point
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
@@ -69,7 +83,7 @@ public class MainActivity extends DrawerBaseActivity {
                 arrayAdapter.notifyDataSetChanged();
             }
 
-            //region SwipeCards: After Swiping Functions
+    //region SwipeCards: After Swiping Functions
             @Override
             public void onLeftCardExit(Object dataObject) {
                 //Do something on the left!
@@ -77,14 +91,14 @@ public class MainActivity extends DrawerBaseActivity {
                 //If you want to use it just cast it (String) dataObject
                 Toast.makeText(MainActivity.this, "Reject!", Toast.LENGTH_SHORT).show();
                 JobListing job = (JobListing) dataObject;
-                dbManager.updateJobStatus(job.GetJobID(), DBManager.REJECTED);
+                dbManager.updateJobStatus(job.GetJobID(), dbManager.REJECTED);
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
                 Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
                 JobListing job = (JobListing) dataObject;
-                dbManager.updateJobStatus(job.GetJobID(), DBManager.SAVED);
+                dbManager.updateJobStatus(job.GetJobID(), dbManager.SAVED);
             }
 //endregion
 
@@ -111,17 +125,16 @@ public class MainActivity extends DrawerBaseActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                //Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
-
-                // casts dataObject to JobListing and passes to the method to create full CardView
-                JobListing job = (JobListing) dataObject;
-                ShowJobCardExpanded(job);
+                Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
+                // potentially link to job application or job posting on company website?
+                // ^^ OR pull up a popup window with more specific, detailed information
             }
         });
 
         //Menu to go to profile page
         Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, ProfilePage.class)));
+
         Button passButton = findViewById(R.id.rejectButton);
         passButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this,
                 RejectedJobsListPage.class)));
@@ -134,13 +147,14 @@ public class MainActivity extends DrawerBaseActivity {
     }
 
     // For filters popup window on main activity
-    /*public void ShowFiltersPopup(View v){
+    public void ShowFiltersPopup(View v){
         // popup is dismissed when user clicks the completed button
         FloatingActionButton completedButton;
         filtersDialog.setContentView(R.layout.popup_filters);
         completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener((View view) -> filtersDialog.dismiss());
         filtersDialog.show();
+
     }*/
 
     public void ShowJobCardExpanded(JobListing job){
@@ -188,8 +202,6 @@ public class MainActivity extends DrawerBaseActivity {
     }
 
 
-//possibly for jobCard original on Main Activity use ellipsize which fits text w an ellipsis at
-// the end of it
 
 
     // For SwipeCards

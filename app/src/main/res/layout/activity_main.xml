@@ -64,11 +64,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/applyButton"
+        android:id="@+id/Saved_Jobs_Button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="24dp"
+
         android:text="@string/save"
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -77,7 +78,7 @@
         app:layout_constraintStart_toEndOf="@+id/menuButton" />
 
     <Button
-        android:id="@+id/rejectButton"
+        android:id="@+id/Rejected_Jobs_Button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

@@ -16,7 +16,7 @@ public abstract class ParserTarget  {
     //this member will be shared with every other ParserTarget Subclass
     //as it is assumed that you will be wanting to search other sites for the same jobs
     //if you were going to switch to them.
-    private WebParser parser;
+    protected WebParser parser;
 
     static Vector<String> filter_arguments = new Vector<String>();
     protected String Name;
@@ -83,7 +83,7 @@ public abstract class ParserTarget  {
     public String GetSearchUrl(){ return MakeSearchUrl(); }
     //these arguemnts will be shared between all instances
     public void AddFilterArgument(String arg){ filter_arguments.add(arg); }
-    public abstract Vector<JobListing> Main() throws IOException;
+    public abstract void Main() throws IOException;
 
     /**
      * <h3>public void StartParsing(WebParser parser)</h3>
@@ -99,11 +99,7 @@ public abstract class ParserTarget  {
     public void StartParsing() throws IOException{
         //Note that the Main method is a abstract method that will be implemented by each subclass of the 
         //ParserTarget class.
-        Vector<JobListing> listings = Main();
-
-        for (JobListing listing:listings){
-            parser.AddListing(listing);
-        }
+        Main();
         WebParser.eventManager.NotifySearchHasCompleted();
     }
 }

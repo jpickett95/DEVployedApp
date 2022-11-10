@@ -54,6 +54,14 @@ public class RejectedJobsListPage extends DrawerBaseActivity implements JobCardB
 
         companyName = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyName);
         jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);
+        jobTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse(jobPostings.get(position).GetJobListingUrl());
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+                startActivity(webIntent);
+            }
+        });
         skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
         String prettyJobDesc =
