@@ -4,6 +4,7 @@ import static android.text.TextUtils.concat;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.service.autofill.RegexValidator;
 import android.text.Spanned;
@@ -14,6 +15,8 @@ import android.util.StringBuilderPrinter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -49,7 +52,7 @@ public class MainActivity extends DrawerBaseActivity {
     List<JobListing> rowItems;
 
     Dialog filtersDialog; // For filters popup window on main activity
-
+    Dialog jobCardBlowUpDialog;
     DBManager dbManager;
 
 //endregion
@@ -128,6 +131,8 @@ public class MainActivity extends DrawerBaseActivity {
                 Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
                 // potentially link to job application or job posting on company website?
                 // ^^ OR pull up a popup window with more specific, detailed information
+                JobListing jobListing = (JobListing) dataObject;
+                ShowJobCardExpanded(jobListing);
             }
         });
 
@@ -135,10 +140,10 @@ public class MainActivity extends DrawerBaseActivity {
         Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, ProfilePage.class)));
 
-        Button passButton = findViewById(R.id.rejectButton);
+        Button passButton = findViewById(R.id.Saved_Jobs_Button);
         passButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this,
                 RejectedJobsListPage.class)));
-        Button saveButton = findViewById(R.id.applyButton);
+        Button saveButton = findViewById(R.id.Rejected_Jobs_Button);
         saveButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this,
                 SavedJobsListPage.class)));
 
@@ -146,7 +151,7 @@ public class MainActivity extends DrawerBaseActivity {
         jobCardBlowUpDialog = new Dialog(this);
     }
 
-    // For filters popup window on main activity
+    /*// For filters popup window on main activity
     public void ShowFiltersPopup(View v){
         // popup is dismissed when user clicks the completed button
         FloatingActionButton completedButton;
@@ -178,31 +183,16 @@ public class MainActivity extends DrawerBaseActivity {
         });
         skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
-        String prettyJobDesc = JobDescriptionBeautifier(job.GetJobDescription());
 
         companyName.setText(job.GetJobLocation());
         jobTitle.setText(job.GetJobTitle());
         skillsMatched.setText(job.GetJobType());
-        fullDescription.setText(prettyJobDesc);
+        fullDescription.setText(job.GetJobDescription());
 
         closeButton.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
         jobCardBlowUpDialog.show();
         jobCardBlowUpDialog.getWindow().setLayout((15 * getResources().getDisplayMetrics().widthPixels)/16, (15 * getResources().getDisplayMetrics().heightPixels)/16);
     }
-
-    public String JobDescriptionBeautifier(String jobDescription){
-        StringBuilder stringBuilder = new StringBuilder();
-
-        String[] splitDescription = jobDescription.split("\\.\\s|\\R|\\$", 0);
-        for (int i = 0; i < splitDescription.length; i++) {
-            stringBuilder.append(splitDescription[i]).append(". \n\n\t");
-
-        }
-        return stringBuilder.toString();
-    }
-
-
-
 
     // For SwipeCards
     /*
