@@ -2,7 +2,7 @@ package com.example.webparser.events.handlers;
 import com.example.webparser.data.JobListing;
 import com.example.webparser.events.interfaces.ListingAddedCallback;
 
-public class ListingAddedEventHandler <T extends ListingAddedCallback> extends SearchEventHandler {
+public class ListingAddedEventHandler <T extends ListingAddedCallback> extends EventHandler {
     T target;
     public ListingAddedEventHandler (T target){ this.target = target; }
     public void EventHasCompleted(){
