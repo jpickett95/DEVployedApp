@@ -125,11 +125,11 @@ public class MainActivity extends DrawerBaseActivity {
         menuButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, ProfilePage.class)));
 
         //Menu button to go to saved jobs page
-        Button savedJobsButton = findViewById(R.id.applyButton);
+        Button savedJobsButton = findViewById(R.id.Saved_Jobs_Button);
         savedJobsButton.setOnClickListener((View view) -> startActivity(new Intent(MainActivity.this, SavedJobsListPage.class)));
 
         //Menu button to go to saved jobs page
-        Button rejectedJobsButton = findViewById(R.id.rejectButton);
+        Button rejectedJobsButton = findViewById(R.id.Rejected_Jobs_Button);
         rejectedJobsButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class)));
 
         filtersDialog = new Dialog(this); // For filters popup window on main activity
