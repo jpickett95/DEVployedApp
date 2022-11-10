@@ -87,9 +87,20 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
         jobTitleView.setText(jobTitle);
         jobTypeView.setText(jobType);
         jobLocationView.setText(location);
-        jobDescriptionView.setText(jobDescription);
+        String prettyJobDesc = JobDescriptionBeautifier(jobDescription);
+        jobDescriptionView.setText(prettyJobDesc);
         companyLogoView.setImageResource(R.mipmap.ic_launcher);
 
         return convertView;
+    }
+    public String JobDescriptionBeautifier(String jobDescription){
+        StringBuilder stringBuilder = new StringBuilder();
+
+        String[] splitDescription = jobDescription.split("\\.\\s|\\R|\\$", 0);
+        for (int i = 0; i < splitDescription.length; i++) {
+            stringBuilder.append(splitDescription[i]).append(". \n\n\t");
+
+        }
+        return stringBuilder.toString();
     }
 }

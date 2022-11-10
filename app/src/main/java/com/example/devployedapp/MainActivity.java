@@ -1,25 +1,36 @@
 package com.example.devployedapp;
 
+import static android.text.TextUtils.concat;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.RegexValidator;
+import android.text.Spanned;
 import android.util.Log;
+
+import android.util.StringBuilderPrinter;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import com.example.devployedapp.databinding.ActivityDrawerBaseBinding;
 import com.example.devployedapp.databinding.ActivityMainBinding;
 import com.example.webparser.WebParser;
 import com.example.webparser.data.JobListing;
+
 import com.example.webparser.events.handlers.ListingAddedEventHandler;
 import com.example.webparser.events.handlers.SearchCompletedEventHandler;
 import com.example.webparser.events.interfaces.ListingAddedCallback;
 import com.example.webparser.events.interfaces.SearchCompletedCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.io.IOException;
@@ -124,15 +135,15 @@ public class MainActivity extends DrawerBaseActivity {
         Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, ProfilePage.class)));
 
-        //Menu button to go to saved jobs page
-        Button savedJobsButton = findViewById(R.id.Saved_Jobs_Button);
-        savedJobsButton.setOnClickListener((View view) -> startActivity(new Intent(MainActivity.this, SavedJobsListPage.class)));
+        Button passButton = findViewById(R.id.rejectButton);
+        passButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this,
+                RejectedJobsListPage.class)));
+        Button saveButton = findViewById(R.id.applyButton);
+        saveButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this,
+                SavedJobsListPage.class)));
 
-        //Menu button to go to saved jobs page
-        Button rejectedJobsButton = findViewById(R.id.Rejected_Jobs_Button);
-        rejectedJobsButton.setOnClickListener((View v) -> startActivity(new Intent(MainActivity.this, RejectedJobsListPage.class)));
-
-        filtersDialog = new Dialog(this); // For filters popup window on main activity
+        /*filtersDialog = new Dialog(this); // For filters popup window on main activity*/
+        jobCardBlowUpDialog = new Dialog(this);
     }
 
     // For filters popup window on main activity
@@ -143,7 +154,55 @@ public class MainActivity extends DrawerBaseActivity {
         completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener((View view) -> filtersDialog.dismiss());
         filtersDialog.show();
+
+    }*/
+
+    public void ShowJobCardExpanded(JobListing job){
+        // popup to display the full job description in a scrollView
+        TextView companyName, jobTitle, skillsMatched, fullDescription;
+
+        jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
+        Button closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);
+        ImageView imageView = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyLogo);
+        imageView.setImageResource(R.mipmap.ic_launcher);
+
+        companyName = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_companyName);
+        jobTitle = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_jobTitle);
+        jobTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse(job.GetJobListingUrl());
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+                startActivity(webIntent);
+            }
+        });
+        skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
+        fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
+        String prettyJobDesc = JobDescriptionBeautifier(job.GetJobDescription());
+
+        companyName.setText(job.GetJobLocation());
+        jobTitle.setText(job.GetJobTitle());
+        skillsMatched.setText(job.GetJobType());
+        fullDescription.setText(prettyJobDesc);
+
+        closeButton.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
+        jobCardBlowUpDialog.show();
+        jobCardBlowUpDialog.getWindow().setLayout((15 * getResources().getDisplayMetrics().widthPixels)/16, (15 * getResources().getDisplayMetrics().heightPixels)/16);
     }
+
+    public String JobDescriptionBeautifier(String jobDescription){
+        StringBuilder stringBuilder = new StringBuilder();
+
+        String[] splitDescription = jobDescription.split("\\.\\s|\\R|\\$", 0);
+        for (int i = 0; i < splitDescription.length; i++) {
+            stringBuilder.append(splitDescription[i]).append(". \n\n\t");
+
+        }
+        return stringBuilder.toString();
+    }
+
+
+
 
     // For SwipeCards
     /*
