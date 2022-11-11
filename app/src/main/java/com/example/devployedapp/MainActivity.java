@@ -183,15 +183,26 @@ public class MainActivity extends DrawerBaseActivity {
         });
         skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
+        String prettyJobDesc = JobDescriptionBeautifier(job.GetJobDescription());
 
         companyName.setText(job.GetJobLocation());
         jobTitle.setText(job.GetJobTitle());
         skillsMatched.setText(job.GetJobType());
-        fullDescription.setText(job.GetJobDescription());
+        fullDescription.setText(prettyJobDesc);
 
         closeButton.setOnClickListener((View view) -> jobCardBlowUpDialog.dismiss());
         jobCardBlowUpDialog.show();
         jobCardBlowUpDialog.getWindow().setLayout((15 * getResources().getDisplayMetrics().widthPixels)/16, (15 * getResources().getDisplayMetrics().heightPixels)/16);
+    }
+    public String JobDescriptionBeautifier(String jobDescription){
+        StringBuilder stringBuilder = new StringBuilder();
+
+        String[] splitDescription = jobDescription.split("\\.\\s|\\R|\\$", 0);
+        for (int i = 0; i < splitDescription.length; i++) {
+            stringBuilder.append(splitDescription[i]).append(". \n\n\t");
+
+        }
+        return stringBuilder.toString();
     }
 
     // For SwipeCards
