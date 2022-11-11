@@ -47,7 +47,7 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
 
     @Override
     public void OnCardClick(int position) {
-        TextView companyName, jobTitle, skillsMatched, fullDescription;
+        TextView companyName, jobTitle, skillsMatched, fullDescription, jobType;
 
         jobCardBlowUpDialog.setContentView(R.layout.jobcard_blowup_item);
         Button closeButton = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_close_window);
@@ -65,11 +65,12 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
             }
         });
         skillsMatched = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_skillsMatched);
+        jobType = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_JobType);
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
         String prettyJobDesc =
                 JobDescriptionBeautifier(jobPostings.get(position).GetJobDescription());
 
-        companyName.setText(jobPostings.get(position).GetJobLocation());
+        companyName.setText("Company Name");
         jobTitle.setText(jobPostings.get(position).GetJobTitle());
         jobTitle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +80,8 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
                 startActivity(webIntent);
             }
         });
-        skillsMatched.setText(jobPostings.get(position).GetJobType());
+        skillsMatched.setText(jobPostings.get(position).GetJobLocation());
+        jobType.setText(jobPostings.get(position).GetJobType());
         fullDescription.setText(prettyJobDesc);
 
 

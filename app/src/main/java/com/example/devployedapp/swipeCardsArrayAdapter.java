@@ -59,6 +59,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             jobTitle = jobPost.GetJobTitle();
             jobDescription = jobPost.GetJobDescription();
             jobType = jobPost.GetJobType();
+            //companyName = jobPost.GetCompanyName();
 
             // Create 'tags' based off profile skills
             if (skills != null && !skills.isEmpty()) {
@@ -76,7 +77,8 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
                 }
             }
         } else {
-            location = "Company Name Unavailable";
+            companyName = "Company Name Unavailable";
+            location = "Location Unavailable";
             jobTitle = "Job Title Unavailable";
             jobDescription = "Skills Unavailable";
             jobType = "Job Type Unavailable";

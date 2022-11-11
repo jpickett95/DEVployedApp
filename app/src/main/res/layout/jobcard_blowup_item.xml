@@ -68,6 +68,17 @@
                     android:textStyle="bold"
                     tools:text="Company Name" />
 
+                <TextView
+                    android:id="@+id/cardBlowUp_item_JobType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingStart="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="JobType" />
+
                 <!-- Skills Matched (TextView) -->
                 <TextView
                     android:id="@+id/cardBlowUp_item_skillsMatched"
@@ -75,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:paddingStart="5dp"
+                    android:textStyle="bold"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     tools:text="Skills that match!" />
@@ -103,7 +115,7 @@
                     android:layout_marginLeft="0dp"
                     android:layout_marginRight="0dp"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     tools:text="Full job description" />
         </ScrollView>
 
