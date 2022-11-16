@@ -62,6 +62,10 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AppHelp"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

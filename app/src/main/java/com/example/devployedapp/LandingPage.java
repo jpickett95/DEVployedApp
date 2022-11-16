@@ -25,6 +25,7 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
     Button rejectedPageButton;
     Button savedPageButton;
     Button profilePageButton;
+    Button appUseHelpButton;
     ProgressBar progressBar;
     TextView loadingText;
 
@@ -38,6 +39,7 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
         rejectedPageButton = findViewById(R.id.rejected_matches_button);
         savedPageButton = findViewById(R.id.saved_matches_button);
         profilePageButton = findViewById(R.id.to_profile_page_button);
+        appUseHelpButton = findViewById(R.id.AppUseHelp);
         progressBar = (ProgressBar) findViewById(R.id.progress_Bar);
         loadingText = findViewById(R.id.textView);
         //endregion
@@ -57,6 +59,7 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
         rejectedPageButton.setOnClickListener(this);
         savedPageButton.setOnClickListener(this);
         profilePageButton.setOnClickListener(this);
+        appUseHelpButton.setOnClickListener(this);
     //endregion
 
     }
@@ -67,6 +70,7 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
         savedPageButton.setVisibility(buttonsVisibility);
         rejectedPageButton.setVisibility(buttonsVisibility);
         profilePageButton.setVisibility(buttonsVisibility);
+        appUseHelpButton.setVisibility(buttonsVisibility);
     }
     public void onClick(View v){
         Intent intent;
@@ -90,6 +94,11 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
             startActivity(intent);
         }
 
+        else if (v == appUseHelpButton) {
+            intent = new Intent(LandingPage.this, AppHelp.class);
+            startActivity(intent);
+        }
+
     }
     //endregion
 
@@ -97,14 +106,12 @@ public class LandingPage extends AppCompatActivity implements ListingAddedCallba
     public void ListingWasAdded() {
         // Reaction Method - where you can react to the fact that a listing was added
         this.runOnUiThread(() -> {
-            //setButtonsEnabled(true);
             setButtonsVisibility(View.VISIBLE);
             progressBar.setVisibility((View.GONE));
             loadingText.setVisibility(View.GONE);
         });
 
         listingAddedEventHandler.SetDisabled(); // So we don't call it again
-        //Toast.makeText(LandingPage.this, "1st Listing Found!", Toast.LENGTH_SHORT);
         Log.d("ListingEventHandler", "Listing Added");
     }
 

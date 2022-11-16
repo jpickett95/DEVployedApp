@@ -17,6 +17,10 @@
         <item android:id="@+id/nav_rejected_jobs"
             android:icon="@drawable/custom_rejected_cross_icon"
             android:title="@string/RejectedJobsPage_page_title" />
+
+        <item android:id="@+id/nav_app_help"
+            android:icon="@drawable/ic_baseline_skill_24"
+            android:title="Help" />
     </group>
 
 </menu>
