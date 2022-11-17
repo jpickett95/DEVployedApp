@@ -23,6 +23,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
     public static final String SHARED_PREFERENCES = "sharedPreferences";
     public static final String PROFILE_MYSKILLS_CHIPSTRINGSET = "profileMySkills";
     private Set<String> skills;
+    SharedPreferences sharedPreferences;
 
     public swipeCardsArrayAdapter(Context context, int resourceId, List<JobListing> jobPosts) {
         super(context, resourceId, jobPosts);
@@ -35,8 +36,9 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.swipecards_item, parent, false);
         }
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
         skills = sharedPreferences.getStringSet(PROFILE_MYSKILLS_CHIPSTRINGSET, skills);
+
 
         // Find View IDs
         TextView companyNameView = convertView.findViewById(R.id.swipeCards_item_companyName);

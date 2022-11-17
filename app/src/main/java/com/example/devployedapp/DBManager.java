@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.webparser.WebParser;
 import com.example.webparser.data.JobListing;
+import com.example.webparser.events.EventManager;
 import com.example.webparser.events.handlers.ListingAddedEventHandler;
 import com.example.webparser.events.interfaces.ListingAddedCallback;
 
@@ -15,11 +16,12 @@ import java.sql.SQLDataException;
 import java.util.ArrayList;
 
 public class DBManager implements ListingAddedCallback {
-    private DBHelper dbHelper;
+    private static DBHelper dbHelper;
     private Context context;
     private SQLiteDatabase database;
     ListingAddedEventHandler<DBManager> listingAddedEventHandler;
-    WebParser webparser;
+    EventManager eventManager;
+    WebParser webparser = new WebParser();
 
     static final String UNSEEN = "unseen";
     static final String SEEN = "seen";
@@ -35,7 +37,7 @@ public class DBManager implements ListingAddedCallback {
         context = cntx;
         try {this.open();} catch (SQLDataException sqle) {sqle.printStackTrace();}
 
-        webparser = new WebParser();
+        //webparser = new WebParser();
         listingAddedEventHandler = new ListingAddedEventHandler(this);
         try {webparser.StartParsing();} catch (IOException io) { io.getStackTrace();} catch (InterruptedException inter){ inter.getStackTrace();}
         webparser.eventManager.RegisterEventHandler(listingAddedEventHandler);
@@ -54,22 +56,25 @@ public class DBManager implements ListingAddedCallback {
 
     // Inserts a JobListing object into the database
     public void insert(JobListing job){
-        Cursor cursor = null;
-        if(job.GetJobListingUrl() != null) {
-            cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_URL + " = ?", new String[]{job.GetJobListingUrl()}, null, null, null);
-        }
-        if(cursor.getCount() == 0) {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(DBHelper.JOB_TITLE, job.GetJobTitle());
-            contentValues.put(DBHelper.JOB_LOCATION, job.GetJobLocation());
-            contentValues.put(DBHelper.JOB_COMPANY_NAME, "Company Name");
-            contentValues.put(DBHelper.JOB_ADDITIONAL_INFORMATION, "Additional Info");
-            contentValues.put(DBHelper.JOB_DESCRIPTION, job.GetJobDescription());
-            contentValues.put(DBHelper.JOB_TYPE, job.GetJobType());
-            contentValues.put(DBHelper.JOB_STATUS, UNSEEN);
-            contentValues.put(DBHelper.JOB_URL, job.GetJobListingUrl());
-            database.insert(DBHelper.DATABASE_TABLE, null, contentValues);
-        }
+                try {
+                    Cursor cursor = null;
+                    if(job.GetJobListingUrl() != null) {
+                        cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_URL + " = ?", new String[]{job.GetJobListingUrl()}, null, null, null);
+                    }
+                    if(cursor.getCount() == 0) {
+                        ContentValues contentValues = new ContentValues();
+                        contentValues.put(DBHelper.JOB_TITLE, job.GetJobTitle());
+                        contentValues.put(DBHelper.JOB_LOCATION, job.GetJobLocation());
+                        contentValues.put(DBHelper.JOB_COMPANY_NAME, "Company Name");
+                        contentValues.put(DBHelper.JOB_ADDITIONAL_INFORMATION, "Additional Info");
+                        contentValues.put(DBHelper.JOB_DESCRIPTION, job.GetJobDescription());
+                        contentValues.put(DBHelper.JOB_TYPE, job.GetJobType());
+                        contentValues.put(DBHelper.JOB_STATUS, UNSEEN);
+                        contentValues.put(DBHelper.JOB_URL, job.GetJobListingUrl());
+                        database.insert(DBHelper.DATABASE_TABLE, null, contentValues);
+                    }
+                } catch (Exception e){e.printStackTrace();}
+
     }
     // Inserts an entry into the database - (custom input)
     public void insertData( String job_title, String job_status, String job_location, String job_company_name, String additional_information, String job_description, String job_type, String job_url){
@@ -246,37 +251,58 @@ public class DBManager implements ListingAddedCallback {
     // Returns a list of all entries in database with a 'saved' job_status
     public ArrayList<JobListing> getSavedJobs(){
         ArrayList<JobListing> savedJobs = new ArrayList<>();
-        Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"saved"}, null, null, null);
-        if(cursor.moveToNext()) {
-            //cursor.moveToPrevious(); - causes index out of bounds crash?
-            do {
-                savedJobs.add(createJobListing(cursor));
-            } while (cursor.moveToNext());
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"saved"}, null, null, null);
+                    if(cursor.moveToNext()) {
+                        //cursor.moveToPrevious(); - causes index out of bounds crash?
+                        do {
+                            savedJobs.add(createJobListing(cursor));
+                        } while (cursor.moveToNext());
+                    }
+                } catch (Exception e) {e.printStackTrace();}
+            }
+        }).start();
         return savedJobs;
     }
     // Returns a list of all entries in database with a 'rejected' job_status
     public ArrayList<JobListing> getRejectedJobs(){
         ArrayList<JobListing> rejectedJobs = new ArrayList<>();
-        Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"rejected"}, null, null, null);
-        if(cursor.moveToNext()) {
-            //cursor.moveToPrevious(); - causes index out of bounds crash?
-            do {
-                rejectedJobs.add(createJobListing(cursor));
-            } while (cursor.moveToNext());
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"rejected"}, null, null, null);
+                    if(cursor.moveToNext()) {
+                        //cursor.moveToPrevious(); - causes index out of bounds crash?
+                        do {
+                            rejectedJobs.add(createJobListing(cursor));
+                        } while (cursor.moveToNext());
+                    }
+                } catch (Exception e) {e.printStackTrace();}
+            }
+        }).start();
         return rejectedJobs;
     }
     // Returns a list of all entries in database with an 'unseen' job_status
     public ArrayList<JobListing> getUnseenJobs(){
         ArrayList<JobListing> unseenJobs = new ArrayList<>();
-        Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"unseen"}, null, null, null);
-        if(cursor.moveToNext()) {
-            //cursor.moveToPrevious(); - causes index out of bounds crash?
-            do {
-                unseenJobs.add(createJobListing(cursor));
-            } while (cursor.moveToNext());
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Cursor cursor = database.query(DBHelper.DATABASE_TABLE, DBColumns, DBHelper.JOB_STATUS + " = ?", new String[] {"unseen"}, null, null, null);
+                    if(cursor.moveToNext()) {
+                        //cursor.moveToPrevious(); - causes index out of bounds crash?
+                        do {
+                            unseenJobs.add(createJobListing(cursor));
+                        } while (cursor.moveToNext());
+                    }
+                } catch (Exception e) {e.printStackTrace();}
+            }
+        }).start();
         return unseenJobs;
     }
 
@@ -288,6 +314,11 @@ public class DBManager implements ListingAddedCallback {
     @Override
     public void ListingWasAdded(JobListing listing) {
         // Adds JobListing to database once parsed
-        this.insert(listing);
+        if(database == null){
+            try {this.open();} catch (Exception e) {e.printStackTrace();}
+        }
+        if(database.isOpen()) {
+            this.insert(listing);
+        }
     }
 }

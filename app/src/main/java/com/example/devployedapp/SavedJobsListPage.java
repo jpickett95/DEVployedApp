@@ -27,6 +27,7 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
     ListPagesSavedBinding listPagesSavedBinding;
     ArrayList<JobListing> jobPostings = new ArrayList<>();
     Dialog jobCardBlowUpDialog;
+    DBManager dbManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
         listPagesSavedBinding = ListPagesSavedBinding.inflate(getLayoutInflater());
         setContentView(listPagesSavedBinding.getRoot());
         allocateActivityTitle("Saved Jobs");
-        DBManager dbManager = new DBManager(this);
+        dbManager = new DBManager(this);
         jobPostings = dbManager.getSavedJobs();
         jobCardBlowUpDialog = new Dialog(this);
 
@@ -99,4 +100,5 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
         }
         return stringBuilder.toString();
     }
+
 }

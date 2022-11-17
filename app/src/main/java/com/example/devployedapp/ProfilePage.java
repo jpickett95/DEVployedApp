@@ -250,84 +250,94 @@ public class ProfilePage extends DrawerBaseActivity implements MySkillsDialog.My
 
     // For Shared Preferences
     private void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(PROFILE_NAME, profileFullName.getText().toString());
-        editor.putString(PROFILE_EMAIL, profileEmail.getText().toString());
-        editor.putString(PROFILE_PHONE, profilePhone.getText().toString());
-        editor.putBoolean(PROFILE_EDU_HIGHSCHOOL, highSchoolEDUChip.isChecked());
-        editor.putBoolean(PROFILE_EDU_ASSOCIATES, associatesEDUChip.isChecked());
-        editor.putBoolean(PROFILE_EDU_BACHELORS, bachelorsEDUChip.isChecked());
-        editor.putBoolean(PROFILE_EDU_MASTERS, mastersEDUChip.isChecked());
-        editor.putBoolean(PROFILE_EDU_PHD, phdEDUChip.isChecked());
-        editor.putBoolean(PROFILE_EDU_BOOTCAMP, bootcampEDUChip.isChecked());
-        editor.putBoolean(PROFILE_EXP_NOEXP, noexpEXPChip.isChecked());
-        editor.putBoolean(PROFILE_EXP_EARLY, earlyEXPChip.isChecked());
-        editor.putBoolean(PROFILE_EXP_MID, midEXPChip.isChecked());
-        editor.putBoolean(PROFILE_EXP_SENIOR, seniorEXPChip.isChecked());
-        editor.putBoolean(PROFILE_EXP_EXECUTIVE, executiveEXPChip.isChecked());
-        editor.putBoolean(PROFILE_INDUSTRY_BACKEND, backEndINDChip.isChecked());
-        editor.putBoolean(PROFILE_INDUSTRY_SOFTWAREDEV, softwareDevINDChip.isChecked());
-        editor.putBoolean(PROFILE_INDUSTRY_GAMEDEV, gameDevINDChip.isChecked());
-        editor.putBoolean(PROFILE_INDUSTRY_FRONTEND, frontEndINDChip.isChecked());
-        editor.putBoolean(PROFILE_INDUSTRY_FULLSTACK, fullStackINDChip.isChecked());
-        editor.putBoolean(PROFILE_INDUSTRY_IT, itINDChip.isChecked());
-        editor.putBoolean(PROFILE_INDUSTRY_UXUI, uxuiINDChip.isChecked());
+                    editor.putString(PROFILE_NAME, profileFullName.getText().toString());
+                    editor.putString(PROFILE_EMAIL, profileEmail.getText().toString());
+                    editor.putString(PROFILE_PHONE, profilePhone.getText().toString());
+                    editor.putBoolean(PROFILE_EDU_HIGHSCHOOL, highSchoolEDUChip.isChecked());
+                    editor.putBoolean(PROFILE_EDU_ASSOCIATES, associatesEDUChip.isChecked());
+                    editor.putBoolean(PROFILE_EDU_BACHELORS, bachelorsEDUChip.isChecked());
+                    editor.putBoolean(PROFILE_EDU_MASTERS, mastersEDUChip.isChecked());
+                    editor.putBoolean(PROFILE_EDU_PHD, phdEDUChip.isChecked());
+                    editor.putBoolean(PROFILE_EDU_BOOTCAMP, bootcampEDUChip.isChecked());
+                    editor.putBoolean(PROFILE_EXP_NOEXP, noexpEXPChip.isChecked());
+                    editor.putBoolean(PROFILE_EXP_EARLY, earlyEXPChip.isChecked());
+                    editor.putBoolean(PROFILE_EXP_MID, midEXPChip.isChecked());
+                    editor.putBoolean(PROFILE_EXP_SENIOR, seniorEXPChip.isChecked());
+                    editor.putBoolean(PROFILE_EXP_EXECUTIVE, executiveEXPChip.isChecked());
+                    editor.putBoolean(PROFILE_INDUSTRY_BACKEND, backEndINDChip.isChecked());
+                    editor.putBoolean(PROFILE_INDUSTRY_SOFTWAREDEV, softwareDevINDChip.isChecked());
+                    editor.putBoolean(PROFILE_INDUSTRY_GAMEDEV, gameDevINDChip.isChecked());
+                    editor.putBoolean(PROFILE_INDUSTRY_FRONTEND, frontEndINDChip.isChecked());
+                    editor.putBoolean(PROFILE_INDUSTRY_FULLSTACK, fullStackINDChip.isChecked());
+                    editor.putBoolean(PROFILE_INDUSTRY_IT, itINDChip.isChecked());
+                    editor.putBoolean(PROFILE_INDUSTRY_UXUI, uxuiINDChip.isChecked());
 
-        editor.putString(PROFILE_IMAGE, encodedImage);
+                    editor.putString(PROFILE_IMAGE, encodedImage);
 
-        // For My Skills Chips - Shared Preferences takes String Sets
-        mySkills = findViewById(R.id.ChipGroup_profile_mySkills);
-        if(mySkills.getChildCount() > 0) {
-            mySkillsChipNames = new HashSet<>();
-            for (int i = 0; i < mySkills.getChildCount(); i++) {
-                Chip chip = (Chip) mySkills.getChildAt(i);
-                String name = chip.getText().toString();
-                boolean isChecked = chip.isChecked();
-                editor.putBoolean(name, isChecked);
-                mySkillsChipNames.add(name);
+                    // For My Skills Chips - Shared Preferences takes String Sets
+                    mySkills = findViewById(R.id.ChipGroup_profile_mySkills);
+                    if(mySkills.getChildCount() > 0) {
+                        mySkillsChipNames = new HashSet<>();
+                        for (int i = 0; i < mySkills.getChildCount(); i++) {
+                            Chip chip = (Chip) mySkills.getChildAt(i);
+                            String name = chip.getText().toString();
+                            boolean isChecked = chip.isChecked();
+                            editor.putBoolean(name, isChecked);
+                            mySkillsChipNames.add(name);
+                        }
+                        editor.putStringSet(PROFILE_MYSKILLS_CHIPSTRINGSET, mySkillsChipNames);
+                    }
+
+                    editor.apply();
+                    runOnUiThread(()-> {
+                        Toast.makeText(getApplicationContext(), "Profile Saved!", Toast.LENGTH_SHORT).show();
+                    });
+                }catch (Exception e) {e.printStackTrace();}
             }
-            editor.putStringSet(PROFILE_MYSKILLS_CHIPSTRINGSET, mySkillsChipNames);
-        }
+        }).start();
 
-        editor.apply();
-
-        //Toast.makeText(this, "Profile Saved!", Toast.LENGTH_SHORT).show();
     }
     public void loadData(){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
-        // (variable) = sharedPreferences.getString(CONSTANT, default value "") --- OR ...getBoolean(CONSTANT, default value)
 
-        // Text
-        fullName = sharedPreferences.getString(PROFILE_NAME, "");
-        email = sharedPreferences.getString(PROFILE_EMAIL, "");
-        phone = sharedPreferences.getString(PROFILE_PHONE, "");
+                    // (variable) = sharedPreferences.getString(CONSTANT, default value "") --- OR ...getBoolean(CONSTANT, default value)
+                    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
 
-        // Booleans
-        highSchoolOnOff = sharedPreferences.getBoolean(PROFILE_EDU_HIGHSCHOOL, false);   // Education
-        associatesOnOff = sharedPreferences.getBoolean(PROFILE_EDU_ASSOCIATES, false);
-        bachelorsOnOff = sharedPreferences.getBoolean(PROFILE_EDU_BACHELORS, false);
-        mastersOnOff = sharedPreferences.getBoolean(PROFILE_EDU_MASTERS, false);
-        phdOnOff = sharedPreferences.getBoolean(PROFILE_EDU_PHD, false);
-        bootcampOnOff = sharedPreferences.getBoolean(PROFILE_EDU_BOOTCAMP, false);
-        noexpOnOff = sharedPreferences.getBoolean(PROFILE_EXP_NOEXP, false);  // Experience
-        earlyexpOnOff = sharedPreferences.getBoolean(PROFILE_EXP_EARLY, false);
-        midexpOnOff = sharedPreferences.getBoolean(PROFILE_EXP_MID, false);
-        seniorexpOnOff = sharedPreferences.getBoolean(PROFILE_EXP_SENIOR, false);
-        executiveOnOff = sharedPreferences.getBoolean(PROFILE_EXP_EXECUTIVE, false);
-        softwaredevOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_SOFTWAREDEV, false);   // Industry
-        gamedevOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_GAMEDEV, false);
-        itOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_IT, false);
-        uxuiOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_UXUI, false);
-        fullstackOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_FULLSTACK, false);
-        frontendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_FRONTEND, false);
-        backendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_BACKEND, false);
+                    // Text
+                    fullName = sharedPreferences.getString(PROFILE_NAME, "");
+                    email = sharedPreferences.getString(PROFILE_EMAIL, "");
+                    phone = sharedPreferences.getString(PROFILE_PHONE, "");
 
-        // String Sets
-        mySkillsChipNames = sharedPreferences.getStringSet(PROFILE_MYSKILLS_CHIPSTRINGSET, mySkillsChipNames);
+                    // Booleans
+                    highSchoolOnOff = sharedPreferences.getBoolean(PROFILE_EDU_HIGHSCHOOL, false);   // Education
+                    associatesOnOff = sharedPreferences.getBoolean(PROFILE_EDU_ASSOCIATES, false);
+                    bachelorsOnOff = sharedPreferences.getBoolean(PROFILE_EDU_BACHELORS, false);
+                    mastersOnOff = sharedPreferences.getBoolean(PROFILE_EDU_MASTERS, false);
+                    phdOnOff = sharedPreferences.getBoolean(PROFILE_EDU_PHD, false);
+                    bootcampOnOff = sharedPreferences.getBoolean(PROFILE_EDU_BOOTCAMP, false);
+                    noexpOnOff = sharedPreferences.getBoolean(PROFILE_EXP_NOEXP, false);  // Experience
+                    earlyexpOnOff = sharedPreferences.getBoolean(PROFILE_EXP_EARLY, false);
+                    midexpOnOff = sharedPreferences.getBoolean(PROFILE_EXP_MID, false);
+                    seniorexpOnOff = sharedPreferences.getBoolean(PROFILE_EXP_SENIOR, false);
+                    executiveOnOff = sharedPreferences.getBoolean(PROFILE_EXP_EXECUTIVE, false);
+                    softwaredevOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_SOFTWAREDEV, false);   // Industry
+                    gamedevOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_GAMEDEV, false);
+                    itOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_IT, false);
+                    uxuiOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_UXUI, false);
+                    fullstackOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_FULLSTACK, false);
+                    frontendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_FRONTEND, false);
+                    backendOnOff = sharedPreferences.getBoolean(PROFILE_INDUSTRY_BACKEND, false);
 
-        encodedImage = sharedPreferences.getString(PROFILE_IMAGE,"");
+                    // String Sets
+                    mySkillsChipNames = sharedPreferences.getStringSet(PROFILE_MYSKILLS_CHIPSTRINGSET, mySkillsChipNames);
+
+                    encodedImage = sharedPreferences.getString(PROFILE_IMAGE,"");
     }
     public void updateViews(){
         // Text
