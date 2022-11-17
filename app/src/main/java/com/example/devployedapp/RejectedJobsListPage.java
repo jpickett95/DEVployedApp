@@ -24,6 +24,7 @@ public class RejectedJobsListPage extends DrawerBaseActivity implements JobCardB
     ListPagesRejectedBinding listPagesRejectedBinding;
     ArrayList<JobListing> jobPostings = new ArrayList<>();
     Dialog jobCardBlowUpDialog;
+    DBManager dbManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class RejectedJobsListPage extends DrawerBaseActivity implements JobCardB
         listPagesRejectedBinding = ListPagesRejectedBinding.inflate(getLayoutInflater());
         setContentView(listPagesRejectedBinding.getRoot());
         allocateActivityTitle("Rejected Jobs");
-        DBManager dbManager = new DBManager(this);
+        dbManager = new DBManager(this);
         jobPostings = dbManager.getRejectedJobs();
         jobCardBlowUpDialog = new Dialog(this);
 
