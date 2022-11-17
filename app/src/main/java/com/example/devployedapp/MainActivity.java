@@ -92,14 +92,14 @@ public class MainActivity extends DrawerBaseActivity {
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
-                Toast.makeText(MainActivity.this, "Reject!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Reject!", Toast.LENGTH_SHORT).show();
                 JobListing job = (JobListing) dataObject;
                 dbManager.updateJobStatus(job.GetJobID(), dbManager.REJECTED);
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Apply!", Toast.LENGTH_SHORT).show();
                 JobListing job = (JobListing) dataObject;
                 dbManager.updateJobStatus(job.GetJobID(), dbManager.SAVED);
             }
@@ -128,7 +128,7 @@ public class MainActivity extends DrawerBaseActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
                 // potentially link to job application or job posting on company website?
                 // ^^ OR pull up a popup window with more specific, detailed information
                 JobListing jobListing = (JobListing) dataObject;
@@ -149,7 +149,8 @@ public class MainActivity extends DrawerBaseActivity {
         jobCardBlowUpDialog = new Dialog(this);
     }
 
-    /*// For filters popup window on main activity
+    /*
+    // For filters popup window on main activity
     public void ShowFiltersPopup(View v){
         // popup is dismissed when user clicks the completed button
         FloatingActionButton completedButton;
@@ -157,8 +158,8 @@ public class MainActivity extends DrawerBaseActivity {
         completedButton = filtersDialog.findViewById(R.id.floatingActionButton_complete);
         completedButton.setOnClickListener((View view) -> filtersDialog.dismiss());
         filtersDialog.show();
-
-    }*/
+    }
+    */
 
     public void ShowJobCardExpanded(JobListing job){
         // popup to display the full job description in a scrollView
