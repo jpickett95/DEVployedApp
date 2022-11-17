@@ -51,7 +51,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
         String jobTitle;
         String jobDescription;
         String jobType;
-        String companyName = "Company Name";
+        String companyName = "";
 
         // Check is jobPost is null and display 'content unavailable' message if so
         if(jobPost != null) {
@@ -59,7 +59,7 @@ public class swipeCardsArrayAdapter  extends ArrayAdapter<JobListing> {
             jobTitle = jobPost.GetJobTitle();
             jobDescription = jobPost.GetJobDescription();
             jobType = jobPost.GetJobType();
-            //companyName = jobPost.GetCompanyName();
+            companyName = jobPost.GetCompanyName();
 
             // Create 'tags' based off profile skills
             if (skills != null && !skills.isEmpty()) {

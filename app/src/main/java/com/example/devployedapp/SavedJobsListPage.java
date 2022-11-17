@@ -70,7 +70,7 @@ public class SavedJobsListPage extends DrawerBaseActivity implements JobCardBlow
         String prettyJobDesc =
                 JobDescriptionBeautifier(jobPostings.get(position).GetJobDescription());
 
-        companyName.setText("Company Name");
+        companyName.setText(jobPostings.get(position).GetCompanyName());
         jobTitle.setText(jobPostings.get(position).GetJobTitle());
         jobTitle.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -186,7 +186,7 @@ public class MainActivity extends DrawerBaseActivity {
         fullDescription = jobCardBlowUpDialog.findViewById(R.id.cardBlowUp_item_fullDescription);
         String prettyJobDesc = JobDescriptionBeautifier(job.GetJobDescription());
 
-        companyName.setText("Company Name");
+        companyName.setText(job.GetCompanyName());
         jobTitle.setText(job.GetJobTitle());
         jobType.setText(job.GetJobType());
         skillsMatched.setText(job.GetJobLocation());
@@ -207,21 +207,4 @@ public class MainActivity extends DrawerBaseActivity {
         return stringBuilder.toString();
     }
 
-    // For SwipeCards
-    /*
-    static void makeToast(Context ctx, String s){
-        Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
-    }
-    @OnClick(R.id.right)
-    public void right() {
-
-         // Trigger the right event manually.
-
-        flingContainer.getTopCardListener().selectRight();
-    }
-    @OnClick(R.id.left)
-    public void left() {
-        flingContainer.getTopCardListener().selectLeft();
-    }
-    */
 }
