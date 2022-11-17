@@ -94,6 +94,10 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 startActivity(new Intent(this, RejectedJobsListPage.class));
                 overridePendingTransition(0,0);
                 break;
+            case R.id.nav_app_help:
+                startActivity(new Intent(this, AppHelp.class));
+                overridePendingTransition(0,0);
+                break;
         }
         return true;
     }

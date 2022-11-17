@@ -22,32 +22,39 @@ public class AppHelp extends DrawerBaseActivity {
     AppHelpLayoutBinding appHelpLayoutBinding;
 
 
-    String[] questionArray = {"What is DEVployed?","How do I create a profile?",
-            "How do I view my job matches?", "How do I view the jobs I have saved/rejected?"};
-    String[] answerArray = {"DEVployed is an app that matches users to relevant &amp; in-demand " +
-                "positions in tech with the swipe of a finger! Our powerful algorithm matches your " +
-                "skills and experiences to job descriptions to eliminate under-qualified positions!",
+    String[] questionArray = {"What is DEVployed?","\nHow do I create a profile?",
+            "\nHow do I view my job matches?", "\nHow do I view the jobs I have saved/rejected?"};
+    String[] answerArray = {"DEVployed is an app that matches users to relevant and in-demand " +
+                "positions in tech with the swipe of a finger! \n\nOur powerful algorithm " +
+            "matches your " +
+                "skills and experiences to job descriptions to eliminate under-qualified " +
+            "positions from your job-search!",
             "In the menu, select Profile. You may upload or take a photo for your profile. Enter " +
-                    "your information. Under My Skills, click the plus (+) button to add specific" +
+                    "your contact information. \n\nUnder My Skills, click the plus (+) button to " +
+                    "add specific" +
                     "coding languages (C#, Ruby, etc.) and specialized software experience (JIRA," +
-                    " SQLDatabase, etc.). Under Educational Experience, Experience Level, and " +
-                    "Industry Preferences, select all applicable options. \n\n Congrats! Your " +
+                    " SQLDatabase, etc.). \n\nUnder Educational Experience, Experience Level, and" +
+                    " Industry Preferences, select all applicable options. \n\nCongrats! Your " +
                     "profile is complete!",
             "In the menu, select Job Matches. The jobs will be displayed as cards with the job " +
-                    "title, location, and part of the job description. If the skills and experiences" +
+                    "title, location, and part of the job description. \n\nIf the skills and " +
+                    "experiences " +
                     "you entered in your profile match the description of the job, they will" +
-                    "show up as green keywords above the job description. \n\n To view the job " +
-                    "description completely, tap the card. It will blow up the card and allow you" +
+                    "show up as green keywords above the job description. \n\nTo view the job " +
+                    "description completely, tap the card. It will expand the card and allow you" +
                     " to scroll through the entire job description. To be taken directly to the " +
-                    "URL of the job posting, click the job title. \n\n Here's the fun part! If " +
-                    "you like the job post, swipe the card to the RIGHT to save it. If you don't " +
-                    "like the job post, swipe the card to the LEFT to reject it. You can view all" +
+                    "URL of the job posting to apply, click the job title. \n\nHere's the fun " +
+                    "part! \n\nIf " +
+                    "you like the job post, swipe the card to the RIGHT to save it. \n\nIf you " +
+                    "don't " +
+                    "like the job post, swipe the card to the LEFT to reject it. \n\nYou can view" +
+                    " all" +
                     " jobs you have saved or rejected at any time through the Rejected Matches " +
                     "and Saved Matches options in the menu.",
             "In the menu, select Rejected Matches or Saved Matches to be taken to the " +
                     "corresponding list. There you can scroll through all previous postings you " +
-                    "have viewed. By tapping on the listing, you will be able to review the " +
-                    "entire job post again."};
+                    "have already viewed. By tapping on the listing, you are " +
+                    "able to expand and review the entire job post again."};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +62,7 @@ public class AppHelp extends DrawerBaseActivity {
 
         appHelpLayoutBinding = AppHelpLayoutBinding.inflate(getLayoutInflater());
         setContentView(appHelpLayoutBinding.getRoot());
-        allocateActivityTitle("Help");
+        allocateActivityTitle("Help & FAQs");
 
         TextView questionItem1, questionItem2, questionItem3, questionItem4, answerItem1,
                 answerItem2, answerItem3, answerItem4;

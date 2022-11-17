@@ -6,30 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".AppHelp">
 
-    <!-- Company Logo (ImageView) -->
-    <ImageView
-        android:id="@+id/DEVployedLogo"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_margin="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Job Title (TextView) -->
-    <TextView
-        android:id="@+id/AppUseHelpTitle"
-        android:layout_width="0dp"
-        android:layout_height="75dp"
-        android:layout_margin="5dp"
-        android:textAlignment="center"
-        android:textColor="@color/brand_Pistachio"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="Help"
-        app:layout_constraintLeft_toRightOf="@+id/DEVployedLogo"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <!--Scrollview Container set attribute layout_constraintHeight to wrap_content_constrained, allowing the child Textview to wrap content but the scrollview to remain constrained to the items above it-->
     <ScrollView
         android:id="@+id/AppHelp_scrollView"
@@ -42,8 +18,7 @@
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight="wrap_content_constrained"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/AppUseHelpTitle">
+        app:layout_constraintStart_toStartOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,45 +27,62 @@
                 android:id="@+id/question_item1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:textStyle="bold"
-                android:textAlignment="center"/>
+                android:fontFamily="@font/alegreya_sc"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textAlignment="textStart"/>
             <TextView
                 android:id="@+id/sub_answer_item1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/open_sans"
                 tools:textStyle="normal"/>
             <TextView
                 android:id="@+id/question_item2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:textStyle="bold"
-                android:textAlignment="center"/>
+                android:fontFamily="@font/alegreya_sc"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textAlignment="textStart"/>
             <TextView
                 android:id="@+id/sub_answer_item2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/open_sans"
                 tools:textStyle="normal"/>
             <TextView
                 android:id="@+id/question_item3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:textStyle="bold"
-                android:textAlignment="center"/>
+                android:fontFamily="@font/alegreya_sc"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textAlignment="textStart"/>
             <TextView
                 android:id="@+id/sub_answer_item3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/open_sans"
                 tools:textStyle="normal"/>
             <TextView
                 android:id="@+id/question_item4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:textStyle="bold"
-                android:textAlignment="center"/>
+                android:fontFamily="@font/alegreya_sc"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textAlignment="textStart"/>
             <TextView
                 android:id="@+id/sub_answer_item4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/open_sans"
                 tools:textStyle="normal"/>
         </LinearLayout>
     </ScrollView>
